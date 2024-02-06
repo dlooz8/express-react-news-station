@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -6,4 +7,81 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-family: 'Roboto', sans-serif;
+  color: #3E3232;
 }
+
+h5 {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+h6 {
+  font-size: 13px;
+  font-weight: 500;
+  opacity: 0.75;
+}
+
+.red-hover:hover {
+  color: #F81539;
+}
+
+.red-hover:hover svg {
+  fill: #F81539;
+}
+
+.dropbtn {
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+}
+
+.dropbtn svg {
+  transition: transform 0.3s;
+}
+
+.dropbtn:hover svg {
+  transform: rotate(180deg);
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown:hover .dropdown-categories {display: grid;}
+
+.dropdown:hover .dropbtn {
+  text-decoration-line: #3E3232;
+}
+
+.dropdown-categories {
+  display: none;
+  position: absolute;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  left: -170px;
+  border-radius: 12px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+}
+
+.car { grid-area: 1 / 1 / 2 / 2; }
+.tech { grid-area: 2 / 1 / 3 / 2; }
+.girl { grid-area: 1 / 2 / 2 / 3; }
+.sport { grid-area: 2 / 2 / 3 / 3; }
+.food { grid-area: 1 / 3 / 2 / 4; }
+.music { grid-area: 2 / 3 / 3 / 4; }
+
+.dropdown:hover .dropdown-pages {display: flex;}
+
+.dropdown-pages {
+  display: none;
+  position: absolute;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  flex-direction: column;
+  z-index: 1;
+  border-radius: 12px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  }
