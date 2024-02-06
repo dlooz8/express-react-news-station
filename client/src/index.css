@@ -24,10 +24,12 @@ h6 {
 
 .red-hover:hover {
   color: #F81539;
+  transition: color 0.3s;
 }
 
 .red-hover:hover svg {
   fill: #F81539;
+  transition: fill 0.3s;
 }
 
 .dropbtn {
