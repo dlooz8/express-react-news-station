@@ -22,7 +22,7 @@ h6 {
   opacity: 0.75;
 }
 
-.red-hover:hover {
+.red-hover:hover p {
   color: #F81539;
   transition: color 0.3s;
 }
