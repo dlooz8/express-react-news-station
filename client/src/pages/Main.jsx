@@ -1,6 +1,7 @@
 // import axios from 'axios';
 // import { useEffect, useState } from 'react';
 // import { Link } from 'react-router-dom';
+import Carousel from '../components/Carousel.jsx';
 
 
 function Main() {
@@ -21,7 +22,9 @@ function Main() {
 
   return (
     <div>
-      <h2>News List</h2>
+      <Carousel />
+
+
     </div>
   );
 }

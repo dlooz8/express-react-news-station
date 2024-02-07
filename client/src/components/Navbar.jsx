@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   return (
-    <div className='flex justify-between mx-48 my-12 items-center align-middle font-medium'>
+    <div className='flex justify-between mx-48 my-8 items-center align-middle font-medium'>
         <Link to='/'>News Station!</Link>
         <div className="dropdown">
             <button className="dropbtn flex justify-between gap-2 items-center">
