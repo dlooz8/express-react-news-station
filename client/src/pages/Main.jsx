@@ -2,6 +2,8 @@
 // import { useEffect, useState } from 'react';
 // import { Link } from 'react-router-dom';
 import Carousel from '../components/Carousel.jsx';
+import Banner from '../components/Banner.jsx';
+import PopularPosts from '../components/PopularPosts.jsx';
 
 
 function Main() {
@@ -23,8 +25,8 @@ function Main() {
   return (
     <div>
       <Carousel />
-
-
+      <Banner />
+      <PopularPosts />
     </div>
   );
 }

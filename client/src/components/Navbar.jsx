@@ -6,7 +6,7 @@ const Navbar = () => {
         <Link to='/'>News Station!</Link>
         <div className="dropdown">
             <button className="dropbtn flex justify-between gap-2 items-center">
-                <p>Categories</p>
+                <h5>Categories</h5>
                 <svg width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M6 6.25C5.75391 6.25 5.53516 6.16797 5.37109 6.00391L0.996094 1.62891C0.640625 1.30078 0.640625 0.726562 0.996094 0.398438C1.32422 0.0429688 1.89844 0.0429688 2.22656 0.398438L6 4.14453L9.74609 0.398437C10.0742 0.0429687 10.6484 0.0429687 10.9766 0.398437C11.332 0.726562 11.332 1.30078 10.9766 1.62891L6.60156 6.00391C6.4375 6.16797 6.21875 6.25 6 6.25Z" fill="#3E3232" fillOpacity="0.5"/>
                 </svg>
@@ -121,7 +121,7 @@ const Navbar = () => {
 
         <div className="dropdown">
             <button className="dropbtn flex justify-between gap-2 items-center">
-                <p>Pages</p>
+                <h5>Pages</h5>
                 <svg width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M6 6.25C5.75391 6.25 5.53516 6.16797 5.37109 6.00391L0.996094 1.62891C0.640625 1.30078 0.640625 0.726562 0.996094 0.398438C1.32422 0.0429688 1.89844 0.0429688 2.22656 0.398438L6 4.14453L9.74609 0.398437C10.0742 0.0429687 10.6484 0.0429687 10.9766 0.398437C11.332 0.726562 11.332 1.30078 10.9766 1.62891L6.60156 6.00391C6.4375 6.16797 6.21875 6.25 6 6.25Z" fill="#3E3232" fillOpacity="0.5"/>
                 </svg>
@@ -135,8 +135,8 @@ const Navbar = () => {
         </div>
 
 
-        <Link to='/constactus' className='red-hover'><p>Contact Us</p></Link>
-        <Link to='/aboutus' className='red-hover'><p>About Us</p></Link>
+        <Link to='/constactus' className='red-hover'><h5>Contact Us</h5></Link>
+        <Link to='/aboutus' className='red-hover'><h5>About Us</h5></Link>
         <div className="flex justify-between items-center text-xs gap-8 bg-gray rounded-xl px-4 min-w-[400px] py-3">
             <svg width="6" height="18" viewBox="0 0 6 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M3 13.0625C4.17188 13.0625 5.1875 14.0781 5.1875 15.25C5.1875 16.4609 4.17188 17.4375 3 17.4375C1.78906 17.4375 0.8125 16.4609 0.8125 15.25C0.8125 14.0781 1.78906 13.0625 3 13.0625ZM3 6.8125C4.17188 6.8125 5.1875 7.82812 5.1875 9C5.1875 10.2109 4.17188 11.1875 3 11.1875C1.78906 11.1875 0.8125 10.2109 0.8125 9C0.8125 7.82812 1.78906 6.8125 3 6.8125ZM3 4.9375C1.78906 4.9375 0.8125 3.96094 0.8125 2.75C0.8125 1.57812 1.78906 0.5625 3 0.5625C4.17188 0.5625 5.1875 1.57812 5.1875 2.75C5.1875 3.96094 4.17188 4.9375 3 4.9375Z" fill="#3E3232"/>
@@ -150,7 +150,7 @@ const Navbar = () => {
         <div className="dropdown">
             <button className="dropbtn flex justify-between gap-4 items-center">
                 <img className='object-cover w-[48px] h-[48px] rounded-xl' src="avatar1.png" alt="avatar" />
-                <p className="text-xs">Hi, Danny!</p>
+                <h5 className="text-xs">Hi, Danny!</h5>
                 <svg width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M6 6.25C5.75391 6.25 5.53516 6.16797 5.37109 6.00391L0.996094 1.62891C0.640625 1.30078 0.640625 0.726562 0.996094 0.398438C1.32422 0.0429688 1.89844 0.0429688 2.22656 0.398438L6 4.14453L9.74609 0.398437C10.0742 0.0429687 10.6484 0.0429687 10.9766 0.398437C11.332 0.726562 11.332 1.30078 10.9766 1.62891L6.60156 6.00391C6.4375 6.16797 6.21875 6.25 6 6.25Z" fill="#3E3232" fillOpacity="0.5"/>
                 </svg>
