@@ -1,13 +1,13 @@
 
 function HotSport() {
     return (
-        <section className="my-12 px-48 bg-gray">
+        <section className="mt-16 pt-4 pb-16 px-48 bg-gray">
             <div className="flex justify-between py-6">
                 <div className="flex gap-2 justify-between items-center">
                     <svg width="4" height="11" viewBox="0 0 4 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect y="0.5" width="4" height="10" rx="2" fill="#F81539"/>
                     </svg>
-                    <h4>Latest Videos</h4>
+                    <h4>Hot Sport</h4>
                 </div>
                 <div className="flex justify-between gap-4">
                     <div className="w-[3vh] h-[3vh] bg-[#e2e2e2] rounded-xl flex items-center justify-center red-hover">

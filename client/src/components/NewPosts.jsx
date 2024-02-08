@@ -1,7 +1,7 @@
 
 function NewPosts() {
     return (
-        <section className="mx-48">
+        <section className="mx-48 my-12">
             <div className="flex justify-between py-8">
                 <div className="flex gap-2 justify-between items-center">
                     <svg width="4" height="11" viewBox="0 0 4 11" fill="none" xmlns="http://www.w3.org/2000/svg">
