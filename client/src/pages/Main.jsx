@@ -5,6 +5,7 @@ import Carousel from '../components/Carousel.jsx';
 import Banner from '../components/Banner.jsx';
 import PopularPosts from '../components/PopularPosts.jsx';
 import NewPosts from '../components/NewPosts.jsx';
+import HotSport from '../components/HotSport.jsx';
 
 function Main() {
 //   const [news, setNews] = useState([]);
@@ -28,6 +29,7 @@ function Main() {
       <Banner />
       <PopularPosts />
       <NewPosts />
+      <HotSport />
     </div>
   );
 }

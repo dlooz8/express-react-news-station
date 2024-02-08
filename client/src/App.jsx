@@ -1,6 +1,5 @@
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import NewsList from './components/NewsList';
 import SignIn from './pages/SignIn';
 import Main from './pages/Main';
 import UserProfile from './pages/UserProfile';
