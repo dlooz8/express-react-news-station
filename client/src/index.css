@@ -38,6 +38,7 @@ p {
   font-weight: 400;
   line-height: 20px;
   opacity: 0.75;
+  letter-spacing: 0.25px;
 }
 
 .shadow {
@@ -60,6 +61,13 @@ p {
 .red-hover:hover svg {
   fill: #F81539;
   transition: fill 0.3s;
+}
+
+.insta-img {
+  width: 104px;
+  height: 104px;
+  border-radius: 12px;
+  object-fit: cover;
 }
 
 .dropbtn {
