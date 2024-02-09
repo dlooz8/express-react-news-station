@@ -2,8 +2,8 @@
 function Footer() {
   return (
     <footer className="flex flex-col">
-        <div className="flex justify-between gap-4 my-12 py-12">
-            <div className="flex gap-12 pr-10 bg-gray rounded-r-[50px] pl-48 py-12">
+        <div className="flex justify-between gap-8 my-12 pt-12">
+            <div className="flex gap-12 pr-20 bg-gray rounded-r-[50px] pl-48 py-12">
                 <div className="flex flex-col justify-between gap-4">
                     <div>
                         <div className="flex gap-2 items-center">
@@ -12,7 +12,7 @@ function Footer() {
                             </svg>
                             <h4>Mega News</h4>
                         </div>
-                        <p className="w-[450px] p-3 mr-10 text-justify leading-7">Lorem ipsum dolor, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Egestas purus viverra accumsan in nisl nisi. Arcu cursus vitae congue mauris rhoncus aenean vel elit scelerisque. In egestas erat imperdiet sed euismod nisi porta lorem mollis. Morbi tristique senectus et netus. Mattis pellentesque id nibh tortor id aliquet lectus proin</p>
+                        <p className="p-3 mr-10 text-justify leading-7">Lorem ipsum dolor, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Egestas purus viverra accumsan in nisl nisi. Arcu cursus vitae congue mauris rhoncus aenean vel elit scelerisque. In egestas erat imperdiet sed euismod nisi porta lorem mollis. Morbi tristique senectus et netus. Mattis pellentesque id nibh tortor id aliquet lectus proin</p>
                     </div>
                     <div className="flex flex-col gap-4">
                         <div className="flex gap-2 items-center">
@@ -62,7 +62,6 @@ function Footer() {
             </div>
 
             <div className="flex gap-12 pr-48 py-12">
-
                 <div className="flex justify-between gap-4">
                     <div className="flex flex-col gap-2 justify-between">
                         <div className="flex gap-2 items-center">
@@ -74,19 +73,19 @@ function Footer() {
                         <div className="flex flex-col gap-2 justify-between">
                             <div className="flex flex-col gap-2 justify-between rounded-xl bg-gray p-4">
                                 <h5>Anastasia</h5>
-                                <p>how nice does this look 😍 I feel it should be delicious, thank you</p>
+                                <p className="line-clamp-1">how nice does this look 😍 I feel it should be delicious, thank you</p>
                             </div>                            
                             <div className="flex flex-col gap-2 justify-between rounded-xl bg-gray p-4">
                                 <h5>Anastasia</h5>
-                                <p>how nice does this look 😍 I feel it should be delicious, thank you</p>
+                                <p className="line-clamp-1">how nice does this look 😍 I feel it should be delicious, thank you</p>
                             </div>                            
                             <div className="flex flex-col gap-2 justify-between rounded-xl bg-gray p-4">
                                 <h5>Anastasia</h5>
-                                <p>how nice does this look 😍 I feel it should be delicious, thank you</p>
+                                <p className="line-clamp-1">how nice does this look 😍 I feel it should be delicious, thank you</p>
                             </div>                            
                             <div className="flex flex-col gap-2 justify-between rounded-xl bg-gray p-4">
                                 <h5>Anastasia</h5>
-                                <p>how nice does this look 😍 I feel it should be delicious, thank you</p>
+                                <p className="line-clamp-1">how nice does this look 😍 I feel it should be delicious, thank you</p>
                             </div>
                         </div>
                     </div>
@@ -97,16 +96,16 @@ function Footer() {
                             </svg>
                             <h4>Follow On Instagram</h4>
                         </div>
-                        <div className="grid grid-cols-3 grid-rows-3 ">
-                            <img className="insta-img" src="dance.png" alt="img" />
-                            <img className="insta-img" src="avatar2.png" alt="img" />
-                            <img className="insta-img" src="new-animal.png" alt="img" />
-                            <img className="insta-img" src="new-car.png" alt="img" />
-                            <img className="insta-img" src="new-girl.png" alt="img" />
-                            <img className="insta-img" src="new-music.png" alt="img" />
-                            <img className="insta-img" src="new-sport.png" alt="img" />
-                            <img className="insta-img" src="new-tech.png" alt="img" />
-                            <img className="insta-img" src="sport.png" alt="img" />
+                            <div className="grid grid-cols-3 grid-rows-3 gap-3">
+                            <img className="insta-img" src="inst-1.png" alt="img" />
+                            <img className="insta-img" src="inst-2.png" alt="img" />
+                            <img className="insta-img" src="inst-3.png" alt="img" />
+                            <img className="insta-img" src="inst-4.png" alt="img" />
+                            <img className="insta-img" src="inst-5.png" alt="img" />
+                            <img className="insta-img" src="inst-6.png" alt="img" />
+                            <img className="insta-img" src="inst-7.png" alt="img" />
+                            <img className="insta-img" src="inst-8.png" alt="img" />
+                            <img className="insta-img" src="inst-9.png" alt="img" />
                         </div>
                     </div>
                 </div>
