@@ -7,15 +7,37 @@ function Carousel() {
         dots: false,
         infinite: true,
         autoplay: true,
-        autoplaySpeed: 4000,
+        autoplaySpeed: 3000,
         speed: 500,
         slidesToShow: 7,
         slidesToScroll: 1,
-        nextArrow: <button type="button" className="slick-next">Next</button>
+        responsive: [
+            {
+              breakpoint: 1480,
+              settings: {
+                slidesToShow: 5,
+                slidesToScroll: 1,
+              }
+            },
+            {
+              breakpoint: 600,
+              settings: {
+                slidesToShow: 2,
+                slidesToScroll: 2,
+              }
+            },
+            {
+              breakpoint: 480,
+              settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1
+              }
+            }
+          ]
       };
 
     return (
-        <div className="mx-48 bg-gray rounded-xl px-8 pb-1 pt-3  ">
+        <div className="mx-32 2xl:mx-48 bg-gray rounded-xl px-8 pb-1 pt-3  ">
             <Slider {...settings}>
                 <div className="carousel-category-card">
                     <Link to="/food">
