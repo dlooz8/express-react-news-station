@@ -1,7 +1,7 @@
 
 function TrendyPosts() {
     return (
-      <section className="mx-48 mt-12">
+      <section className="xl:mx-32 2xl:mx-48">
           <div className="flex justify-between py-6">
               <div className="flex gap-2 justify-between items-center">
                   <svg width="4" height="11" viewBox="0 0 4 11" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -22,69 +22,69 @@ function TrendyPosts() {
                   </div>
               </div>
           </div>
-          <div className="flex justify-between">
-              <div className="flex flex-col gap-[.5vh] shadow rounded-xl items-center w-[25vh] h-[27vh]">
-                  <img className="min-w-full max-h-[14vh] p-2 object-cover rounded-[20px]" src="popular-sport.jpg" alt="popular" />
+          <div className="flex justify-between gap-3">
+              <div className="flex flex-col justify-between p-3 shadow rounded-xl items-center w-[270px] 2xl:w-[360px] h-[340px] 2xl:h-[390px]">
+                  <img className="min-w-full max-h-[206px] object-cover rounded-xl" src="popular-sport.jpg" alt="popular" />
                   <h5 className="line-clamp-1 self-start px-3">Opening Day of Boating Season, Seattle WA</h5>
                   <p className="line-clamp-2 px-3">Of course the Puget Sound is very watery, and where there is water, there are boats. Today is the Grand Opening of Boating Season when traffic gets stalled in the University District (UW) while the Montlake Bridge</p>
-                  <div className="flex items-center gap-4 bg-gray rounded-xl px-4 mt-4 w-[23.5vh] h-[5vh] ">
+                  <div className="flex justify-between items-center gap-4 bg-gray rounded-xl p-3 w-full">
                       <img src="avatar1.png" alt="avatar" className="max-w-[44px] max-h-[44px] object-cover rounded-xl" />
-                      <div className="flex flex-col gap-1 min-w-[14.5vh]">
+                      <div className="flex flex-col flex-1 gap-1">
                           <h6>James</h6>
                           <p>August 18, 2022</p>
                       </div>
-                      <div className="red-hover">
+                      <div className="red-hover pr-2">
                           <svg width="16" height="21" viewBox="0 0 16 21" fill="#3E3232" xmlns="http://www.w3.org/2000/svg">
                               <path d="M13.625 0C14.6406 0 15.5 0.859375 15.5 1.875V18.75C15.5 19.7266 14.4453 20.3125 13.5859 19.8438L8 16.5625L2.375 19.8438C1.51562 20.3125 0.5 19.7266 0.5 18.75V1.875C0.5 0.859375 1.32031 0 2.375 0H13.625ZM13.625 17.6562V2.10938C13.625 1.99219 13.5078 1.875 13.3516 1.875H2.57031C2.45312 1.875 2.375 1.99219 2.375 2.10938V17.6562L8 14.375L13.625 17.6562Z" fillOpacity={0.75}/>
                           </svg>
                       </div>
                   </div>
               </div>
-              <div className="flex flex-col gap-[.5vh] shadow rounded-xl items-center w-[25vh] h-[27vh]">
-                  <img className="min-w-full max-h-[14vh] p-2 object-cover rounded-[20px]" src="popular-tech.jpg" alt="popular" />
+              <div className="flex flex-col justify-between p-3 shadow rounded-xl items-center w-[270px] 2xl:w-[360px] h-[340px] 2xl:h-[390px]">
+                  <img className=" max-h-[206px] object-cover rounded-xl" src="popular-tech.jpg" alt="popular" />
                   <h5 className="line-clamp-1 self-start px-3">Opening Day of Boating Season, Seattle WA</h5>
                   <p className="line-clamp-2 px-3">Of course the Puget Sound is very watery, and where there is water, there are boats. Today is the Grand Opening of Boating Season when traffic gets stalled in the University District (UW) while the Montlake Bridge</p>
-                  <div className="flex items-center gap-4 bg-gray rounded-xl px-4 mt-4 w-[23.5vh] h-[5vh] ">
+                  <div className="flex justify-between items-center gap-4 bg-gray rounded-xl p-3 w-full">
                       <img src="avatar1.png" alt="avatar" className="max-w-[44px] max-h-[44px] object-cover rounded-xl" />
-                      <div className="flex flex-col gap-1 min-w-[14.5vh]">
+                      <div className="flex flex-col flex-1 gap-1">
                           <h6>James</h6>
                           <p>August 18, 2022</p>
                       </div>
-                      <div className="red-hover">
+                      <div className="red-hover pr-2">
                           <svg width="16" height="21" viewBox="0 0 16 21" fill="#3E3232" xmlns="http://www.w3.org/2000/svg">
                               <path d="M13.625 0C14.6406 0 15.5 0.859375 15.5 1.875V18.75C15.5 19.7266 14.4453 20.3125 13.5859 19.8438L8 16.5625L2.375 19.8438C1.51562 20.3125 0.5 19.7266 0.5 18.75V1.875C0.5 0.859375 1.32031 0 2.375 0H13.625ZM13.625 17.6562V2.10938C13.625 1.99219 13.5078 1.875 13.3516 1.875H2.57031C2.45312 1.875 2.375 1.99219 2.375 2.10938V17.6562L8 14.375L13.625 17.6562Z" fillOpacity={0.75}/>
                           </svg>
                       </div>
                   </div>
               </div>
-              <div className="flex flex-col gap-[.5vh] shadow rounded-xl items-center w-[25vh] h-[27vh]">
-                  <img className="min-w-full max-h-[14vh] p-2 object-cover rounded-[20px]" src="popular-car.jpg" alt="popular" />
+              <div className="flex flex-col justify-between p-3 shadow rounded-xl items-center w-[270px] 2xl:w-[360px] h-[340px] 2xl:h-[390px]">
+                  <img className="min-w-full max-h-[206px] object-cover rounded-xl" src="popular-car.jpg" alt="popular" />
                   <h5 className="line-clamp-1 self-start px-3">Opening Day of Boating Season, Seattle WA</h5>
                   <p className="line-clamp-2 px-3">Of course the Puget Sound is very watery, and where there is water, there are boats. Today is the Grand Opening of Boating Season when traffic gets stalled in the University District (UW) while the Montlake Bridge</p>
-                  <div className="flex items-center gap-4 bg-gray rounded-xl px-4 mt-4 w-[23.5vh] h-[5vh] ">
+                  <div className="flex justify-between items-center gap-4 bg-gray rounded-xl p-3 w-full">
                       <img src="avatar1.png" alt="avatar" className="max-w-[44px] max-h-[44px] object-cover rounded-xl" />
-                      <div className="flex flex-col gap-1 min-w-[14.5vh]">
+                      <div className="flex flex-col flex-1 gap-1">
                           <h6>James</h6>
                           <p>August 18, 2022</p>
                       </div>
-                      <div className="red-hover">
+                      <div className="red-hover pr-2">
                           <svg width="16" height="21" viewBox="0 0 16 21" fill="#3E3232" xmlns="http://www.w3.org/2000/svg">
                               <path d="M13.625 0C14.6406 0 15.5 0.859375 15.5 1.875V18.75C15.5 19.7266 14.4453 20.3125 13.5859 19.8438L8 16.5625L2.375 19.8438C1.51562 20.3125 0.5 19.7266 0.5 18.75V1.875C0.5 0.859375 1.32031 0 2.375 0H13.625ZM13.625 17.6562V2.10938C13.625 1.99219 13.5078 1.875 13.3516 1.875H2.57031C2.45312 1.875 2.375 1.99219 2.375 2.10938V17.6562L8 14.375L13.625 17.6562Z" fillOpacity={0.75}/>
                           </svg>
                       </div>
                   </div>
               </div>            
-              <div className="flex flex-col gap-[.5vh] shadow rounded-xl items-center w-[25vh] h-[27vh]">
-                  <img className="min-w-full max-h-[14vh] p-2 object-cover rounded-[20px]" src="popular-food.jpg" alt="popular" />
+              <div className="flex flex-col justify-between p-3 shadow rounded-xl items-center w-[270px] 2xl:w-[360px] h-[340px] 2xl:h-[390px]">
+                  <img className="min-w-full max-h-[206px] object-cover rounded-xl" src="popular-food.jpg" alt="popular" />
                   <h5 className="line-clamp-1 self-start px-3">Opening Day of Boating Season, Seattle WA</h5>
                   <p className="line-clamp-2 px-3">Of course the Puget Sound is very watery, and where there is water, there are boats. Today is the Grand Opening of Boating Season when traffic gets stalled in the University District (UW) while the Montlake Bridge</p>
-                  <div className="flex items-center gap-4 bg-gray rounded-xl px-4 mt-4 w-[23.5vh] h-[5vh] ">
+                  <div className="flex justify-between items-center gap-4 bg-gray rounded-xl p-3 w-full">
                       <img src="avatar1.png" alt="avatar" className="max-w-[44px] max-h-[44px] object-cover rounded-xl" />
-                      <div className="flex flex-col gap-1 min-w-[14.5vh]">
+                      <div className="flex flex-col flex-1 gap-1">
                           <h6>James</h6>
                           <p>August 18, 2022</p>
                       </div>
-                      <div className="red-hover">
+                      <div className="red-hover pr-2">
                           <svg width="16" height="21" viewBox="0 0 16 21" fill="#3E3232" xmlns="http://www.w3.org/2000/svg">
                               <path d="M13.625 0C14.6406 0 15.5 0.859375 15.5 1.875V18.75C15.5 19.7266 14.4453 20.3125 13.5859 19.8438L8 16.5625L2.375 19.8438C1.51562 20.3125 0.5 19.7266 0.5 18.75V1.875C0.5 0.859375 1.32031 0 2.375 0H13.625ZM13.625 17.6562V2.10938C13.625 1.99219 13.5078 1.875 13.3516 1.875H2.57031C2.45312 1.875 2.375 1.99219 2.375 2.10938V17.6562L8 14.375L13.625 17.6562Z" fillOpacity={0.75}/>
                           </svg>

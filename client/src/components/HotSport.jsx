@@ -1,7 +1,7 @@
 
 function HotSport() {
     return (
-        <section className="mt-16 pt-4 pb-16 px-48 bg-gray">
+        <section className="mt-16 pt-4 pb-16 px-32 2xl:px-48 bg-gray">
             <div className="flex justify-between py-6">
                 <div className="flex gap-2 justify-between items-center">
                     <svg width="4" height="11" viewBox="0 0 4 11" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -24,25 +24,25 @@ function HotSport() {
             </div>
             <div className="sport-tri gap-6">
                 <div className="sport-tri1 relative shadow rounded-xl">
-                    <img className="w-full h-[31vh] object-cover rounded-xl" src="dance.png" alt="img" />
-                    <div className="absolute top-[70%] glass w-[94%] h-[25%] mx-5 rounded-xl">
+                    <img className="w-full h-full object-cover rounded-xl" src="dance.png" alt="img" />
+                    <div className="absolute top-[70%] m-3 glass rounded-xl">
                         <h4 className="line-clamp-1 mx-3 my-4">Opening Day of Boating Season, Seattle WA</h4>
                         <p className="line-clamp-2 mx-3 my-4">Of course the Puget Sound is very watery, and where there is water, there are boats. Today is the Grand Opening of Boating Season when traffic gets stalled in the University District (UW) while the Montlake Bridge</p>
                     </div>
                 </div>
 
-                <div className="flex min-w-[52.5vh] justify-between sport-tri2 shadow rounded-xl">
-                    <img className="p-2 object-cover rounded-[20px]" src="popular-tech.jpg" alt="img" />
+                <div className="flex justify-between sport-tri2 shadow rounded-xl">
+                    <img className="m-4 object-cover rounded-2xl" src="popular-tech.jpg" alt="img" />
                     <div className="">
-                        <h5 className="line-clamp-1 self-start px-3 py-5">Opening Day of Boating Season, Seattle WA</h5>
-                        <p className="line-clamp-6 px-3">Of course the Puget Sound is very watery, and where there is water, there are boats. Today is the Grand Opening of Boating Season when traffic gets stalled in the University District (UW) while the Montlake Bridge f wlkefwkej we iwejfioj weoij fiejfoi jwoefj wejf ioewjf iojweiofj iwjefi jweif j wekf wejf iowejf iojweio jwjifwejioewoifj wji ojweoifjweioj fosdufujsdoifjoe8wh 3ojf8od jso ijsdoi jfjfiojslejliejsfj se8j fesi j</p>
+                        <h5 className="line-clamp-1 self-start mx-3 my-5">Opening Day of Boating Season, Seattle WA</h5>
+                        <p className="xl:line-clamp-6 mx-3">Of course the Puget Sound is very watery, and where there is water, there are boats. Today is the Grand Opening of Boating Season when traffic gets stalled in the University District (UW) while the Montlake Bridge f wlkefwkej we iwejfioj weoij fiejfoi jwoefj wejf ioewjf iojweiofj iwjefi jweif j wekf wejf iowejf iojweio jwjifwejioewoifj wji ojweoifjweioj fosdufujsdoifjoe8wh 3ojf8od jso ijsdoi jfjfiojslejliejsfj se8j fesi j</p>
                     </div>
                 </div>
-                <div className="flex min-w-[52.5vh] justify-between sport-tri3 shadow rounded-xl">
-                    <img className="p-2 object-cover rounded-[20px]" src="popular-car.jpg" alt="img" />
+                <div className="flex justify-between sport-tri3 shadow rounded-xl">
+                    <img className="m-4 object-cover rounded-2xl" src="popular-car.jpg" alt="img" />
                     <div className="">
-                        <h5 className="line-clamp-1 self-start px-3 py-5">Opening Day of Boating Season, Seattle WA</h5>
-                        <p className="line-clamp-6 px-3">Of course the Puget Sound is very watery, and where there is water, there are boats. Today is the Grand Opening of Boating Season when traffic gets stalled in the University District (UW) while the Montlake Bridge oidsfdsfkjo sidfsdfkiods sdoiofkjoisdkjfio sdfjoijdsifj dsjfjkkdjskf sdfjjijweoijfwiowe iwej ijewi ofjweioj iewjf iwoejf iewj iewfj iewjf iewj fjwei fjjiewjfijewiofj iewj fiewj iewjf ioewj fij ijweifji ej</p>
+                        <h5 className="line-clamp-1 self-start mx-3 my-5">Opening Day of Boating Season, Seattle WA</h5>
+                        <p className="xl:line-clamp-6 mx-3">Of course the Puget Sound is very watery, and where there is water, there are boats. Today is the Grand Opening of Boating Season when traffic gets stalled in the University District (UW) while the Montlake Bridge oidsfdsfkjo sidfsdfkiods sdoiofkjoisdkjfio sdfjoijdsifj dsjfjkkdjskf sdfjjijweoijfwiowe iwej ijewi ofjweioj iewjf iwoejf iewj iewfj iewjf iewj fjwei fjjiewjfijewiofj iewj fiewj iewjf ioewj fij ijweifji ej</p>
                     </div>
                 </div>            
             </div>
