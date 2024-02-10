@@ -28,7 +28,7 @@ const router = createBrowserRouter([
         element: <SignIn />,
       },
       {
-        path: '/profile',
+        path: '/users',
         element: <UserProfile />,
       },
       {

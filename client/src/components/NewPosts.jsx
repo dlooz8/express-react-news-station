@@ -19,7 +19,7 @@ function NewPosts() {
             <div className="grid grid-cols-2 justify-stretch gap-6 grid-rows-3">
                 <div className="flex gap-2 shadow rounded-xl">
                     <img className="xl:w-[300px] 2xl:w-[340px] h-[190px] m-3 object-cover rounded-xl" src="new-tech.png" alt="new-post-img" />
-                    <div className="flex flex-col justify-between py-2 xl:mr-2 max-w-[26vh]">
+                    <div className="flex flex-col justify-between py-2 xl:mr-2">
                         <h5 className="line-clamp-1 pt-3">12 Mobile UX Design Trends For 2018</h5>
                         <p className="line-clamp-2">Things move quickly in the mobile app universe. To succeed in the field of mobile UX design, designers must have the foresight and prepare for new challenges around the corner</p>
                         <div className="flex items-center justify-between gap-4 bg-gray rounded-xl mr- p-2">
@@ -38,7 +38,7 @@ function NewPosts() {
                 </div>                
                 <div className="flex gap-2 shadow rounded-xl">
                 <img className="xl:w-[300px] 2xl:w-[340px] h-[190px] m-3 object-cover rounded-xl" src="new-sport.png" alt="new-post-img" />
-                    <div className="flex flex-col justify-between py-2 xl:mr-2 max-w-[26vh]">
+                    <div className="flex flex-col justify-between py-2 xl:mr-2">
                         <h5 className="line-clamp-1 pt-3">12 Mobile UX Design Trends For 2018</h5>
                         <p className="line-clamp-2">Things move quickly in the mobile app universe. To succeed in the field of mobile UX design, designers must have the foresight and prepare for new challenges around the corner</p>
                         <div className="flex items-center justify-between gap-4 bg-gray rounded-xl mr- p-2">
@@ -57,7 +57,7 @@ function NewPosts() {
                 </div>                
                 <div className="flex gap-2 shadow rounded-xl">
                 <img className="xl:w-[300px] 2xl:w-[340px] h-[190px] m-3 object-cover rounded-xl" src="new-animal.png" alt="new-post-img" />
-                    <div className="flex flex-col justify-between py-2 xl:mr-2 max-w-[26vh]">
+                    <div className="flex flex-col justify-between py-2 xl:mr-2">
                         <h5 className="line-clamp-1 pt-3">12 Mobile UX Design Trends For 2018</h5>
                         <p className="line-clamp-2">Things move quickly in the mobile app universe. To succeed in the field of mobile UX design, designers must have the foresight and prepare for new challenges around the corner</p>
                         <div className="flex items-center justify-between gap-4 bg-gray rounded-xl mr- p-2">
@@ -76,7 +76,7 @@ function NewPosts() {
                 </div>                
                 <div className="flex gap-2 shadow rounded-xl">
                 <img className="xl:w-[300px] 2xl:w-[340px] h-[190px] m-3 object-cover rounded-xl" src="new-car.png" alt="new-post-img" />
-                    <div className="flex flex-col justify-between py-2 xl:mr-2 max-w-[26vh]">
+                    <div className="flex flex-col justify-between py-2 xl:mr-2">
                         <h5 className="line-clamp-1 pt-3">12 Mobile UX Design Trends For 2018</h5>
                         <p className="line-clamp-2">Things move quickly in the mobile app universe. To succeed in the field of mobile UX design, designers must have the foresight and prepare for new challenges around the corner</p>
                         <div className="flex items-center justify-between gap-4 bg-gray rounded-xl mr- p-2">
@@ -95,7 +95,7 @@ function NewPosts() {
                 </div>                                
                 <div className="flex gap-2 shadow rounded-xl">
                 <img className="xl:w-[300px] 2xl:w-[340px] h-[190px] m-3 object-cover rounded-xl" src="new-music.png" alt="new-post-img" />
-                    <div className="flex flex-col justify-between py-2 xl:mr-2 max-w-[26vh]">
+                    <div className="flex flex-col justify-between py-2 xl:mr-2">
                         <h5 className="line-clamp-1 pt-3">12 Mobile UX Design Trends For 2018</h5>
                         <p className="line-clamp-2">Things move quickly in the mobile app universe. To succeed in the field of mobile UX design, designers must have the foresight and prepare for new challenges around the corner</p>
                         <div className="flex items-center justify-between gap-4 bg-gray rounded-xl mr- p-2">
@@ -114,7 +114,7 @@ function NewPosts() {
                 </div>                
                 <div className="flex gap-2 shadow rounded-xl">
                 <img className="xl:w-[300px] 2xl:w-[340px] h-[190px] m-3 object-cover rounded-xl" src="new-girl.png" alt="new-post-img" />
-                    <div className="flex flex-col justify-between py-2 xl:mr-2 max-w-[26vh]">
+                    <div className="flex flex-col justify-between py-2 xl:mr-2">
                         <h5 className="line-clamp-1 pt-3">12 Mobile UX Design Trends For 2018</h5>
                         <p className="line-clamp-2">Things move quickly in the mobile app universe. To succeed in the field of mobile UX design, designers must have the foresight and prepare for new challenges around the corner</p>
                         <div className="flex items-center justify-between gap-4 bg-gray rounded-xl mr- p-2">

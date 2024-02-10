@@ -8,8 +8,9 @@ function UserProfile() {
 
   const test = async () => {
     try {
-      const response = await axios.get('/profile');
-      setUser(response.data);
+      // console.log('FETCHING');
+      const response = await axios.get('http://localhost:3033/users');
+      setUser(response.data[0].name);
       console.log(user);
     } catch (error) {
       console.error(error);
@@ -21,7 +22,7 @@ function UserProfile() {
   }, []);
 
   return (
-    <div className='text-center text-3xl'>{ user.name }</div>
+    <div className='text-center text-3xl'>{ user }</div>
   )
 }
 

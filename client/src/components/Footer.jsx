@@ -3,8 +3,9 @@ function Footer() {
   return (
     <footer className="flex flex-col">
         <div className="flex justify-between gap-8 my-12 pt-12">
-            <div className="flex gap-12 pr-20 bg-gray rounded-r-[50px] pl-48 py-12">
-                <div className="flex flex-col justify-between gap-4">
+            <div className="flex gap-12 pr-20 bg-gray rounded-r-[50px] xl:pl-32 2xl:pl-48 py-12">
+                {/* left first column */}
+                <div className="flex flex-col justify-between gap-3">
                     <div>
                         <div className="flex gap-2 items-center">
                             <svg width="4" height="11" viewBox="0 0 4 11" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -12,7 +13,7 @@ function Footer() {
                             </svg>
                             <h4>Mega News</h4>
                         </div>
-                        <p className="p-3 mr-10 text-justify leading-7">Lorem ipsum dolor, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Egestas purus viverra accumsan in nisl nisi. Arcu cursus vitae congue mauris rhoncus aenean vel elit scelerisque. In egestas erat imperdiet sed euismod nisi porta lorem mollis. Morbi tristique senectus et netus. Mattis pellentesque id nibh tortor id aliquet lectus proin</p>
+                        <p className="p-3 text-justify leading-7">Lorem ipsum dolor, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Egestas purus viverra accumsan in nisl nisi. Arcu cursus vitae congue mauris rhoncus aenean vel elit scelerisque. In egestas erat imperdiet sed euismod nisi porta lorem mollis. Morbi tristique senectus et netus. Mattis pellentesque id nibh tortor id aliquet lectus proin</p>
                     </div>
                     <div className="flex flex-col gap-4">
                         <div className="flex gap-2 items-center">
@@ -29,7 +30,9 @@ function Footer() {
                         </div>
                     </div>
                 </div>
+                {/* left second column */}
                 <div className="flex flex-col justify-between gap-3">
+                    {/* Categories */}
                     <div>
                         <div className="flex gap-2 items-center p-2 pb-0">
                             <svg width="4" height="11" viewBox="0 0 4 11" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -46,6 +49,7 @@ function Footer() {
                             <p>Food</p>
                         </div>
                     </div>
+                    {/* Social Network */}
                     <div className="flex flex-col py-1 gap-5">
                         <div className="flex gap-2 items-center pt-2">
                             <svg width="4" height="11" viewBox="0 0 4 11" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -63,6 +67,7 @@ function Footer() {
 
             <div className="flex gap-12 pr-48 py-12">
                 <div className="flex justify-between gap-4">
+                    {/* New Comments */}
                     <div className="flex flex-col gap-2 justify-between">
                         <div className="flex gap-2 items-center">
                             <svg width="4" height="11" viewBox="0 0 4 11" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -89,6 +94,7 @@ function Footer() {
                             </div>
                         </div>
                     </div>
+                    {/* instagram */}
                     <div className="flex flex-col gap-6 justify-between">
                         <div className="flex gap-2 items-center">
                             <svg width="4" height="11" viewBox="0 0 4 11" fill="none" xmlns="http://www.w3.org/2000/svg">

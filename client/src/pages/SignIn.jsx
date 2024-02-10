@@ -9,7 +9,7 @@ function SignIn() {
 
   const test = async () => {
     try {
-      const response = await axios.get('http://localhost:3033/api/signin');
+      const response = await axios.get('http://localhost:3033/signin');
       setNews(response.data.users);
       console.log(news);
     } catch (error) {
