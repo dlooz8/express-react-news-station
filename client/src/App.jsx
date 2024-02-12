@@ -20,7 +20,7 @@ const router = createBrowserRouter([
     element: <HeaderLayout />,
     children: [
       {
-        path: "/",
+        path: "/feed",
         element: <Main />,
       },
       {
@@ -43,7 +43,7 @@ const router = createBrowserRouter([
   },
 ]);
 
-function App(props) {
+function App() {
   return (
     <div className='App'>
       <RouterProvider router={router} />
