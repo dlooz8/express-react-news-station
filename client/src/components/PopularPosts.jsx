@@ -1,5 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { motion } from "framer-motion";
+
 
 function PopularPosts() {
 
@@ -7,10 +9,8 @@ function PopularPosts() {
 
     const getPosts = async () => {
       try {
-        console.log('FETCHING');
         const response = await axios.get('http://localhost:3033/feed');
         setPosts(response.data);
-        console.log(posts);
       } catch (error) {
         console.error(error);
       }
@@ -18,9 +18,39 @@ function PopularPosts() {
   
     useEffect(() => {
       getPosts();
-      console.log("USE EFFECT!!!");
     }, []);
+    
+    // Pagination
+    const [currentPage, setCurrentPage] = useState(0);
+    const [animate, setAnimate] = useState(false);
+    const postsPerPage = 4;
+    const indexOfLastPost = (currentPage + 1) * postsPerPage;
+    const indexOfFirstPost = indexOfLastPost - postsPerPage;
+    const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+    
+    const nextPage = () => {
+        if (indexOfLastPost < posts.length) {
+            setCurrentPage(currentPage + 1);
+            setAnimate(false);
+            setTimeout(() => setAnimate(true), 500);
 
+        }
+    };
+    
+    const prevPage = () => {
+        if (currentPage > 0) {
+            setCurrentPage(currentPage - 1);
+            setAnimate(false);
+            setTimeout(() => setAnimate(true), 300);
+        }
+    };
+  
+    useEffect(() => {
+      setAnimate(true);
+    //   setTimeout(() => setAnimate(false), 1000);
+
+      console.log(animate);
+    }, [setCurrentPage]);
 
   return (
     <section className="xl:mx-32 2xl:mx-48">
@@ -32,22 +62,27 @@ function PopularPosts() {
                 <h4>Popular Posts</h4>
             </div>
             <div className="flex justify-between gap-4">
-                <div className="w-[40px] h-[40px] bg-gray rounded-xl flex items-center justify-center red-hover">
+                <button onClick={prevPage} disabled={currentPage === 0} className="w-[40px] h-[40px] bg-gray rounded-xl flex items-center justify-center red-hover">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="#3E3232" xmlns="http://www.w3.org/2000/svg">
                         <path d="M14 18C13.7188 18 13.4688 17.9062 13.2812 17.7188L8.28125 12.7188C7.875 12.3438 7.875 11.6875 8.28125 11.3125L13.2812 6.3125C13.6562 5.90625 14.3125 5.90625 14.6875 6.3125C15.0938 6.6875 15.0938 7.34375 14.6875 7.71875L10.4062 12L14.6875 16.3125C15.0938 16.6875 15.0938 17.3438 14.6875 17.7188C14.5 17.9062 14.25 18 14 18Z" fillOpacity="0.5"/>
                     </svg>
-                </div>
-                <div className="w-[40px] h-[40px] bg-gray rounded-xl flex items-center justify-center red-hover">
+                </button>
+                <button onClick={nextPage} disabled={indexOfLastPost >= posts.length} className="w-[40px] h-[40px] bg-gray rounded-xl flex items-center justify-center red-hover">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="#3E3232" xmlns="http://www.w3.org/2000/svg">
                         <path d="M10 18C9.71875 18 9.46875 17.9062 9.28125 17.7188C8.875 17.3438 8.875 16.6875 9.28125 16.3125L13.5625 12L9.28125 7.71875C8.875 7.34375 8.875 6.6875 9.28125 6.3125C9.65625 5.90625 10.3125 5.90625 10.6875 6.3125L15.6875 11.3125C16.0938 11.6875 16.0938 12.3438 15.6875 12.7188L10.6875 17.7188C10.5 17.9062 10.25 18 10 18Z"/>
                     </svg>
-                </div>
+                </button>
             </div>
         </div>
         <div className="flex justify-between gap-3">
-            {posts.slice(0, 4).map((post) => (
-            // eslint-disable-next-line react/jsx-key
-            <div className="flex flex-col justify-between p-3 shadow rounded-xl items-center w-[270px] 2xl:w-[360px] h-[340px] 2xl:h-[390px]">
+            {currentPosts.map((post, index) => (
+            <motion.div key={index}
+                initial={{ opacity: animate ? 0 : 1, x: animate ? -25 : 0 }}
+                animate={{ opacity: animate ? 1 : 0, x: animate ? 0 : -25 }}
+                exit={{ opacity: 0, x: 50 }}
+                transition={{ duration: animate ? 0.3 : 0.03 }}
+                // animate={{ opacity: animate ? 1 : 0, y: animate ? 0 : 20 }}
+                className="flex flex-col justify-between p-3 shadow rounded-xl items-center w-[270px] 2xl:w-[360px] h-[340px] 2xl:h-[390px]">
                 <img className="min-w-full max-h-[206px] object-cover rounded-xl" src={post.title_img} alt="popular" />
                 <h5 className="line-clamp-1 self-start px-3">{post.theme}</h5>
                 <p className="line-clamp-2 px-3">{post.text}</p>
@@ -63,7 +98,7 @@ function PopularPosts() {
                         </svg>
                     </div>
                 </div>
-            </div>
+            </motion.div>
             ))}
 
 
