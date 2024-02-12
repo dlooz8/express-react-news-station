@@ -8,3 +8,10 @@ const getAll = async (req, res) => {
 module.exports = {
     getAll
 }
+
+// app.get('/articles/:articleId/comments', (req, res) => {
+//     const { articleId } = req.params;
+//     const comments = [];
+//     // код для получения комментариев по articleId
+//     res.json(comments);
+//   });
