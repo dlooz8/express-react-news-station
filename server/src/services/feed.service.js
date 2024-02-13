@@ -12,6 +12,7 @@ const getAll = async () => {
         const author = await prisma.users.findUnique({
             where: {
                 id: post.user_id
+
             }
         });
         const options = {
@@ -26,7 +27,7 @@ const getAll = async () => {
         const formattedDate = `${dateArray[1].charAt(0).toUpperCase() + dateArray[1].slice(1)} ${dateArray[0]}, ${dateArray[2]}`;
       
         const createdTime = new Date(post.created_at).toLocaleTimeString('ru-RU', { timeZone: 'Europe/Moscow' });
-        return { ...post, author: author.name, created_at_date: formattedDate, created_at_time: createdTime }; // Добавляем имя автора к данным поста
+        return { ...post, author: author.name, avatar_url: author.avatar_url, created_at_date: formattedDate, created_at_time: createdTime }; // Добавляем имя автора к данным поста
     }));
     console.log(postsWithAuthor);
     return postsWithAuthor;
