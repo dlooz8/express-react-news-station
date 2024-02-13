@@ -1,31 +1,17 @@
+import { useState } from 'react';
 import axios from 'axios';
-import { useEffect, useState } from 'react';
-
-
 
 function SignIn() {
 
-  const [news, setNews] = useState([]);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-  const test = async () => {
-    try {
-      const response = await axios.get('http://localhost:3033/signin');
-      setNews(response.data.users);
-      console.log(news);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  useEffect(() => {
-    test();
-  }, []);
 
 
   return (
-    <div>
+    <div className="flex justify-center">
       <h2>Sign In</h2>
-      <form>
+      <form >
         <label>
           Username:
           <input type="text" />
@@ -38,11 +24,6 @@ function SignIn() {
         <br />
         <button type="submit">Sign In</button>
       </form>
-      <ul>
-        { news.map((item, index) => (
-          <li key={index}>{item}</li>
-        ))}
-      </ul>
     </div>
   );
 }

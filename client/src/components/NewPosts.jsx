@@ -7,10 +7,8 @@ function NewPosts() {
 
     const getNewPosts = async() => {
         try {
-            console.log('FETCHING');
             const response = await axios.get('http://localhost:3033/feed/new-posts');
             setNewPosts(response.data);
-            console.log(newPosts);
         } catch(error) {
             console.error(error);
         }

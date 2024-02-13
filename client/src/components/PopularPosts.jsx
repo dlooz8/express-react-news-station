@@ -30,15 +30,15 @@ function PopularPosts() {
     
     const nextPage = () => {
         if (indexOfLastPost < popularPosts.length) {
-            setCurrentPage(currentPage + 1);
+            setTimeout(() => setCurrentPage(currentPage + 1),300);
             setAnimate(false);
-            setTimeout(() => setAnimate(true), 500);
+            setTimeout(() => setAnimate(true), 300);
         }
     };
     
     const prevPage = () => {
         if (currentPage > 0) {
-            setCurrentPage(currentPage - 1);
+            setTimeout(() => setCurrentPage(currentPage - 1),300);
             setAnimate(false);
             setTimeout(() => setAnimate(true), 300);
         }
@@ -73,7 +73,7 @@ function PopularPosts() {
                 initial={{ opacity: animate ? 0 : 1, x: animate ? -25 : 0 }}
                 animate={{ opacity: animate ? 1 : 0, x: animate ? 0 : -25 }}
                 exit={{ opacity: 0, x: 50 }}
-                transition={{ duration: animate ? 0.4 : 0 }}
+                transition={{ duration: 0.3 }}
                 // animate={{ opacity: animate ? 1 : 0, y: animate ? 0 : 20 }}
                 className="flex flex-col justify-between p-3 shadow rounded-xl items-center w-[270px] 2xl:w-[360px] h-[340px] 2xl:h-[390px]">
                 <img className="min-w-full max-h-[206px] object-cover rounded-xl" src={post.title_img} alt="popular" />
