@@ -1,5 +1,25 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 function NewPosts() {
+
+    const [newPosts, setNewPosts] = useState([]);
+
+    const getNewPosts = async() => {
+        try {
+            console.log('FETCHING');
+            const response = await axios.get('http://localhost:3033/feed/new-posts');
+            setNewPosts(response.data);
+            console.log(newPosts);
+        } catch(error) {
+            console.error(error);
+        }
+    };
+
+    useEffect(() => {
+        getNewPosts();
+    }, []);
+
     return (
         <section className="mx-32 2xl:mx-48 my-12">
             <div className="flex justify-between py-8">
@@ -16,122 +36,31 @@ function NewPosts() {
                     </svg>
                 </div>
             </div>
+
             <div className="grid grid-cols-2 justify-stretch gap-6 grid-rows-3">
-                <div className="flex gap-2 shadow rounded-xl">
-                    <img className="xl:w-[300px] 2xl:w-[340px] h-[190px] m-3 object-cover rounded-xl" src="new-tech.png" alt="new-post-img" />
-                    <div className="flex flex-col justify-between py-2 xl:mr-2">
-                        <h5 className="line-clamp-1 pt-3">12 Mobile UX Design Trends For 2018</h5>
-                        <p className="line-clamp-2">Things move quickly in the mobile app universe. To succeed in the field of mobile UX design, designers must have the foresight and prepare for new challenges around the corner</p>
-                        <div className="flex items-center justify-between gap-4 bg-gray rounded-xl mr- p-2">
-                            <img src="sport.png" alt="avatar" className="max-w-[44px] max-h-[44px] object-cover rounded-xl" />
-                            <div className="flex flex-1 flex-col gap-1">
-                                <h6>James</h6>
-                                <p>August 18, 2022</p>
-                            </div>
-                            <div className="red-hover pr-3">
-                                <svg width="16" height="21" viewBox="0 0 16 21" fill="#3E3232" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M13.625 0C14.6406 0 15.5 0.859375 15.5 1.875V18.75C15.5 19.7266 14.4453 20.3125 13.5859 19.8438L8 16.5625L2.375 19.8438C1.51562 20.3125 0.5 19.7266 0.5 18.75V1.875C0.5 0.859375 1.32031 0 2.375 0H13.625ZM13.625 17.6562V2.10938C13.625 1.99219 13.5078 1.875 13.3516 1.875H2.57031C2.45312 1.875 2.375 1.99219 2.375 2.10938V17.6562L8 14.375L13.625 17.6562Z" fillOpacity={0.75}/>
-                                </svg>
-                            </div>
-                        </div>
-                    </div>
-                </div>                
-                <div className="flex gap-2 shadow rounded-xl">
-                <img className="xl:w-[300px] 2xl:w-[340px] h-[190px] m-3 object-cover rounded-xl" src="new-sport.png" alt="new-post-img" />
-                    <div className="flex flex-col justify-between py-2 xl:mr-2">
-                        <h5 className="line-clamp-1 pt-3">12 Mobile UX Design Trends For 2018</h5>
-                        <p className="line-clamp-2">Things move quickly in the mobile app universe. To succeed in the field of mobile UX design, designers must have the foresight and prepare for new challenges around the corner</p>
-                        <div className="flex items-center justify-between gap-4 bg-gray rounded-xl mr- p-2">
-                            <img src="sport.png" alt="avatar" className="max-w-[44px] max-h-[44px] object-cover rounded-xl" />
-                            <div className="flex flex-1 flex-col gap-1">
-                                <h6>James</h6>
-                                <p>August 18, 2022</p>
-                            </div>
-                            <div className="red-hover pr-3">
-                                <svg width="16" height="21" viewBox="0 0 16 21" fill="#3E3232" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M13.625 0C14.6406 0 15.5 0.859375 15.5 1.875V18.75C15.5 19.7266 14.4453 20.3125 13.5859 19.8438L8 16.5625L2.375 19.8438C1.51562 20.3125 0.5 19.7266 0.5 18.75V1.875C0.5 0.859375 1.32031 0 2.375 0H13.625ZM13.625 17.6562V2.10938C13.625 1.99219 13.5078 1.875 13.3516 1.875H2.57031C2.45312 1.875 2.375 1.99219 2.375 2.10938V17.6562L8 14.375L13.625 17.6562Z" fillOpacity={0.75}/>
-                                </svg>
+                {newPosts.map((post, index) => (
+                    <div key={index} className="flex gap-2 shadow rounded-xl">
+                        <img className="xl:w-[300px] 2xl:w-[340px] h-[190px] m-3 object-cover rounded-xl aspect-video" src={ post.title_img } alt="new-post-img" />
+                        <div className="flex flex-col justify-between py-2 xl:mr-2">
+                            <h5 className="line-clamp-1 pt-3">{ post.theme }</h5>
+                            <p className="line-clamp-2">{ post.text }</p>
+                            <div className="flex items-center justify-between gap-4 bg-gray rounded-xl mr- p-2">
+                                <img src={ post.avatar_url} alt="avatar" className="max-w-[44px] max-h-[44px] object-cover rounded-xl aspect-square" />
+                                <div className="flex flex-1 flex-col gap-1">
+                                    <h6>{ post.author }</h6>
+                                    <p>{ post.created_at_date }</p>
+                                </div>
+                                <div className="red-hover pr-3">
+                                    <svg width="16" height="21" viewBox="0 0 16 21" fill="#3E3232" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M13.625 0C14.6406 0 15.5 0.859375 15.5 1.875V18.75C15.5 19.7266 14.4453 20.3125 13.5859 19.8438L8 16.5625L2.375 19.8438C1.51562 20.3125 0.5 19.7266 0.5 18.75V1.875C0.5 0.859375 1.32031 0 2.375 0H13.625ZM13.625 17.6562V2.10938C13.625 1.99219 13.5078 1.875 13.3516 1.875H2.57031C2.45312 1.875 2.375 1.99219 2.375 2.10938V17.6562L8 14.375L13.625 17.6562Z" fillOpacity={0.75}/>
+                                    </svg>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>                
-                <div className="flex gap-2 shadow rounded-xl">
-                <img className="xl:w-[300px] 2xl:w-[340px] h-[190px] m-3 object-cover rounded-xl" src="new-animal.png" alt="new-post-img" />
-                    <div className="flex flex-col justify-between py-2 xl:mr-2">
-                        <h5 className="line-clamp-1 pt-3">12 Mobile UX Design Trends For 2018</h5>
-                        <p className="line-clamp-2">Things move quickly in the mobile app universe. To succeed in the field of mobile UX design, designers must have the foresight and prepare for new challenges around the corner</p>
-                        <div className="flex items-center justify-between gap-4 bg-gray rounded-xl mr- p-2">
-                            <img src="sport.png" alt="avatar" className="max-w-[44px] max-h-[44px] object-cover rounded-xl" />
-                            <div className="flex flex-1 flex-col gap-1">
-                                <h6>James</h6>
-                                <p>August 18, 2022</p>
-                            </div>
-                            <div className="red-hover pr-3">
-                                <svg width="16" height="21" viewBox="0 0 16 21" fill="#3E3232" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M13.625 0C14.6406 0 15.5 0.859375 15.5 1.875V18.75C15.5 19.7266 14.4453 20.3125 13.5859 19.8438L8 16.5625L2.375 19.8438C1.51562 20.3125 0.5 19.7266 0.5 18.75V1.875C0.5 0.859375 1.32031 0 2.375 0H13.625ZM13.625 17.6562V2.10938C13.625 1.99219 13.5078 1.875 13.3516 1.875H2.57031C2.45312 1.875 2.375 1.99219 2.375 2.10938V17.6562L8 14.375L13.625 17.6562Z" fillOpacity={0.75}/>
-                                </svg>
-                            </div>
-                        </div>
-                    </div>
-                </div>                
-                <div className="flex gap-2 shadow rounded-xl">
-                <img className="xl:w-[300px] 2xl:w-[340px] h-[190px] m-3 object-cover rounded-xl" src="new-car.png" alt="new-post-img" />
-                    <div className="flex flex-col justify-between py-2 xl:mr-2">
-                        <h5 className="line-clamp-1 pt-3">12 Mobile UX Design Trends For 2018</h5>
-                        <p className="line-clamp-2">Things move quickly in the mobile app universe. To succeed in the field of mobile UX design, designers must have the foresight and prepare for new challenges around the corner</p>
-                        <div className="flex items-center justify-between gap-4 bg-gray rounded-xl mr- p-2">
-                            <img src="sport.png" alt="avatar" className="max-w-[44px] max-h-[44px] object-cover rounded-xl" />
-                            <div className="flex flex-1 flex-col gap-1">
-                                <h6>James</h6>
-                                <p>August 18, 2022</p>
-                            </div>
-                            <div className="red-hover pr-3">
-                                <svg width="16" height="21" viewBox="0 0 16 21" fill="#3E3232" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M13.625 0C14.6406 0 15.5 0.859375 15.5 1.875V18.75C15.5 19.7266 14.4453 20.3125 13.5859 19.8438L8 16.5625L2.375 19.8438C1.51562 20.3125 0.5 19.7266 0.5 18.75V1.875C0.5 0.859375 1.32031 0 2.375 0H13.625ZM13.625 17.6562V2.10938C13.625 1.99219 13.5078 1.875 13.3516 1.875H2.57031C2.45312 1.875 2.375 1.99219 2.375 2.10938V17.6562L8 14.375L13.625 17.6562Z" fillOpacity={0.75}/>
-                                </svg>
-                            </div>
-                        </div>
-                    </div>
-                </div>                                
-                <div className="flex gap-2 shadow rounded-xl">
-                <img className="xl:w-[300px] 2xl:w-[340px] h-[190px] m-3 object-cover rounded-xl" src="new-music.png" alt="new-post-img" />
-                    <div className="flex flex-col justify-between py-2 xl:mr-2">
-                        <h5 className="line-clamp-1 pt-3">12 Mobile UX Design Trends For 2018</h5>
-                        <p className="line-clamp-2">Things move quickly in the mobile app universe. To succeed in the field of mobile UX design, designers must have the foresight and prepare for new challenges around the corner</p>
-                        <div className="flex items-center justify-between gap-4 bg-gray rounded-xl mr- p-2">
-                            <img src="sport.png" alt="avatar" className="max-w-[44px] max-h-[44px] object-cover rounded-xl" />
-                            <div className="flex flex-1 flex-col gap-1">
-                                <h6>James</h6>
-                                <p>August 18, 2022</p>
-                            </div>
-                            <div className="red-hover pr-3">
-                                <svg width="16" height="21" viewBox="0 0 16 21" fill="#3E3232" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M13.625 0C14.6406 0 15.5 0.859375 15.5 1.875V18.75C15.5 19.7266 14.4453 20.3125 13.5859 19.8438L8 16.5625L2.375 19.8438C1.51562 20.3125 0.5 19.7266 0.5 18.75V1.875C0.5 0.859375 1.32031 0 2.375 0H13.625ZM13.625 17.6562V2.10938C13.625 1.99219 13.5078 1.875 13.3516 1.875H2.57031C2.45312 1.875 2.375 1.99219 2.375 2.10938V17.6562L8 14.375L13.625 17.6562Z" fillOpacity={0.75}/>
-                                </svg>
-                            </div>
-                        </div>
-                    </div>
-                </div>                
-                <div className="flex gap-2 shadow rounded-xl">
-                <img className="xl:w-[300px] 2xl:w-[340px] h-[190px] m-3 object-cover rounded-xl" src="new-girl.png" alt="new-post-img" />
-                    <div className="flex flex-col justify-between py-2 xl:mr-2">
-                        <h5 className="line-clamp-1 pt-3">12 Mobile UX Design Trends For 2018</h5>
-                        <p className="line-clamp-2">Things move quickly in the mobile app universe. To succeed in the field of mobile UX design, designers must have the foresight and prepare for new challenges around the corner</p>
-                        <div className="flex items-center justify-between gap-4 bg-gray rounded-xl mr- p-2">
-                            <img src="sport.png" alt="avatar" className="max-w-[44px] max-h-[44px] object-cover rounded-xl" />
-                            <div className="flex flex-1 flex-col gap-1">
-                                <h6>James</h6>
-                                <p>August 18, 2022</p>
-                            </div>
-                            <div className="red-hover pr-3">
-                                <svg width="16" height="21" viewBox="0 0 16 21" fill="#3E3232" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M13.625 0C14.6406 0 15.5 0.859375 15.5 1.875V18.75C15.5 19.7266 14.4453 20.3125 13.5859 19.8438L8 16.5625L2.375 19.8438C1.51562 20.3125 0.5 19.7266 0.5 18.75V1.875C0.5 0.859375 1.32031 0 2.375 0H13.625ZM13.625 17.6562V2.10938C13.625 1.99219 13.5078 1.875 13.3516 1.875H2.57031C2.45312 1.875 2.375 1.99219 2.375 2.10938V17.6562L8 14.375L13.625 17.6562Z" fillOpacity={0.75}/>
-                                </svg>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    </div>  
+                ))}
             </div>
+
         </section>
     );
 }
