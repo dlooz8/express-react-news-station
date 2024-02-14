@@ -32,6 +32,8 @@ const authController = {
       if (passwordValid) {
         req.session.userId = existingUser.id;
         res.json(existingUser);
+        console.log('Пользователь вошел:', existingUser);
+        console.log('Сессия пользователя:', req.session.cookie);
       } else {
         res.status(401).json({ message: 'Неверное имя пользователя или пароль' });
       }
@@ -40,10 +42,20 @@ const authController = {
   checkAuth: (req, res) => {
     if (req.session.userId) {
       res.json({ authenticated: true });
+      console.log('Пользователь авторизован:', req.session.userId);
+      console.log('Сессия пользователя:', req.session.cookie);
     } else {
       res.json({ authenticated: false });
     }
   },
+  logout: (req, res) => {
+    try {
+      req.session.destroy();
+      res.sendStatus(200).json({ message: 'Вы вышли из аккаунта' });
+    } catch (error) {
+      res.status(401).json({ message: 'Не удалось выйти из аккаунта' });
+    }
+  }
 };
 
 module.exports = authController;

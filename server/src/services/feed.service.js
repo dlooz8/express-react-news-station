@@ -84,7 +84,6 @@ const getPopularPosts = async () => {
         const createdTime = new Date(post.created_at).toLocaleTimeString('ru-RU', { timeZone: 'Europe/Moscow' });
         return { ...post, author: author.name, avatar_url: author.avatar_url, created_at_date: formattedDate, created_at_time: createdTime }; // Добавляем имя автора к данным поста
     }));
-    console.log(popularPosts);
     return popularPosts;
 }
 
@@ -116,7 +115,6 @@ const getTrendyPosts = async () => {
         const createdTime = new Date(post.created_at).toLocaleTimeString('ru-RU', { timeZone: 'Europe/Moscow' });
         return { ...post, author: author.name, avatar_url: author.avatar_url, created_at_date: formattedDate, created_at_time: createdTime }; // Добавляем имя автора к данным поста
     }));
-    console.log(trendyPosts);
     return trendyPosts;
 }
 

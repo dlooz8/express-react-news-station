@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import app from '../utils/axiosConfig';
+import { useNavigate } from "react-router-dom";
 
 function SignIn() {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
   const handleAuthorization = async (e) => {
     console.log("SIGN IN");
@@ -15,10 +17,12 @@ function SignIn() {
       })
       .then(function (response) {
         console.log(response);
-        window.location.href = '/profile';
+        navigate('/feed');
+        
       })
       .catch(function (error) {
         console.log(error);
+        navigate('/signin');
       });
   };
 

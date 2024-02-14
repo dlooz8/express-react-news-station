@@ -6,7 +6,8 @@ const Navbar = () => {
     const [isAuth, setIsAuth] = useState(false);
 
     const checkAuth = async () => {
-        console.log("FETCHING");
+        console.log("FETCHING check auth");
+        // app.defaults.withCredentials = true;
         await app.get('http://localhost:3033/auth/check-auth')
           .then((response) => {
             setIsAuth(response.data.authenticated);
@@ -14,15 +15,28 @@ const Navbar = () => {
           })
           .catch((error) => {
             console.log(error);
+            
           })
-        
+      };
+
+      const handleLogOut = async (event) => {
+        event.preventDefault();
+        console.log("FETCHING log out"); 
+        await app.get('http://localhost:3033/auth/logout')
+          .then((response) => {
+            console.log(response.data);
+            console.log(isAuth);
+            setIsAuth(false);
+          })
+          .catch((error) => {
+            console.log(error);
+            
+          })
       };
     
       useEffect(() => {
         checkAuth();
       }, []);
-
-    
 
     return (
         <div className='flex justify-between mx-32 2xl:mx-48 my-8 gap-2 items-center align-middle font-medium'>
@@ -183,7 +197,7 @@ const Navbar = () => {
                         <Link to='/signin'><h6 className='red-hover'>Sign In</h6></Link>
                         <Link to='/registration'><h6 className='red-hover'>register In</h6></Link>
                         <Link to='/userprofile'><h6 className='red-hover'>userprofile In</h6></Link>
-                        <Link to='/news'><h6 className='red-hover'>news In</h6></Link>
+                        <Link to='/feed'><h6 className='red-hover' onClick={handleLogOut}>Log Out</h6></Link>
                     </div>
                 </div>
             :
@@ -199,7 +213,7 @@ const Navbar = () => {
                     <Link to='/signin'><h6 className='red-hover'>Sign In</h6></Link>
                     <Link to='/registration'><h6 className='red-hover'>register In</h6></Link>
                     <Link to='/userprofile'><h6 className='red-hover'>userprofile In</h6></Link>
-                    <Link to='/news'><h6 className='red-hover'>news In</h6></Link>
+                    <Link to='/feed'><h6 className='red-hover' onClick={handleLogOut}>Log Out</h6></Link>
                 </div>
             </div>
             }

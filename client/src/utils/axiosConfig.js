@@ -1,12 +1,15 @@
 import axios from 'axios';
 
-const app = axios.create({
-    baseURL: 'https://some-domain.com/api/',
-    timeout: 1000,
-    headers: {'X-Custom-Header': 'foobar'}
-  });
+const baseURL = import.meta.env.NODE_ENV === "development"
+  ? "http://localhost:3033/"
+  : "http://example.com"
 
-axios.defaults.withCredentials = true;
+const app = axios.create({
+    baseURL,
+    withCredentials: true
+})
+
+app.defaults.withCredentials = true;
 
 /* 
   The below is required if you want your API to return 
