@@ -7,10 +7,16 @@ const authRouter = require('./routes/auth.routes');
 
 const app = express();
 app.use(express.json());
-app.use(session({ secret: 'your-secret-key', resave: false, saveUninitialized: false }));
-
+app.set('trust proxy', 1) // trust first proxy
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true,  
+//   cookie: { secure: true }
+}))
 app.use(cors({
-    origin: 'http://localhost:5173'
+    origin: 'http://localhost:5173',
+    credentials: true
 }));
 
 app.use('/users', userRouter);

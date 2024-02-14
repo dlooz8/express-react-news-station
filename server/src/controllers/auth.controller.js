@@ -24,7 +24,7 @@ const authController = {
     },
   login: async (req, res) => {
     const { email, password } = req.body;
-    const existingUser = await prisma.users.findUnique(email);
+    const existingUser = await prisma.users.findUnique({ where: { email } });
     if (!existingUser) {
       res.status(401).json({ message: 'Неверное имя пользователя или пароль' });
     } else {

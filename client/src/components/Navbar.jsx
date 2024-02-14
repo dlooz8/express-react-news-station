@@ -1,12 +1,13 @@
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+import app from '../utils/axiosConfig';
 
 const Navbar = () => {
     const [isAuth, setIsAuth] = useState(false);
 
     const checkAuth = async () => {
-        await axios.get('http://localhost:3033/auth/check-auth')
+        console.log("FETCHING");
+        await app.get('http://localhost:3033/auth/check-auth')
           .then((response) => {
             setIsAuth(response.data.authenticated);
             console.log(isAuth);

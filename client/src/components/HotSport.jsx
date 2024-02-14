@@ -32,7 +32,6 @@ function HotSport() {
             setCurrentPage(currentPage + 1);
             setAnimate(false);
             setTimeout(() => setAnimate(true), 500);
-            console.log(currentPosts);
         }
     };
     
@@ -41,7 +40,6 @@ function HotSport() {
             setCurrentPage(currentPage - 1);
             setAnimate(false);
             setTimeout(() => setAnimate(true), 300);
-            console.log(currentPosts);
 
         }
     };
