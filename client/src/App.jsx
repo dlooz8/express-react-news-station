@@ -5,15 +5,21 @@ import Main from './pages/Main';
 import UserProfile from './pages/UserProfile';
 import Registration from './pages/Registration';
 import NotFound from './pages/NotFound';
+import { useState } from 'react';
 
-const HeaderLayout = () => (
-  <>
-    <header>
-      <Navbar />
-    </header>
-    <Outlet />
-  </>
-);
+const HeaderLayout = () => {
+
+  const [isAuth, setIsAuth] = useState(false);
+
+  return(
+    <>
+      <header>
+        <Navbar element={ isAuth }/>
+      </header>
+      <Outlet context={[ isAuth, setIsAuth ]} />
+    </>
+  )
+};
 
 const router = createBrowserRouter([
   {

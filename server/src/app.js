@@ -11,7 +11,12 @@ app.set('trust proxy', 1) // trust first proxy
 app.use(session({
   secret: 'keyboard cat',
   resave: false,
-  saveUninitialized: true,  
+  saveUninitialized: true,
+  cookie: { 
+    secure: false,
+    // sameSite: 'none',
+    httpOnly: false,
+    }  
 }))
 app.use(cors({
     origin: 'http://localhost:5173',

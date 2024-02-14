@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import app from '../utils/axiosConfig';
-import { useNavigate } from "react-router-dom";
-import Navbar from '../components/Navbar';
+import { useNavigate, useOutletContext } from "react-router-dom";
+
 
 function SignIn() {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+  const [ isAuth, setIsAuth] = useOutletContext();
 
   const handleAuthorization = async (e) => {
     console.log("SIGN IN");
@@ -16,32 +17,14 @@ function SignIn() {
         email: email,
         password: password,
       })
-      .then(function (response) {
-        console.log(response);
-        checkAuth();
+      .then(function () {
+        setIsAuth(true);
         navigate('/feed');
-        return <Navbar isUserAuth={true} />;
       })
       .catch(function (error) {
-        console.log(error);
-        navigate('/signin');
+        console.log(error, "Is Auth" + isAuth);
       });
   };
-
-  const [isAuth, setIsAuth] = useState(false);
-
-  const checkAuth = async () => {
-      console.log("FETCHING check auth");
-      await app.get('http://localhost:3033/auth/check-auth')
-        .then((response) => {
-          setIsAuth(response.data.authenticated);
-          console.log(isAuth);
-        })
-        .catch((error) => {
-          console.log(error);
-
-        })
-    };
 
   return (
     <div className="flex justify-center">

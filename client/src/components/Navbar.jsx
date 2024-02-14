@@ -2,36 +2,40 @@ import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import app from '../utils/axiosConfig';
 
-const Navbar = () => {
+const Navbar = (isAuthFlag) => {
     const [isAuth, setIsAuth] = useState(false);
-
     
     const checkAuth = async () => {
         console.log("FETCHING check auth");
         await app.get('http://localhost:3033/auth/check-auth')
         .then((res) => {
-            setIsAuth(res.data.authenticated);
-            setTimeout(() => console.log(isAuth), 1000);
+            console.log("CHECK AUTH DATA", res.data.authenticated);
+            setIsAuth(true);
+            console.log("IS AUTH", isAuth);
         })
-        .catch((error) => {
-            console.log(error);
+        .catch((err) => {
+            setIsAuth(false);
+            console.log("CHECK AUTH ERROR", err);
         })
     };
 
-      const handleLogOut = async (event) => {
+    const handleLogOut = async (event) => {
         event.preventDefault();
         await app.get('http://localhost:3033/auth/logout')
-          .then(() => {
-              checkAuth();
-          })
-          .catch((error) => {
-            console.log(error);
-          })
-      };
+        .then((res) => {
+            console.log("LOG OUT", res.message);
+            checkAuth();
+            window.location.reload();
+        })
+        .catch((error) => {
+            console.log("LOG OUT ERROR", error);
+        })
+    };
     
       useEffect(() => {
         checkAuth();
-      }, []);
+        console.log("USEeFFECT", isAuth);
+      }, [isAuthFlag]);
 
     return (
         <div className='flex justify-between mx-32 2xl:mx-48 my-8 gap-2 items-center align-middle font-medium'>

@@ -16,9 +16,7 @@ const authController = {
         });
         req.session.userId = newUser.id;
         res.status(200).json(newUser);
-        console.log('Пользователь создан:', newUser);
         } catch (error) {
-        console.error('Ошибка при создании пользователя:', error);
         res.status(500).json({ message: 'Ошибка при создании пользователя' });
         }
     },
@@ -31,9 +29,7 @@ const authController = {
       const passwordValid = await bcrypt.compare(password, existingUser.password);
       if (passwordValid) {
         req.session.userId = existingUser.id;
-        res.json(existingUser);
-        console.log('Пользователь вошел:', existingUser);
-        console.log('Сессия пользователя:', req.session.cookie);
+        res.status(200).json(existingUser);
       } else {
         res.status(401).json({ message: 'Неверное имя пользователя или пароль' });
       }
@@ -41,19 +37,18 @@ const authController = {
   },
   checkAuth: (req, res) => {
     if (req.session.userId) {
-      res.json({ authenticated: true });
-      console.log('Пользователь авторизован:', req.session.userId);
-      console.log('Сессия пользователя:', req.session.cookie);
+      res.status(200).json({ authenticated: true });
     } else {
-      res.json({ authenticated: false });
+      res.status(401).json({ authenticated: false });
     }
   },
   logout: (req, res) => {
     try {
-      req.session.destroy();
-      res.sendStatus(200).json({ message: 'Вы вышли из аккаунта' });
+        req.session.destroy();
+        console.log('Пользователь вышел из аккаунта');
+        res.status(200).json({ message: 'Вы вышли из аккаунта' });
     } catch (error) {
-      res.status(401).json({ message: 'Не удалось выйти из аккаунта' });
+        res.status(401).json({ message: 'Не удалось выйти из аккаунта' });
     }
   }
 };
