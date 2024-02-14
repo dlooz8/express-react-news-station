@@ -5,32 +5,27 @@ import app from '../utils/axiosConfig';
 const Navbar = () => {
     const [isAuth, setIsAuth] = useState(false);
 
+    
     const checkAuth = async () => {
         console.log("FETCHING check auth");
-        // app.defaults.withCredentials = true;
         await app.get('http://localhost:3033/auth/check-auth')
-          .then((response) => {
-            setIsAuth(response.data.authenticated);
-            console.log(isAuth);
-          })
-          .catch((error) => {
+        .then((res) => {
+            setIsAuth(res.data.authenticated);
+            setTimeout(() => console.log(isAuth), 1000);
+        })
+        .catch((error) => {
             console.log(error);
-            
-          })
-      };
+        })
+    };
 
       const handleLogOut = async (event) => {
         event.preventDefault();
-        console.log("FETCHING log out"); 
         await app.get('http://localhost:3033/auth/logout')
-          .then((response) => {
-            console.log(response.data);
-            console.log(isAuth);
-            setIsAuth(false);
+          .then(() => {
+              checkAuth();
           })
           .catch((error) => {
             console.log(error);
-            
           })
       };
     

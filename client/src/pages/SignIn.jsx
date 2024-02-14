@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import app from '../utils/axiosConfig';
 import { useNavigate } from "react-router-dom";
+import Navbar from '../components/Navbar';
 
 function SignIn() {
 
@@ -17,14 +18,30 @@ function SignIn() {
       })
       .then(function (response) {
         console.log(response);
+        checkAuth();
         navigate('/feed');
-        
+        return <Navbar isUserAuth={true} />;
       })
       .catch(function (error) {
         console.log(error);
         navigate('/signin');
       });
   };
+
+  const [isAuth, setIsAuth] = useState(false);
+
+  const checkAuth = async () => {
+      console.log("FETCHING check auth");
+      await app.get('http://localhost:3033/auth/check-auth')
+        .then((response) => {
+          setIsAuth(response.data.authenticated);
+          console.log(isAuth);
+        })
+        .catch((error) => {
+          console.log(error);
+
+        })
+    };
 
   return (
     <div className="flex justify-center">
