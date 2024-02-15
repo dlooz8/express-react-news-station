@@ -1,25 +1,30 @@
+import { useNavigate, useOutletContext } from "react-router-dom";
 import { useState } from 'react';
-import axios from 'axios';
+import app from '../utils/axiosConfig';
 
 const Registration = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [avatar_url, setAvatarUrl] = useState('');
   const [password, setPassword] = useState('');
+  const [ isAuth, setIsAuth ] = useOutletContext();
+  const navigate = useNavigate();
+
 
   const handleRegistration = async (e) => {
     e.preventDefault();
-    await axios.post('http://localhost:3033/auth/register', {
+    await app.post('http://localhost:3033/auth/register', {
         name: name,
         email: email,
         password: password,
         avatar_url: avatar_url
       })
-      .then(function (response) {
-        console.log(response);
+      .then(() => {
+        setIsAuth(true);
+        navigate('/feed');
       })
-      .catch(function (error) {
-        console.log(error);
+      .catch((error) => {
+        console.log(error, isAuth);
       });
   };
 

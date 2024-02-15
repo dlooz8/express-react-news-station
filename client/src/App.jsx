@@ -1,10 +1,10 @@
-import Navbar from './components/Navbar';
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
+import Registration from './pages/Registration';
+import UserProfile from './pages/UserProfile';
+import Navbar from './components/Navbar';
+import NotFound from './pages/NotFound';
 import SignIn from './pages/SignIn';
 import Main from './pages/Main';
-import UserProfile from './pages/UserProfile';
-import Registration from './pages/Registration';
-import NotFound from './pages/NotFound';
 import { useState } from 'react';
 
 const HeaderLayout = () => {
@@ -14,7 +14,7 @@ const HeaderLayout = () => {
   return(
     <>
       <header>
-        <Navbar element={ isAuth }/>
+        <Navbar authContext={ {isAuth, setIsAuth} }/>
       </header>
       <Outlet context={[ isAuth, setIsAuth ]} />
     </>

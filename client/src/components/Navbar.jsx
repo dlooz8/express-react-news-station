@@ -1,41 +1,56 @@
+/* eslint-disable react/prop-types */
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import app from '../utils/axiosConfig';
 
-const Navbar = (isAuthFlag) => {
-    const [isAuth, setIsAuth] = useState(false);
+// eslint-disable-next-line react/prop-types
+const Navbar = ({authContext}) => {
+    const { isAuth, setIsAuth } = authContext;
+    const [ userId, setUserId ] = useState();
+    const [name, setName] = useState('');
+    const [avatar, setAvatar] = useState('');
     
     const checkAuth = async () => {
-        console.log("FETCHING check auth");
         await app.get('http://localhost:3033/auth/check-auth')
         .then((res) => {
-            console.log("CHECK AUTH DATA", res.data.authenticated);
+            setUserId(res.data.id);
+            console.log(userId);
             setIsAuth(true);
-            console.log("IS AUTH", isAuth);
         })
-        .catch((err) => {
+        .catch(() => {
             setIsAuth(false);
-            console.log("CHECK AUTH ERROR", err);
+            setUserId('');
         })
     };
 
     const handleLogOut = async (event) => {
         event.preventDefault();
         await app.get('http://localhost:3033/auth/logout')
-        .then((res) => {
-            console.log("LOG OUT", res.message);
+        .then(() => {
             checkAuth();
-            window.location.reload();
         })
         .catch((error) => {
-            console.log("LOG OUT ERROR", error);
+            checkAuth();
+            console.log(error, userId);
         })
     };
+
+    const fetchUser = async () => {
+        await app.get(`http://localhost:3033/users/${userId}`)
+        .then((res) => {
+            setName(res.data.name);
+            setAvatar(res.data.avatar_url);
+            console.log(name, avatar);
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+    }
     
       useEffect(() => {
         checkAuth();
-        console.log("USEeFFECT", isAuth);
-      }, [isAuthFlag]);
+        fetchUser();
+      }, [isAuth]);
 
     return (
         <div className='flex justify-between mx-32 2xl:mx-48 my-8 gap-2 items-center align-middle font-medium'>
@@ -193,10 +208,8 @@ const Navbar = (isAuthFlag) => {
                         </svg>
                     </button>
                     <div className="dropdown-pages p-4 gap-4 left-4">
-                        <Link to='/signin'><h6 className='red-hover'>Sign In</h6></Link>
-                        <Link to='/registration'><h6 className='red-hover'>register In</h6></Link>
-                        <Link to='/userprofile'><h6 className='red-hover'>userprofile In</h6></Link>
-                        <Link to='/feed'><h6 className='red-hover' onClick={handleLogOut}>Log Out</h6></Link>
+                        <Link to='/userprofile'><h6 className='red-hover'>Профиль</h6></Link>
+                        <Link to='/feed'><h6 className='red-hover' onClick={handleLogOut}>Выйти</h6></Link>
                     </div>
                 </div>
             :
@@ -209,10 +222,8 @@ const Navbar = (isAuthFlag) => {
                     </svg>
                 </button>
                 <div className="dropdown-pages p-4 gap-4 left-4">
-                    <Link to='/signin'><h6 className='red-hover'>Sign In</h6></Link>
-                    <Link to='/registration'><h6 className='red-hover'>register In</h6></Link>
-                    <Link to='/userprofile'><h6 className='red-hover'>userprofile In</h6></Link>
-                    <Link to='/feed'><h6 className='red-hover' onClick={handleLogOut}>Log Out</h6></Link>
+                    <Link to='/signin'><h6 className='red-hover'>Войти</h6></Link>
+                    <Link to='/registration'><h6 className='red-hover'>Зарегистрироваться</h6></Link>
                 </div>
             </div>
             }

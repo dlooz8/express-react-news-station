@@ -1,21 +1,23 @@
 const express = require('express');
 const session = require('express-session');
 const cors = require('cors');
+const morgan = require('morgan');
 const userRouter = require('./routes/users.routes');
 const feedRouter = require('./routes/feed.routes');
 const authRouter = require('./routes/auth.routes');
 
 const app = express();
 app.use(express.json());
+app.use(morgan('tiny'))
 app.set('trust proxy', 1) // trust first proxy
 app.use(session({
-  secret: 'keyboard cat',
+  secret: 'keyboard cat', //env
   resave: false,
   saveUninitialized: true,
   cookie: { 
-    secure: false,
+    secure: false, // env
     // sameSite: 'none',
-    httpOnly: false,
+    httpOnly: true,
     }  
 }))
 app.use(cors({

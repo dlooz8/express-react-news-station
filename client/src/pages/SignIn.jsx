@@ -1,6 +1,6 @@
+import { useNavigate, useOutletContext } from "react-router-dom";
 import { useState } from 'react';
 import app from '../utils/axiosConfig';
-import { useNavigate, useOutletContext } from "react-router-dom";
 
 
 function SignIn() {
@@ -11,7 +11,6 @@ function SignIn() {
   const [ isAuth, setIsAuth] = useOutletContext();
 
   const handleAuthorization = async (e) => {
-    console.log("SIGN IN");
     e.preventDefault();
     await app.post('http://localhost:3033/auth/login', {
         email: email,
