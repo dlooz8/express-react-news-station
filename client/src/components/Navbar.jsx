@@ -212,6 +212,7 @@ const Navbar = ({authContext}) => {
                     </button>
                     <div className="dropdown-pages p-4 gap-4 left-4">
                         <Link to='/userprofile'><h6 className='red-hover'>Профиль</h6></Link>
+                        <Link to='/addpost'><h6 className='red-hover'>Добавить статью</h6></Link>
                         <Link to='/feed'><h6 className='red-hover' onClick={handleLogOut}>Выйти</h6></Link>
                     </div>
                 </div>

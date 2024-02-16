@@ -1,6 +1,7 @@
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 import Registration from './pages/Registration';
 import UserProfile from './pages/UserProfile';
+import AddPost from './pages/AddPost';
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 import NotFound from './pages/NotFound';
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
       {
         path: '/registration',
         element: <Registration />,
+      },
+      {
+        path: '/addpost',
+        element: <AddPost />,
       },
       {
         path: '*',
