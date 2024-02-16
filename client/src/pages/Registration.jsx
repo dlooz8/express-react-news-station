@@ -21,10 +21,12 @@ const Registration = () => {
       })
       .then(() => {
         setIsAuth(true);
-        navigate('/feed');
+        setTimeout(() => navigate('/feed'), 3000);
       })
       .catch((error) => {
         console.log(error, isAuth);
+        console.log(error.response.data);
+        alert(error.response.data.message);
       });
   };
 

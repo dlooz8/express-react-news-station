@@ -7,6 +7,17 @@ const getAll = async () => {
     return users;
 }
 
+const getById = async (id) => {
+    const user = await prisma.users.findUnique({
+        where: {
+            id: id
+        }
+    });
+    return user;
+}
+
+
 module.exports = {
-    getAll
+    getAll,
+    getById
 }

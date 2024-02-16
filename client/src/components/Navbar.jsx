@@ -14,7 +14,6 @@ const Navbar = ({authContext}) => {
         await app.get('http://localhost:3033/auth/check-auth')
         .then((res) => {
             setUserId(res.data.id);
-            console.log(userId);
             setIsAuth(true);
         })
         .catch(() => {
@@ -28,6 +27,8 @@ const Navbar = ({authContext}) => {
         await app.get('http://localhost:3033/auth/logout')
         .then(() => {
             checkAuth();
+            setName('');
+            setAvatar('');
         })
         .catch((error) => {
             checkAuth();
@@ -40,7 +41,6 @@ const Navbar = ({authContext}) => {
         .then((res) => {
             setName(res.data.name);
             setAvatar(res.data.avatar_url);
-            console.log(name, avatar);
         })
         .catch((error) => {
             console.log(error);
@@ -49,8 +49,11 @@ const Navbar = ({authContext}) => {
     
       useEffect(() => {
         checkAuth();
-        fetchUser();
       }, [isAuth]);
+
+      useEffect(() => {
+        fetchUser();
+      }, [userId]);
 
     return (
         <div className='flex justify-between mx-32 2xl:mx-48 my-8 gap-2 items-center align-middle font-medium'>
@@ -201,8 +204,8 @@ const Navbar = ({authContext}) => {
             { isAuth ?
                 <div className="dropdown">
                     <button className="dropbtn flex justify-between gap-4 items-center">
-                        <img className='object-cover w-[48px] h-[48px] rounded-xl' src="avatar1.png" alt="avatar" />
-                        <h5 className="text-xs">Hi, Danny!</h5>
+                        <img className='object-cover w-[48px] h-[48px] rounded-xl' src={ avatar } alt="avatar" />
+                        <h5 className="text-xs">Привет, { name }!</h5>
                         <svg width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M6 6.25C5.75391 6.25 5.53516 6.16797 5.37109 6.00391L0.996094 1.62891C0.640625 1.30078 0.640625 0.726562 0.996094 0.398438C1.32422 0.0429688 1.89844 0.0429688 2.22656 0.398438L6 4.14453L9.74609 0.398437C10.0742 0.0429687 10.6484 0.0429687 10.9766 0.398437C11.332 0.726562 11.332 1.30078 10.9766 1.62891L6.60156 6.00391C6.4375 6.16797 6.21875 6.25 6 6.25Z" fill="#3E3232" fillOpacity="0.5"/>
                         </svg>
