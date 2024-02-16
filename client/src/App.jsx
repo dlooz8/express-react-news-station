@@ -1,70 +1,88 @@
-import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
-import Registration from './pages/Registration';
-import UserProfile from './pages/UserProfile';
-import AddPost from './pages/AddPost';
-import Footer from './components/Footer';
-import Navbar from './components/Navbar';
-import NotFound from './pages/NotFound';
-import SignIn from './pages/SignIn';
-import Main from './pages/Main';
-import { useState } from 'react';
+import Navbar from "./components/Navbar";
+import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+import SignIn from "./pages/SignIn";
+import Main from "./pages/Main";
+import UserProfile from "./pages/UserProfile";
+import Registration from "./pages/Registration";
+import NotFound from "./pages/NotFound";
+import { useOutletContext } from "react-router-dom";
+import Footer from "./components/Footer";
+import AddPost from "./pages/AddPost";
+import { useState } from "react";
+
+const UserContext = () => {
+
+  const [isUser, setIsUser] = useState({});
+
+  return (
+    <>
+      <Outlet context={{ isUser, setIsUser }} />
+    </>
+  );
+};
 
 const HeaderLayout = () => {
 
-  const [isAuth, setIsAuth] = useState(false);
+  const { isUser, setIsUser } = useOutletContext();
 
-  return(
+  return (
     <>
       <header>
-        <Navbar authContext={ {isAuth, setIsAuth} }/>
+        <Navbar />
       </header>
-      <Outlet context={[ isAuth, setIsAuth ]} />
+      <Outlet context={{ isUser, setIsUser }} />
       <footer>
         <Footer />
       </footer>
     </>
-  )
+  );
 };
 
-const router = createBrowserRouter([
-  {
-    element: <HeaderLayout />,
-    children: [
-      {
-        path: "/feed",
-        element: <Main />,
-      },
-      {
-        path: '/signin',
-        element: <SignIn />,
-      },
-      {
-        path: '/users',
-        element: <UserProfile />,
-      },
-      {
-        path: '/registration',
-        element: <Registration />,
-      },
-      {
-        path: '/addpost',
-        element: <AddPost />,
-      },
-      {
-        path: '*',
-        element: <NotFound />
-      }
-    ],
-  },
-]);
-
 function App() {
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <UserContext />,
+      children: [
+        {
+          path: "/",
+          element: <HeaderLayout />,
+          children: [
+            {
+              path: "/feed",
+              element: <Main />,
+            },
+            {
+              path: "/signin",
+              element: <SignIn />,
+            },
+            {
+              path: "/users",
+              element: <UserProfile />,
+            },
+            {
+              path: "/registration",
+              element: <Registration />,
+            },
+            {
+              path: "/addpost",
+              element: <AddPost />,
+            },
+            {
+              path: "*",
+              element: <NotFound />,
+            },
+          ],
+        },
+      ],
+    },
+  ]);
+
   return (
-    <div className='App'>
+    <div className="App">
       <RouterProvider router={router} />
     </div>
   );
 }
 
 export default App;
-

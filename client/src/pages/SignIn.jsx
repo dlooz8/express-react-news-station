@@ -2,13 +2,12 @@ import { useNavigate, useOutletContext, Link } from "react-router-dom";
 import { useState } from 'react';
 import app from '../utils/axiosConfig';
 
-
 function SignIn() {
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [ email, setEmail ] = useState('');
+  const [ password, setPassword ] = useState('');
   const navigate = useNavigate();
-  const [ isAuth, setIsAuth] = useOutletContext();
+  const { isUser, setIsUser } = useOutletContext();
 
   const handleAuthorization = async (e) => {
     e.preventDefault();
@@ -16,12 +15,12 @@ function SignIn() {
         email: email,
         password: password,
       })
-      .then(function () {
-        setIsAuth(true);
+      .then((res) => {
+        setIsUser(res.data);
         navigate('/feed');
       })
       .catch(function (error) {
-        console.log(error, "Is Auth" + isAuth);
+        console.log(error, "Is User" + isUser);
       });
   };
 

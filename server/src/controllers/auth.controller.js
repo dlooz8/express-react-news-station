@@ -15,7 +15,8 @@ const authController = {
         },
       });
       req.session.userId = newUser.id;
-      res.status(200).json({ message: 'Регистрация прошла успешно' });
+      const { password: excludedPassword, ...userWithoutPassword } = newUser;
+      res.status(200).json(userWithoutPassword);
     } catch (error) {
       res.status(500).json({ message: 'Ошибка при создании пользователя' });
     }
@@ -29,7 +30,8 @@ const authController = {
       const passwordValid = await bcrypt.compare(password, existingUser.password);
       if (passwordValid) {
         req.session.userId = existingUser.id;
-        res.status(200).json({ message: 'Авторизация прошла успешно' });
+        const { password: excludedPassword, ...userWithoutPassword } = existingUser;
+        res.status(200).json(userWithoutPassword);
       } else {
         res.status(401).json({ message: 'Неверное имя пользователя или пароль' });
       }

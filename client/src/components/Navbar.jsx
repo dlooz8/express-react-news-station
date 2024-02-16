@@ -1,59 +1,40 @@
-/* eslint-disable react/prop-types */
-import { Link } from 'react-router-dom';
+import { Link, useOutletContext } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import app from '../utils/axiosConfig';
 
-// eslint-disable-next-line react/prop-types
-const Navbar = ({authContext}) => {
-    const { isAuth, setIsAuth } = authContext;
-    const [ userId, setUserId ] = useState();
-    const [name, setName] = useState('');
-    const [avatar, setAvatar] = useState('');
+const Navbar = () => {
+    const { isUser, setIsUser } = useOutletContext();
+    const [ isAuth, setIsAuth ] = useState(false);
+    const [ name, setName ] = useState('');
+    const [ avatar, setAvatar ] = useState('');
     
-    const checkAuth = async () => {
-        await app.get('http://localhost:3033/auth/check-auth')
-        .then((res) => {
-            setUserId(res.data.id);
-            setIsAuth(true);
-        })
-        .catch(() => {
-            setIsAuth(false);
-            setUserId('');
-        })
-    };
-
     const handleLogOut = async (event) => {
         event.preventDefault();
         await app.get('http://localhost:3033/auth/logout')
         .then(() => {
-            checkAuth();
+            setIsAuth(false);
+            setIsUser('');
             setName('');
             setAvatar('');
         })
         .catch((error) => {
-            checkAuth();
-            console.log(error, userId);
+            console.log(error, isUser);
         })
     };
 
-    const fetchUser = async () => {
-        await app.get(`http://localhost:3033/users/${userId}`)
-        .then((res) => {
-            setName(res.data.name);
-            setAvatar(res.data.avatar_url);
-        })
-        .catch((error) => {
-            console.log(error);
-        })
+    const handleAuth = () => {
+        if(isUser === '') {
+            setIsAuth(false);
+        } else {
+            setIsAuth(true);
+            setName(isUser.name);
+            setAvatar(isUser.avatar_url);
+        }
     }
     
-      useEffect(() => {
-        checkAuth();
-      }, [isAuth]);
-
-      useEffect(() => {
-        fetchUser();
-      }, [userId]);
+    useEffect(() => {
+        handleAuth();
+    }, [isUser]);
 
     return (
         <div className='flex justify-between mx-32 2xl:mx-48 my-8 gap-2 items-center align-middle font-medium'>

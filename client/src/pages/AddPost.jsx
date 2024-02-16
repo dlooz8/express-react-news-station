@@ -1,8 +1,9 @@
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link, useOutletContext } from 'react-router-dom';
 import { useState } from 'react';
 
 function AddPost() {
 
+    const { isUser } = useOutletContext();
     const [theme, setName] = useState('');
     const [category, setCategory] = useState('');
     const [text, setText] = useState('');
