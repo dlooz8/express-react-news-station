@@ -1,6 +1,7 @@
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 import Registration from './pages/Registration';
 import UserProfile from './pages/UserProfile';
+import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 import NotFound from './pages/NotFound';
 import SignIn from './pages/SignIn';
@@ -17,6 +18,9 @@ const HeaderLayout = () => {
         <Navbar authContext={ {isAuth, setIsAuth} }/>
       </header>
       <Outlet context={[ isAuth, setIsAuth ]} />
+      <footer>
+        <Footer />
+      </footer>
     </>
   )
 };

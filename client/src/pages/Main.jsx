@@ -18,7 +18,6 @@ function Main() {
       <NewPosts />
       <Weather />
       <TrendyPosts />
-      <Footer />
     </div>
   );
 }
