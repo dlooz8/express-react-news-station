@@ -1,4 +1,4 @@
-import { useNavigate, useOutletContext } from "react-router-dom";
+import { useNavigate, useOutletContext, Link } from "react-router-dom";
 import { useState } from 'react';
 import app from '../utils/axiosConfig';
 
@@ -26,13 +26,29 @@ function SignIn() {
   };
 
   return (
-    <div className="flex justify-center">
-      <h2>Sign In</h2>
-      <form onSubmit={handleAuthorization} >
-        <input type="text" placeholder="Ваш email" value={email} onChange={(e) => setEmail(e.target.value)} />
-        <input type="password" placeholder="Ваш пароль" value={password} onChange={(e) => setPassword(e.target.value)} />
-        <button type="submit">Sign In</button>
-      </form>
+    <div className="2xl:mx-48 mx-32">
+      <div className='flex flex-col px-4 pt-4 bg-gray rounded-xl'>
+        <img className="w-full h-full object-cover rounded-xl" src="header_user.jpg" alt="img" />
+        <div className="flex justify-between py-8">
+          <h4>Добро пожаловать!</h4>
+          <Link to='/registration'><h5 className="hover:text-primary75">Зарегистрироваться</h5></Link>
+        </div>
+      </div>
+      <div className='flex flex-col my-8'>
+        <form onSubmit={handleAuthorization}>
+          <div className='grid grid-cols-2 gap-12'>
+            <div className="input">
+              <h5>Ваш email</h5>
+              <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
+            </div>
+            <div className="input">
+              <h5>Ваш пароль</h5>
+              <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+            </div>
+          </div>
+          <button type="submit" className="bg-primary75 opacity-75 hover:opacity-100 text-white py-2.5 px-4 my-16 rounded-xl">Авторизоваться</button>
+        </form>
+      </div>
     </div>
   );
 }

@@ -117,12 +117,6 @@ function Footer() {
                 </div>
             </div>
 
-
-
-
-
-
-
         </div>
         <div className="bg-[#e2e2e2] flex justify-between">
             <p>Privacy Policy | Terms & Conditions</p>

@@ -5,7 +5,6 @@ import NewPosts from '../components/NewPosts.jsx';
 import HotSport from '../components/HotSport.jsx';
 import TrendyPosts from '../components/TrendyPosts.jsx';
 import Weather from '../components/Weather.jsx';
-import Footer from '../components/Footer.jsx';
 
 function Main() {
 
