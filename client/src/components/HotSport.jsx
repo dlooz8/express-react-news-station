@@ -21,6 +21,7 @@ function HotSport() {
 
     // Pagination
     const [currentPage, setCurrentPage] = useState(0);
+    const [leftAnimate, setLeftAnimate] = useState(false);
     const [animate, setAnimate] = useState(true);
     const postsPerPage = 3;
     const indexOfLastPost = (currentPage + 1) * postsPerPage;
@@ -29,18 +30,19 @@ function HotSport() {
     
     const nextPage = () => {
         if (indexOfLastPost < hotSportPosts.length) {
-            setCurrentPage(currentPage + 1);
-            setAnimate(false);
-            setTimeout(() => setAnimate(true), 500);
+            setLeftAnimate(false);
+            setTimeout(() => setCurrentPage(currentPage + 1),300);
+            setAnimate(false);            
+            setTimeout(() => setAnimate(true), 300);
         }
     };
     
     const prevPage = () => {
         if (currentPage > 0) {
-            setCurrentPage(currentPage - 1);
+            setLeftAnimate(true);
+            setTimeout(() => setCurrentPage(currentPage - 1),300);
             setAnimate(false);
             setTimeout(() => setAnimate(true), 300);
-
         }
     };
 
@@ -69,10 +71,10 @@ function HotSport() {
             </div>
 
             <motion.div
-                initial={{ opacity: animate ? 0 : 1, x: animate ? -25 : 0 }}
-                animate={{ opacity: animate ? 1 : 0, x: animate ? 0 : -25 }}
-                exit={{ opacity: 0, x: 50 }}
-                transition={{ duration: animate ? 0.4 : 0 }}
+                initial={{ opacity: animate ? 0 : 1, x: animate ? (leftAnimate ? -30 : 30) : 0 }}
+                animate={{ opacity: animate ? 1 : 0, x: animate ? 0 : (leftAnimate ? 30 : -30) }}
+                exit={{ opacity: 0, x: 30 }}
+                transition={{ duration: 0.3 }}
                 className="sport-tri gap-6">
 
                 <div className="sport-tri1 relative shadow rounded-xl">

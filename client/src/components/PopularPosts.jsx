@@ -22,6 +22,7 @@ function PopularPosts() {
     
     // Pagination
     const [currentPage, setCurrentPage] = useState(0);
+    const [leftAnimate, setLeftAnimate] = useState(false);
     const [animate, setAnimate] = useState(true);
     const postsPerPage = 4;
     const indexOfLastPost = (currentPage + 1) * postsPerPage;
@@ -30,14 +31,16 @@ function PopularPosts() {
     
     const nextPage = () => {
         if (indexOfLastPost < popularPosts.length) {
+            setLeftAnimate(false);
             setTimeout(() => setCurrentPage(currentPage + 1),300);
-            setAnimate(false);
+            setAnimate(false);            
             setTimeout(() => setAnimate(true), 300);
         }
     };
     
     const prevPage = () => {
         if (currentPage > 0) {
+            setLeftAnimate(true);
             setTimeout(() => setCurrentPage(currentPage - 1),300);
             setAnimate(false);
             setTimeout(() => setAnimate(true), 300);
@@ -70,11 +73,10 @@ function PopularPosts() {
 
             {currentPosts.map((post, index) => (
             <motion.div key={index}
-                initial={{ opacity: animate ? 0 : 1, x: animate ? -25 : 0 }}
-                animate={{ opacity: animate ? 1 : 0, x: animate ? 0 : -25 }}
-                exit={{ opacity: 0, x: 50 }}
+                initial={{ opacity: animate ? 0 : 1, x: animate ? (leftAnimate ? -30 : 30) : 0 }}
+                animate={{ opacity: animate ? 1 : 0, x: animate ? 0 : (leftAnimate ? 30 : -30) }}
+                exit={{ opacity: 0, x: 30 }}
                 transition={{ duration: 0.3 }}
-                // animate={{ opacity: animate ? 1 : 0, y: animate ? 0 : 20 }}
                 className="flex flex-col justify-between p-3 shadow rounded-xl items-center w-[270px] 2xl:w-[360px] h-[340px] 2xl:h-[390px]">
                 <img className="min-w-full max-h-[206px] object-cover rounded-xl" src={post.title_img} alt="popular" />
                 <h5 className="line-clamp-1 self-start px-3">{post.theme}</h5>

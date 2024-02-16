@@ -79,7 +79,6 @@ input {
 }
 
 .insta-img {
-  max-width: 104px;
   aspect-ratio: 1 / 1;
   border-radius: 12px;
   object-fit: cover;
