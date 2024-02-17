@@ -13,7 +13,6 @@ function AddPost() {
 
     const handleAddPost = async (e) => {
         e.preventDefault();
-
     }
 
     return (

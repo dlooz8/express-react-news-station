@@ -17,10 +17,11 @@ function SignIn() {
       })
       .then((res) => {
         setIsUser(res.data);
+        localStorage.setItem("user", JSON.stringify(res.data));
         navigate('/feed');
       })
       .catch(function (error) {
-        console.log(error, "Is User" + isUser);
+        console.log(error, isUser);
       });
   };
 

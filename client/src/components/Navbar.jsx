@@ -1,17 +1,21 @@
-import { Link, useOutletContext } from 'react-router-dom';
+import { Link, useOutletContext, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import app from '../utils/axiosConfig';
 
 const Navbar = () => {
     const { isUser, setIsUser } = useOutletContext();
     const [ isAuth, setIsAuth ] = useState(false);
+
+    const navigate = useNavigate();
     
     const handleLogOut = async (event) => {
         event.preventDefault();
         await app.get('http://localhost:3033/auth/logout')
         .then(() => {
+            localStorage.removeItem("user");
             setIsAuth(false);
             setIsUser('');
+            navigate('/feed');
         })
         .catch((error) => {
             console.log(error, isUser);
@@ -25,6 +29,21 @@ const Navbar = () => {
             setIsAuth(true);
         }
     }
+
+    const checkAuth = async () => {
+        await app.get('http://localhost:3033/auth/check-auth')
+          .then(() => {
+            setIsUser(JSON.parse(localStorage.getItem("user")));
+            setIsAuth(true);
+          })
+          .catch(() => {
+            setIsAuth(false);
+          })
+      }
+    
+      useEffect(() => {
+        checkAuth();
+      }, []);
     
     useEffect(() => {
         handleAuth();

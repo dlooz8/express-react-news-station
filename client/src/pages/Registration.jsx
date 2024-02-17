@@ -7,7 +7,7 @@ const Registration = () => {
   const [email, setEmail] = useState('');
   const [avatar_url, setAvatarUrl] = useState('');
   const [password, setPassword] = useState('');
-  const [ isAuth, setIsAuth ] = useOutletContext();
+  const { isUser, setIsUser } = useOutletContext();
   const navigate = useNavigate();
 
 
@@ -19,14 +19,13 @@ const Registration = () => {
         password: password,
         avatar_url: avatar_url
       })
-      .then(() => {
-        setIsAuth(true);
-        setTimeout(() => navigate('/feed'), 3000);
+      .then((res) => {
+        setIsUser(res.data);
+        localStorage.setItem("user", JSON.stringify(res.data));
+        setTimeout(() => navigate('/feed'), 1000);
       })
       .catch((error) => {
-        console.log(error, isAuth);
-        console.log(error.response.data);
-        alert(error.response.data.message);
+        console.log(error, isUser);
       });
   };
 
