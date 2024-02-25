@@ -1,4 +1,4 @@
-import axios from "axios";
+import app from "../utils/axiosConfig";
 import { useEffect, useState } from "react";
 
 function NewPosts() {
@@ -7,7 +7,7 @@ function NewPosts() {
 
     const getNewPosts = async() => {
         try {
-            const response = await axios.get('http://localhost:3033/feed/new-posts');
+            const response = await app.get('http://localhost:3033/feed/new-posts');
             setNewPosts(response.data);
         } catch(error) {
             console.error(error);

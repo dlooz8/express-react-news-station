@@ -1,4 +1,4 @@
-import axios from "axios"
+import app from "../utils/axiosConfig";
 import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
 
@@ -8,7 +8,7 @@ function HotSport() {
 
     const getHotSportPosts = async () => {
         try {
-          const response = await axios.get('http://localhost:3033/feed/hot-sport-posts');
+          const response = await app.get('http://localhost:3033/feed/hot-sport-posts');
           setHotSportPosts(response.data);
         } catch (error) {
           console.error(error);

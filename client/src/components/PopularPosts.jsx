@@ -1,7 +1,6 @@
-import axios from 'axios';
+import app from '../utils/axiosConfig';
 import { useEffect, useState } from 'react';
 import { motion } from "framer-motion";
-
 
 function PopularPosts() {
 
@@ -9,7 +8,7 @@ function PopularPosts() {
 
     const getPopularPosts = async () => {
         try {
-            const response = await axios.get('http://localhost:3033/feed/popular-posts');
+            const response = await app.get('http://localhost:3033/feed/popular-posts');
             setPopularPosts(response.data);
         } catch (error) {
             console.error(error);

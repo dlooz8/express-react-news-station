@@ -1,6 +1,7 @@
 import { useNavigate, useOutletContext, Link } from "react-router-dom";
-import { useState } from 'react';
 import app from '../utils/axiosConfig';
+import { toast } from 'react-hot-toast';
+import { useState } from 'react';
 
 const Registration = () => {
   const [name, setName] = useState('');
@@ -22,10 +23,11 @@ const Registration = () => {
       .then((res) => {
         setIsUser(res.data);
         localStorage.setItem("user", JSON.stringify(res.data));
+        toast.success('Вы успешно зарегистрировались!');
         setTimeout(() => navigate('/feed'), 1000);
       })
       .catch((error) => {
-        console.log(error, isUser);
+        console.error(error);
       });
   };
 

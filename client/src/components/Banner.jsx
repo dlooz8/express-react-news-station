@@ -1,4 +1,4 @@
-import axios from 'axios';
+import app from '../utils/axiosConfig';
 import { useEffect, useState } from 'react';
 
 function Banner() {
@@ -7,7 +7,7 @@ function Banner() {
 
     const getRecentPosts = async () => {
         try {
-          const response = await axios.get('http://localhost:3033/feed/recent-posts');
+          const response = await app.get('http://localhost:3033/feed/recent-posts');
           setRecentPosts(response.data);
         } catch (error) {
           console.error(error);
@@ -41,10 +41,6 @@ function Banner() {
                 <p className="pt-3 line-clamp-2">{ recentPosts[2]?.text }</p>
             </div>
         </div>
-
-        
-
-
     </section>
   )
 }

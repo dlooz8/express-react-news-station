@@ -1,5 +1,6 @@
 import { Link, useOutletContext, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { toast, Toaster } from 'react-hot-toast';
 import app from '../utils/axiosConfig';
 
 const Navbar = () => {
@@ -15,10 +16,11 @@ const Navbar = () => {
             localStorage.removeItem("user");
             setIsAuth(false);
             setIsUser('');
+            toast.success('Вы вышли из аккаунта!');
             navigate('/feed');
         })
         .catch((error) => {
-            console.log(error, isUser);
+            toast.error(error, isUser);
         })
     };
 
@@ -41,9 +43,9 @@ const Navbar = () => {
           })
       }
     
-      useEffect(() => {
+    useEffect(() => {
         checkAuth();
-      }, []);
+    }, []);
     
     useEffect(() => {
         handleAuth();
@@ -237,6 +239,8 @@ const Navbar = () => {
             {/* <svg className='w-[48px] h-[48px]'>
                 <use href='sprites.svg#icon-home'></use>
             </svg> */}
+
+            <Toaster />
 
         </div>
     );

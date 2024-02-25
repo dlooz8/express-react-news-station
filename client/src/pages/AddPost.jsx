@@ -1,5 +1,8 @@
-import { useNavigate, Link, useOutletContext } from 'react-router-dom';
+import { useNavigate, useOutletContext } from 'react-router-dom';
 import { useState } from 'react';
+import MarkdownEditor from '../components/MarkdownEditor';
+import app from '../utils/axiosConfig';
+import toast from 'react-hot-toast';
 
 function AddPost() {
 
@@ -13,6 +16,21 @@ function AddPost() {
 
     const handleAddPost = async (e) => {
         e.preventDefault();
+        try {
+            await app.post('http://localhost:3033/news/addnews', {
+                theme,
+                text,
+                category,
+                title_img: imageUrl,
+                user_id: isUser.id
+            }).then(() => {
+                toast.success('Новость успешно добавлена!');
+                setTimeout(() => navigate('/feed'), 1000);
+            })
+        }
+        catch (error) {
+            toast.error(error);
+        }
     }
 
     return (
@@ -23,8 +41,7 @@ function AddPost() {
                 <h4>{isUser.name}</h4>
                 </div>
             </div>
-            <div className='flex flex-col my-8'>
-                <form onSubmit={handleAddPost}>
+            <form onSubmit={handleAddPost} className='flex flex-col my-8 gap-12'>
                 <div className='grid grid-cols-2 gap-12'>
                     <div className="input">
                         <h5>Заголовок новости</h5>
@@ -43,11 +60,9 @@ function AddPost() {
                     </div>
                     <input type="text" value={imageUrl} onChange={(e) => setImageUrl(e.target.value)} placeholder="Ссылка на изображение" />
                 </div>
-                <textarea className='flex w-full bg-gray mt-8' cols="30" rows="10" value={text} onChange={(e) => setText(e.target.value)}>
-                </textarea>
-                <button type="submit" className="bg-primary75 opacity-75 hover:opacity-100 text-white py-2.5 px-4 my-16 rounded-xl">Опубликовать</button>
-                </form>
-            </div>
+                <MarkdownEditor className="w-full bg-gray" editorText={text} setEditorText={setText} />
+                <button type="submit" className="bg-primary75 opacity-75 hover:opacity-100 text-white py-2.5 px-4 rounded-xl">Опубликовать</button>
+            </form>
         </div>
     );
 }

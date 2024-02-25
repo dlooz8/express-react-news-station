@@ -1,7 +1,6 @@
-import axios from 'axios';
+import app from '../utils/axiosConfig';
 import { useEffect, useState } from 'react';
 import { motion } from "framer-motion";
-
 
 function TrendyPosts() {
 
@@ -9,7 +8,7 @@ function TrendyPosts() {
 
     const getTrendyPosts = async () => {
         try {
-            const response = await axios.get('http://localhost:3033/feed/trendy-posts');
+            const response = await app.get('http://localhost:3033/feed/trendy-posts');
             setTrendyPosts(response.data);
         } catch (error) {
             console.error(error);
