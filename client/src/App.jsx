@@ -54,7 +54,7 @@ function App() {
               element: <Main />,
             },
             {
-              path: "/post/:id",
+              path: "/news/:id",
               element: <Post />,
             },
             {

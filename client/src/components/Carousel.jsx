@@ -37,7 +37,7 @@ function Carousel() {
       };
 
     return (
-        <div className="mx-32 2xl:mx-48 bg-gray rounded-xl px-8 pb-1 pt-3  ">
+        <div className="container mx-auto bg-gray rounded-xl px-8 pb-1 pt-3  ">
             <Slider {...settings}>
                 <div className="carousel-category-card">
                     <Link to="/food">

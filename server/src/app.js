@@ -2,7 +2,6 @@ const express = require('express');
 const session = require('express-session');
 const cors = require('cors');
 const morgan = require('morgan');
-const feedRouter = require('./routes/feed.routes');
 const authRouter = require('./routes/auth.routes');
 const newsRouter = require('./routes/news.routes');
 
@@ -25,7 +24,6 @@ app.use(cors({
     credentials: true
 }));
 
-app.use('/feed', feedRouter);
 app.use('/auth', authRouter);
 app.use('/news', newsRouter);
 

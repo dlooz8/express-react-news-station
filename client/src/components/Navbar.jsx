@@ -52,7 +52,7 @@ const Navbar = () => {
     }, [isUser]);
 
     return (
-        <div className='flex justify-between mx-32 2xl:mx-48 my-8 gap-2 items-center align-middle font-medium'>
+        <div className='flex justify-between container mx-auto my-8 gap-2 items-center align-middle font-medium'>
             <Link to='/feed'>News Station!</Link>
             <div className="dropdown">
                 <button className="dropbtn flex justify-between gap-2 items-center">

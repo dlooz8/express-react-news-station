@@ -1,5 +1,6 @@
 import app from "../utils/axiosConfig";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 function NewPosts() {
 
@@ -7,7 +8,7 @@ function NewPosts() {
 
     const getNewPosts = async() => {
         try {
-            const response = await app.get('http://localhost:3033/feed/new-posts');
+            const response = await app.get('http://localhost:3033/news/new-posts');
             setNewPosts(response.data);
         } catch(error) {
             console.error(error);
@@ -19,7 +20,7 @@ function NewPosts() {
     }, []);
 
     return (
-        <section className="mx-32 2xl:mx-48 my-12">
+        <section className="container mx-auto my-12">
             <div className="flex justify-between py-8">
                 <div className="flex gap-2 justify-between items-center">
                     <svg width="4" height="11" viewBox="0 0 4 11" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -37,7 +38,7 @@ function NewPosts() {
 
             <div className="grid grid-cols-2 justify-stretch gap-6 grid-rows-3">
                 {newPosts.map((post, index) => (
-                    <div key={index} className="flex gap-2 shadow rounded-xl">
+                    <Link to={`/news/${post.post_id}`} key={index} className="flex gap-2 shadow rounded-xl">
                         <img className="xl:w-[300px] 2xl:w-[340px] h-[190px] m-3 object-cover rounded-xl aspect-video" src={ post.title_img } alt="new-post-img" />
                         <div className="flex flex-col justify-between py-2 xl:mr-2">
                             <h5 className="line-clamp-1 pt-3">{ post.theme }</h5>
@@ -55,7 +56,7 @@ function NewPosts() {
                                 </div>
                             </div>
                         </div>
-                    </div>  
+                    </Link>  
                 ))}
             </div>
 

@@ -22,7 +22,9 @@ function UserProfile() {
   }, []);
 
   return (
-    <div className='text-center text-3xl'>{ user }</div>
+    <div className='container mx-auto'>
+      { user }
+    </div>
   )
 }
 
