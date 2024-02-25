@@ -8,7 +8,7 @@ const Registration = () => {
   const [email, setEmail] = useState('');
   const [avatar_url, setAvatarUrl] = useState('');
   const [password, setPassword] = useState('');
-  const { isUser, setIsUser } = useOutletContext();
+  const { setIsUser } = useOutletContext();
   const navigate = useNavigate();
 
 
@@ -26,8 +26,10 @@ const Registration = () => {
         toast.success('Вы успешно зарегистрировались!');
         setTimeout(() => navigate('/feed'), 1000);
       })
-      .catch((error) => {
-        console.error(error);
+      .catch(() => {
+        toast.error("Этот email уже зарегистрирован!");
+        setEmail('');
+        setPassword('');
       });
   };
 

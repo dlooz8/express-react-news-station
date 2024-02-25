@@ -8,6 +8,7 @@ import NotFound from "./pages/NotFound";
 import { useOutletContext } from "react-router-dom";
 import Footer from "./components/Footer";
 import AddPost from "./pages/AddPost";
+import Post from "./pages/Post";
 import { useState } from "react";
 
 const UserContext = () => {
@@ -51,6 +52,10 @@ function App() {
             {
               path: "/feed",
               element: <Main />,
+            },
+            {
+              path: "/post/:id",
+              element: <Post />,
             },
             {
               path: "/signin",

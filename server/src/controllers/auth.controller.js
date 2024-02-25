@@ -19,7 +19,7 @@ const authController = {
         const { password: excludedPassword, ...userWithoutPassword } = newUser;
         res.status(200).json(userWithoutPassword);
       } catch (error) {
-        res.status(449).json({ message: 'Ошибка при создании пользователя' });
+        res.status(449).json({ toast: 'Ошибка при создании пользователя' });
       }
     } catch (error) {
       res.status(500).json({ message: 'Ошибка при хешировании пароля' });
