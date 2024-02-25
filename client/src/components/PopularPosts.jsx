@@ -2,6 +2,7 @@ import app from '../utils/axiosConfig';
 import { useEffect, useState } from 'react';
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import Markdown from "react-markdown";
 
 function PopularPosts() {
 
@@ -80,7 +81,7 @@ function PopularPosts() {
                 <Link to={`/news/${post.post_id}`} className="flex flex-col justify-between p-3 shadow rounded-xl items-center w-[270px] 2xl:w-[360px] h-[340px] 2xl:h-[390px]">
                     <img className="min-w-full max-h-[206px] object-cover rounded-xl" src={post.title_img} alt="popular" />
                     <h5 className="line-clamp-1 self-start px-3">{post.theme}</h5>
-                    <p className="line-clamp-2 px-3">{post.text}</p>
+                    <p className="line-clamp-2 px-3"><Markdown>{post.text}</Markdown></p>
                     <div className="flex justify-between items-center gap-4 bg-gray rounded-xl p-3 w-full">
                         <img src={post.avatar_url} alt="avatar" className="w-[44px] h-[44px] object-cover rounded-xl" />
                         <div className="flex flex-col flex-1 gap-1">

@@ -1,5 +1,6 @@
 import app from "../utils/axiosConfig";
 import { useEffect, useState } from 'react';
+import Markdown from 'react-markdown';
 
 function Post() {
     const [post, setPost] = useState({});
@@ -21,11 +22,11 @@ function Post() {
 
     return (
         <div className="container mx-auto">
-            <div className="">
-                <div className="flex flex-col justify-between gap-4 w-3/4">
+            <div className="flex gap-6 justify-between">
+                <div className="flex flex-col justify-between gap-6 w-[70%]">
                     <div className="flex flex-col justify-between p-4 gap-4 bg-gray rounded-[20px]">
-                        <h1>{post.theme}</h1>
-                        <img src={post?.title_img} alt="img" className="max-h-[598px] w-full object-cover rounded-[20px]"/>
+                        <h1>{post?.theme}</h1>
+                        <img src={post?.title_img} alt="img" className="max-h-[580px] w-full object-cover rounded-[20px]"/>
                         <div className="flex justify-center gap-16">
                             <div className="flex justify-center gap-2 items-center">
                                 <svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -43,13 +44,46 @@ function Post() {
                                 <svg width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M12.7227 2.375C13.707 2.375 14.4727 3.16797 14.4727 4.125V11.125C14.4727 12.1094 13.6797 12.875 12.7227 12.875H2.22266C1.23828 12.875 0.472656 12.1094 0.472656 11.125V2.375C0.472656 1.41797 1.23828 0.625 2.22266 0.625H5.44922C5.91406 0.625 6.35156 0.816406 6.67969 1.14453L8.01953 2.375H12.7227ZM13.1602 11.125V4.125C13.1602 3.90625 12.9414 3.6875 12.7227 3.6875H7.47266L5.72266 2.07422C5.64062 1.99219 5.53125 1.9375 5.42188 1.9375H2.22266C1.97656 1.9375 1.78516 2.15625 1.78516 2.375V11.125C1.78516 11.3711 1.97656 11.5625 2.22266 11.5625H12.7227C12.9414 11.5625 13.1602 11.3711 13.1602 11.125Z" fill="#3E3232" fillOpacity="0.5"/>
                                 </svg>
-                                <p>Категория: { post.category }</p>
+                                <p>Категория: { post?.category }</p>
                             </div>
                         </div>
                     </div>
-                    <p className="p-4">{post?.text}</p>
+                    <p className="p-4"><Markdown>{post?.text}</Markdown></p>
                 </div>
-                <div className="w-1/4">
+                <div className="flex flex-col w-[30%] gap-6">
+                    <div className="flex justify-between items-center">
+                        <div className="flex justify-center gap-2 items-center bg-gray rounded-xl px-4 py-3">
+                            <svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M14.6992 0.886719C14.918 1.02344 15.0273 1.26953 14.9453 1.51562L13.1953 13.3281C13.168 13.5195 13.0586 13.7109 12.8672 13.793C12.7852 13.8477 12.6758 13.9023 12.5664 13.9023C12.457 13.9023 12.375 13.875 12.293 13.8477L9.61328 12.6992L6.57812 14.668C6.46875 14.7227 6.33203 14.75 6.22266 14.75C6.14062 14.75 6.03125 14.7227 5.92188 14.6953C5.70312 14.5586 5.59375 14.3398 5.59375 14.0938V11.0039L1.38281 9.25391C1.16406 9.14453 1 8.92578 1 8.67969C0.972656 8.43359 1.10938 8.1875 1.32812 8.07812L14.0156 0.859375C14.2344 0.722656 14.5078 0.75 14.6992 0.886719ZM11.0898 4.03125L3.13281 8.54297L5.97656 9.74609L11.0898 4.03125ZM6.87891 12.8906L8.13672 12.0977L6.87891 11.5508V12.8906ZM12.0469 12.2891L13.3594 3.45703L7.23438 10.2656L12.0469 12.2891Z" fill="#3E3232" fill-opacity="0.5"/>
+                            </svg>
+                            <p>Поделиться</p>
+                        </div>
+                        <div className="flex justify-center gap-2 items-center bg-gray rounded-xl px-4 py-3">
+                            <svg width="11" height="15" viewBox="0 0 11 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9.4375 0.75C10.1484 0.75 10.75 1.35156 10.75 2.0625V13.875C10.75 14.5586 10.0117 14.9688 9.41016 14.6406L5.5 12.3438L1.5625 14.6406C0.960938 14.9688 0.25 14.5586 0.25 13.875V2.0625C0.25 1.35156 0.824219 0.75 1.5625 0.75H9.4375ZM9.4375 13.1094V2.22656C9.4375 2.14453 9.35547 2.0625 9.24609 2.0625H1.69922C1.61719 2.0625 1.5625 2.14453 1.5625 2.22656V13.1094L5.5 10.8125L9.4375 13.1094Z" fill="#3E3232" fill-opacity="0.5"/>
+                            </svg>
+                            <p>В закладки</p>
+                        </div>
+                        <div className="flex justify-center gap-2 items-center bg-gray rounded-xl px-4 py-3">
+                            <svg width="15" height="13" viewBox="0 0 15 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M4.9375 5.4375C5.40234 5.4375 5.78516 5.84766 5.78516 6.3125C5.78516 6.80469 5.40234 7.1875 4.9375 7.1875C4.44531 7.1875 4.0625 6.80469 4.0625 6.3125C4.0625 5.84766 4.44531 5.4375 4.9375 5.4375ZM8 5.4375C8.46484 5.4375 8.84766 5.84766 8.84766 6.3125C8.84766 6.75 8.4375 7.16016 8 7.16016C7.53516 7.16016 7.125 6.77734 7.125 6.3125C7.125 5.82031 7.50781 5.4375 8 5.4375ZM11.0625 5.4375C11.5273 5.4375 11.9375 5.84766 11.9102 6.3125C11.9102 6.80469 11.5273 7.1875 11.0625 7.1875C10.5977 7.1875 10.1875 6.80469 10.1875 6.3125C10.1875 5.84766 10.5703 5.4375 11.0625 5.4375ZM8 0.625C11.8555 0.625 14.9727 3.22266 14.9727 6.33984C14.9727 9.45703 11.8555 12 8 12C7.09766 12 6.22266 11.8633 5.45703 11.6172C4.63672 12.1914 3.32422 12.875 1.65625 12.875C1.38281 12.875 1.13672 12.7383 1.05469 12.4648C0.972656 12.2188 1 11.9453 1.19141 11.7539C1.19141 11.7539 2.03906 10.8242 2.44922 9.75781C1.54688 8.80078 1 7.59766 1 6.3125C1 3.16797 4.11719 0.625 8 0.625ZM8 10.6875C11.1172 10.6875 13.6328 8.74609 13.6328 6.3125C13.6328 3.90625 11.0898 1.9375 7.97266 1.9375C4.85547 1.9375 2.3125 3.90625 2.3125 6.3125C2.3125 7.48828 2.88672 8.36328 3.37891 8.88281L3.95312 9.48438L3.65234 10.25C3.51562 10.6328 3.32422 11.0156 3.10547 11.3438C3.76172 11.125 4.30859 10.8242 4.69141 10.5508L5.21094 10.168L5.83984 10.3594C6.52344 10.5781 7.26172 10.6875 8 10.6875Z" fill="#3E3232" fill-opacity="0.5"/>
+                            </svg>
+                            <p>Комментарии</p>
+                        </div>
+                    </div>
+                    <div className="flex items-center bg-gray p-4 rounded-xl gap-4">
+                        <img src={ post.avatar_url } alt="img" className="w-[80px] h-[80px] rounded-xl object-cover"/>
+                        <div className="flex flex-col items-center gap-4">
+                            <h5>{ post.author }</h5>
+                            <div className="flex justify-start items-center gap-2 bg-primary75 px-4 py-3 rounded-xl">
+                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M11.6875 5.75C11.6875 6.24219 11.2773 6.65234 10.8125 6.65234H6.875V10.5898C6.875 11.0547 6.46484 11.4375 6 11.4375C5.50781 11.4375 5.125 11.0547 5.125 10.5898V6.65234H1.1875C0.695312 6.65234 0.3125 6.24219 0.3125 5.75C0.3125 5.28516 0.695312 4.90234 1.1875 4.90234H5.125V0.964844C5.125 0.472656 5.50781 0.0625 6 0.0625C6.46484 0.0625 6.875 0.472656 6.875 0.964844V4.90234H10.8125C11.2773 4.875 11.6875 5.28516 11.6875 5.75Z" fill="white"/>
+                                </svg>
+                                <p className="text-white">Подписаться</p>
+                            </div>
+                        </div>
+                        <p className="">COUNT POSTS</p>
+                    </div>
                 </div>
             </div>
         </div>

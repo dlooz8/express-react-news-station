@@ -1,6 +1,7 @@
 import app from "../utils/axiosConfig";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Markdown from "react-markdown";
 
 function NewPosts() {
 
@@ -42,7 +43,7 @@ function NewPosts() {
                         <img className="xl:w-[300px] 2xl:w-[340px] h-[190px] m-3 object-cover rounded-xl aspect-video" src={ post.title_img } alt="new-post-img" />
                         <div className="flex flex-col justify-between py-2 xl:mr-2">
                             <h5 className="line-clamp-1 pt-3">{ post.theme }</h5>
-                            <p className="line-clamp-2">{ post.text }</p>
+                            <p className="line-clamp-2"><Markdown>{ post.text }</Markdown></p>
                             <div className="flex items-center justify-between gap-4 bg-gray rounded-xl mr- p-2">
                                 <img src={ post.avatar_url} alt="avatar" className="max-w-[44px] max-h-[44px] object-cover rounded-xl aspect-square" />
                                 <div className="flex flex-1 flex-col gap-1">

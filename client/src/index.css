@@ -165,9 +165,9 @@ input {
   grid-template-rows: 1fr;
 }
 
-.banner-1 { grid-area: 1 / 1 / 2 / 2; }
-.banner-2 { grid-area: 1 / 2 / 2 / 3; }
-.banner-3 { grid-area: 1 / 3 / 2 / 5; }
+  .banner-1 { grid-area: 1 / 1 / 2 / 2; }
+  .banner-2 { grid-area: 1 / 2 / 2 / 3; }
+  .banner-3 { grid-area: 1 / 3 / 2 / 5; }
 
 .sport-tri {
   display: grid;
