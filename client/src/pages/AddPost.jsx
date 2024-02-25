@@ -17,7 +17,7 @@ function AddPost() {
     const handleAddPost = async (e) => {
         e.preventDefault();
         try {
-            await app.post('http://localhost:3033/news/addnews', {
+            await app.post('http://localhost:3033/news/postnews', {
                 theme,
                 text,
                 category,
@@ -29,7 +29,9 @@ function AddPost() {
             })
         }
         catch (error) {
-            toast.error(error);
+            toast.error(error.response.data);
+            console.error(error);
+            console.log(theme, text, category, imageUrl, isUser.id);
         }
     }
 

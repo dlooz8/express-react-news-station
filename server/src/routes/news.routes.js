@@ -1,7 +1,7 @@
 const newsRouter = require('express').Router();
 const newsController = require('../controllers/news.controller')
 
-newsRouter.post('/addnews', newsController.addNews);
+newsRouter.post('/postnews', newsController.postNews);
 newsRouter.get('/popular-posts', newsController.getPopularPosts);
 newsRouter.get('/trendy-posts', newsController.getTrendyPosts);
 newsRouter.get('/recent-posts', newsController.getRecentPosts);

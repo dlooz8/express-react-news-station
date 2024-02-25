@@ -1,6 +1,7 @@
 const newsService = require('../services/news.service')
+const prisma = require('../config/prisma');
 
-const addNews = async (req, res) => {
+const postNews = async (req, res) => {
     const { theme, text, category, title_img, user_id} = req.body;
     try {
         const news = await prisma.posts.create({
@@ -12,9 +13,10 @@ const addNews = async (req, res) => {
                 user_id
             }
         });
-        res.status(200).json(news);
+        res.status(200).json("DONE");
     } catch (error) {
-        res.status(400).json({message: error.message});
+        console.error("Error:", error);
+        res.status(500).json("Ошибка при создании нового поста");
     }
 }
 
@@ -56,6 +58,6 @@ module.exports = {
     getNewPosts,
     getTrendyPosts,
     getCurrentPost,
-    addNews,
+    postNews,
     
 }
