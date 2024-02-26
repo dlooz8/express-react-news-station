@@ -4,6 +4,7 @@ import SignIn from "./pages/SignIn";
 import Main from "./pages/Main";
 import UserProfile from "./pages/UserProfile";
 import Registration from "./pages/Registration";
+import AboutUs from "./pages/AboutUs";
 import NotFound from "./pages/NotFound";
 import { useOutletContext } from "react-router-dom";
 import Footer from "./components/Footer";
@@ -60,6 +61,10 @@ function App() {
             {
               path: "/signin",
               element: <SignIn />,
+            },
+            {
+              path: "/aboutus",
+              element: <AboutUs />,
             },
             {
               path: "/users",

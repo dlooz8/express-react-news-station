@@ -64,18 +64,46 @@ function Post() {
                         </div>
                     </div>
                     <h5 className="p-4"><Markdown>{post?.text}</Markdown></h5>
-                    <div className="">
+                    <div className="flex flex-col gap-4">
                         <div className="flex items-center gap-2">
                             <svg width="4" height="11" viewBox="0 0 4 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <rect y="0.5" width="4" height="10" rx="2" fill="#F81539"/>
                             </svg>
                             <h4>Комментарии</h4>
                         </div>
-
-                        <div className=""></div>
-
-
+                        <div className="flex flex-col gap-4 bg-gray rounded-xl p-4">
+                            <div className="flex gap-2">
+                                <img src="https://t3.ftcdn.net/jpg/05/61/43/26/360_F_561432620_ghqin7jE48RP4B6JrOpCpio536LOeTVC.jpg" alt="avatar" className="w-[60px] h-[60px] rounded-xl"/>
+                                <div className="flex flex-col justify-center gap-2">
+                                    <h5>Имя Фамилия</h5>
+                                    <div className="flex gap-2 items-center">
+                                        <svg width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M5.03125 2.5H8.96875V1.40625C8.96875 1.05078 9.24219 0.75 9.625 0.75C9.98047 0.75 10.2812 1.05078 10.2812 1.40625V2.5H11.375C12.332 2.5 13.125 3.29297 13.125 4.25V13C13.125 13.9844 12.332 14.75 11.375 14.75H2.625C1.64062 14.75 0.875 13.9844 0.875 13V4.25C0.875 3.29297 1.64062 2.5 2.625 2.5H3.71875V1.40625C3.71875 1.05078 3.99219 0.75 4.375 0.75C4.73047 0.75 5.03125 1.05078 5.03125 1.40625V2.5ZM2.1875 13C2.1875 13.2461 2.37891 13.4375 2.625 13.4375H11.375C11.5938 13.4375 11.8125 13.2461 11.8125 13V6H2.1875V13Z" fill="#3E3232" fillOpacity="0.5"/>
+                                        </svg>
+                                        <p>5 декабря 2022</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Obcaecati nostrum maiores voluptates. Beatae fugiat magnam, molestias doloribus tenetur explicabo necessitatibus quibusdam ab aliquam, veniam quis est dolorem assumenda error similique? Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae tempora quis mollitia nisi, fugit eius accusantium dolorum. Aliquid sed neque vitae commodi, ullam culpa ducimus atque, dolor, adipisci nemo aperiam.</p>
+                        </div>
                     </div>
+
+                    <div className="flex flex-col gap-4">
+                        <div className="flex items-center gap-2">
+                            <svg width="4" height="11" viewBox="0 0 4 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect y="0.5" width="4" height="10" rx="2" fill="#F81539"/>
+                            </svg>
+                            <h4>Оставьте свой комментарий</h4>
+                        </div>
+                        <textarea className="bg-gray rounded-xl p-4" rows="4"></textarea>
+                        <div className="flex items-center justify-center gap-2 bg-primary75 rounded-xl p-2 max-w-[240px]  ">
+                            <svg width="15" height="13" viewBox="0 0 15 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M4.9375 5.4375C5.40234 5.4375 5.78516 5.84766 5.78516 6.3125C5.78516 6.80469 5.40234 7.1875 4.9375 7.1875C4.44531 7.1875 4.0625 6.80469 4.0625 6.3125C4.0625 5.84766 4.44531 5.4375 4.9375 5.4375ZM8 5.4375C8.46484 5.4375 8.84766 5.84766 8.84766 6.3125C8.84766 6.75 8.4375 7.16016 8 7.16016C7.53516 7.16016 7.125 6.77734 7.125 6.3125C7.125 5.82031 7.50781 5.4375 8 5.4375ZM11.0625 5.4375C11.5273 5.4375 11.9375 5.84766 11.9102 6.3125C11.9102 6.80469 11.5273 7.1875 11.0625 7.1875C10.5977 7.1875 10.1875 6.80469 10.1875 6.3125C10.1875 5.84766 10.5703 5.4375 11.0625 5.4375ZM8 0.625C11.8555 0.625 14.9727 3.22266 14.9727 6.33984C14.9727 9.45703 11.8555 12 8 12C7.09766 12 6.22266 11.8633 5.45703 11.6172C4.63672 12.1914 3.32422 12.875 1.65625 12.875C1.38281 12.875 1.13672 12.7383 1.05469 12.4648C0.972656 12.2188 1 11.9453 1.19141 11.7539C1.19141 11.7539 2.03906 10.8242 2.44922 9.75781C1.54688 8.80078 1 7.59766 1 6.3125C1 3.16797 4.11719 0.625 8 0.625ZM8 10.6875C11.1172 10.6875 13.6328 8.74609 13.6328 6.3125C13.6328 3.90625 11.0898 1.9375 7.97266 1.9375C4.85547 1.9375 2.3125 3.90625 2.3125 6.3125C2.3125 7.48828 2.88672 8.36328 3.37891 8.88281L3.95312 9.48438L3.65234 10.25C3.51562 10.6328 3.32422 11.0156 3.10547 11.3438C3.76172 11.125 4.30859 10.8242 4.69141 10.5508L5.21094 10.168L5.83984 10.3594C6.52344 10.5781 7.26172 10.6875 8 10.6875Z" fill="white"/>
+                            </svg>
+                            <p className="text-center text-white">Отправить комментарий</p>
+                        </div>
+                    </div>
+
                 </div>
                 <div className="flex flex-col w-[30%] gap-6">
                     <div className="flex justify-between items-center">

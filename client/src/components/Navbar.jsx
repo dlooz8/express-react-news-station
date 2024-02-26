@@ -185,7 +185,7 @@ const Navbar = () => {
             </div>
 
 
-            <Link to='/constactus' className='red-hover'><h5>Contact Us</h5></Link>
+            <Link to='/contactus' className='red-hover'><h5>Contact Us</h5></Link>
             <Link to='/aboutus' className='red-hover'><h5>About Us</h5></Link>
             <div className="flex justify-between items-center text-xs gap-8 bg-gray rounded-xl px-4 py-1.5">
                 <svg width="6" height="18" viewBox="0 0 6 18" fill="none" xmlns="http://www.w3.org/2000/svg">
