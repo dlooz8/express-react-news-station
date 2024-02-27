@@ -84,23 +84,23 @@ function HotSport() {
                         <img className="w-full h-[468px] m-auto object-cover rounded-xl aspect-video" src={ currentPosts[0]?.title_img } alt="img" />
                         <div className="absolute top-[70%] m-3 glass rounded-xl">
                             <h4 className="line-clamp-1 mx-3 my-4">{ currentPosts[0]?.theme }</h4>
-                            <p className="line-clamp-2 mx-3 my-4"><Markdown>{ currentPosts[0]?.text }</Markdown></p>
+                            <Markdown className="markdown line-clamp-2 mx-3 my-4">{ currentPosts[0]?.text }</Markdown>
                         </div>
                     </Link>
 
                     <Link to={`/news/${currentPosts[1]?.post_id}`} className="flex justify-between sport-tri2 shadow rounded-xl">
                         <img className="m-4 object-cover rounded-2xl h-[190px] aspect-video" src={ currentPosts[1]?.title_img } alt="img" />
-                        <div className="">
+                        <div>
                             <h5 className="line-clamp-1 self-start mx-3 my-5">{ currentPosts[1]?.theme }</h5>
-                            <p className="xl:line-clamp-6 mx-3"><Markdown>{ currentPosts[1]?.text }</Markdown></p>
+                            <Markdown className="markdown xl:line-clamp-6 mx-3">{ currentPosts[1]?.text }</Markdown>
                         </div>
                     </Link>
                     
                     <Link to={`/news/${currentPosts[2]?.post_id}`} className="flex justify-between sport-tri3 shadow rounded-xl">
                         <img className="m-4 object-cover rounded-2xl h-[190px] aspect-video" src={ currentPosts[2]?.title_img } alt="img" />
-                        <div className="">
+                        <div>
                             <h5 className="line-clamp-1 self-start mx-3 my-5">{ currentPosts[2]?.theme }</h5>
-                            <p className="xl:line-clamp-6 mx-3"><Markdown>{ currentPosts[2]?.text }</Markdown></p>
+                            <Markdown className="markdown xl:line-clamp-6 mx-3">{ currentPosts[2]?.text }</Markdown>
                         </div>
                     </Link>     
 
