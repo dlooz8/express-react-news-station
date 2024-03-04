@@ -148,7 +148,6 @@ const getTrendyPosts = async () => {
     return trendyPosts;
 }
 
-
 module.exports = {
     getPopularPosts,
     getRecentPosts,

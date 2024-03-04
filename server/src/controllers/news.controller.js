@@ -60,6 +60,11 @@ const getCurrentPost = async (req, res) => {
     return res.status(200).json(news);
 }
 
+const getUserBookmarks = async (req, res) => {
+    const news = await newsService.getUserBookmarks();
+    return res.status(200).json(news);
+}
+
 module.exports = {
     getPopularPosts,
     getRecentPosts,
@@ -67,6 +72,7 @@ module.exports = {
     getNewPosts,
     getTrendyPosts,
     getCurrentPost,
+    getUserBookmarks,
     postNews,
     
 }

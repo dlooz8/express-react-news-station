@@ -8,5 +8,6 @@ newsRouter.get('/recent-posts', newsController.getRecentPosts);
 newsRouter.get('/hot-sport-posts', newsController.getHotSportPosts);
 newsRouter.get('/new-posts', newsController.getNewPosts);
 newsRouter.get('/:post_id', newsController.getCurrentPost);
+newsRouter.get('/user-bookmarks/', newsController.getUserBookmarks);
 
 module.exports = newsRouter;
