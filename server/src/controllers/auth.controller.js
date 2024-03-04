@@ -19,7 +19,7 @@ const authController = {
         const { password: excludedPassword, ...userWithoutPassword } = newUser;
         res.status(200).json(userWithoutPassword);
       } catch (error) {
-        res.status(449).json({ toast: 'Ошибка при создании пользователя' });
+        res.status(422).json({ toast: 'Ошибка при создании пользователя' });
       }
     } catch (error) {
       res.status(500).json({ message: 'Ошибка при хешировании пароля' });
@@ -29,7 +29,7 @@ const authController = {
     const { email, password } = req.body;
     const existingUser = await prisma.users.findUnique({ where: { email } });
     if (!existingUser) {
-      res.status(449).json({ message: 'Неверное имя пользователя или пароль' });
+      res.status(422).json({ message: 'Неверное имя пользователя или пароль' });
     } else {
       try {
         const passwordValid = await bcrypt.compare(password, existingUser.password);
