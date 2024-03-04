@@ -1,15 +1,24 @@
 const newsService = require('../services/news.service')
 const prisma = require('../config/prisma');
+const axios = require('axios');
+const cloudinary = require('../config/cloudinary');
+const multer = require('multer');
+
 
 const postNews = async (req, res) => {
     const { theme, text, category, title_img, user_id} = req.body;
+
+    
+
+
+
     try {
         const news = await prisma.posts.create({
             data: {
                 theme,
                 text,
                 category,
-                title_img,
+                title_url,
                 user_id
             }
         });

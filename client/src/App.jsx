@@ -2,14 +2,13 @@ import Navbar from "./components/Navbar";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import SignIn from "./pages/SignIn";
 import Main from "./pages/Main";
-import UserProfile from "./pages/UserProfile";
+import Profile from "./pages/Profile";
 import Registration from "./pages/Registration";
 import ContactUs from "./pages/ContactUs";
 import AboutUs from "./pages/AboutUs";
 import NotFound from "./pages/NotFound";
 import { useOutletContext } from "react-router-dom";
 import Footer from "./components/Footer";
-import AddPost from "./pages/AddPost";
 import Post from "./pages/Post";
 import { useState } from "react";
 
@@ -72,16 +71,12 @@ function App() {
               element: <AboutUs />,
             },
             {
-              path: "/users",
-              element: <UserProfile />,
+              path: "/profile",
+              element: <Profile />,
             },
             {
               path: "/registration",
               element: <Registration />,
-            },
-            {
-              path: "/addpost",
-              element: <AddPost />,
             },
             {
               path: "*",
