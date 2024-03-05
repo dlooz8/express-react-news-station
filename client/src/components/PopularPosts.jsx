@@ -10,7 +10,7 @@ function PopularPosts() {
 
     const getPopularPosts = async () => {
         try {
-            const response = await app.get('http://localhost:3033/news/popular-posts');
+            const response = await app.get('/news/popular-posts');
             setPopularPosts(response.data);
         } catch (error) {
             console.error(error);

@@ -4,6 +4,7 @@ const cors = require('cors');
 const morgan = require('morgan');
 const authRouter = require('./routes/auth.routes');
 const newsRouter = require('./routes/news.routes');
+const bookmarksRouter = require('./routes/bookmarks.routes');
 
 const app = express();
 app.use(express.json());
@@ -26,5 +27,6 @@ app.use(cors({
 
 app.use('/auth', authRouter);
 app.use('/news', newsRouter);
+app.use('/bookmarks', bookmarksRouter);
 
 module.exports = app;
