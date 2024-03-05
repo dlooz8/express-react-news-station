@@ -20,7 +20,6 @@ function Post() {
     try {
       const response = await app.get("http://localhost:3033/news/new-posts");
       setNewPosts(response.data);
-      console.log(response.data);
     } catch (error) {
       console.error(error);
     }
@@ -276,7 +275,7 @@ function Post() {
               <h4>Лучшие новости этой категории</h4>
             </div>
             {topPosts.map((post) => (
-              <div key={post.id} className="flex items-center gap-4">
+              <div key={post.post_id} className="flex items-center gap-4">
                 <img
                   src={post?.title_img}
                   alt=""
