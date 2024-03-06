@@ -1,5 +1,6 @@
 import { useNavigate, useOutletContext, Link } from "react-router-dom";
 import { useState } from 'react';
+import toast from 'react-hot-toast';
 import app from '../utils/axiosConfig';
 
 function SignIn() {
@@ -18,6 +19,7 @@ function SignIn() {
       .then((res) => {
         setIsUser(res.data);
         localStorage.setItem("user", JSON.stringify(res.data));
+        toast.success('Вы успешно вошли в аккаунт!');
         navigate('/feed');
       })
       .catch(function (error) {
