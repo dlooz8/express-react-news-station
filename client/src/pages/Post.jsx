@@ -9,7 +9,7 @@ function Post() {
   const getPost = async () => {
     try {
       const postId = window.location.pathname.split("/").pop();
-      const response = await app.get(`http://localhost:3033/news/${postId}`);
+      const response = await app.get(`/news/${postId}`);
       setPost(response.data[0]);
     } catch (error) {
       console.error(error);
@@ -18,7 +18,7 @@ function Post() {
 
   const getNewPosts = async () => {
     try {
-      const response = await app.get("http://localhost:3033/news/new-posts");
+      const response = await app.get("/news/latest-news");
       setNewPosts(response.data);
     } catch (error) {
       console.error(error);

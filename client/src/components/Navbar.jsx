@@ -11,7 +11,7 @@ const Navbar = () => {
     
     const handleLogOut = async (event) => {
         event.preventDefault();
-        await app.get('http://localhost:3033/auth/logout')
+        await app.get('/auth/logout')
         .then(() => {
             localStorage.removeItem("user");
             setIsAuth(false);
@@ -33,7 +33,7 @@ const Navbar = () => {
     }
 
     const checkAuth = async () => {
-        await app.get('http://localhost:3033/auth/check-auth')
+        await app.get('/auth/check-auth')
           .then(() => {
             setIsUser(JSON.parse(localStorage.getItem("user")));
             setIsAuth(true);

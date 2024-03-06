@@ -12,7 +12,7 @@ function SignIn() {
 
   const handleAuthorization = async (e) => {
     e.preventDefault();
-    await app.post('http://localhost:3033/auth/login', {
+    await app.post('/auth/login', {
         email: email,
         password: password,
       })

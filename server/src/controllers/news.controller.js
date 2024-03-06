@@ -5,7 +5,7 @@ const cloudinary = require('../config/cloudinary');
 const multer = require('multer');
 
 
-const postNews = async (req, res) => {
+const postCreateNews = async (req, res) => {
     const { theme, text, category, title_img, user_id} = req.body;
 
     
@@ -29,50 +29,44 @@ const postNews = async (req, res) => {
     }
 }
 
-const getPopularPosts = async (req, res) => {
-    const news = await newsService.getPopularPosts();
+const getPopularNews = async (req, res) => {
+    const news = await newsService.getPopularNews();
     return res.status(200).json(news);
 }
 
-const getTrendyPosts = async (req, res) => {
-    const news = await newsService.getTrendyPosts();
+const getTrendyNews = async (req, res) => {
+    const news = await newsService.getTrendyNews();
     return res.status(200).json(news);
 }
 
-const getRecentPosts = async (req, res) => {
-    const news = await newsService.getRecentPosts();
+const getRecentNews = async (req, res) => {
+    const news = await newsService.getRecentNews();
     return res.status(200).json(news);
 }
 
-const getHotSportPosts = async (req, res) => {
-    const news = await newsService.getHotSportPosts();
+const getHotSportNews = async (req, res) => {
+    const news = await newsService.getHotSportNews();
     return res.status(200).json(news);
 }
 
-const getNewPosts = async (req, res) => {
-    const news = await newsService.getNewPosts();
+const getLatestNews = async (req, res) => {
+    const news = await newsService.getLatestNews();
     return res.status(200).json(news);
 }
 
-const getCurrentPost = async (req, res) => {
+const getCurrentNews = async (req, res) => {
     const {post_id} = req.params;
-    const news = await newsService.getCurrentPost(post_id);
-    return res.status(200).json(news);
-}
-
-const getUserBookmarks = async (req, res) => {
-    const news = await newsService.getUserBookmarks();
+    const news = await newsService.getCurrentNews(post_id);
     return res.status(200).json(news);
 }
 
 module.exports = {
-    getPopularPosts,
-    getRecentPosts,
-    getHotSportPosts,
-    getNewPosts,
-    getTrendyPosts,
-    getCurrentPost,
-    getUserBookmarks,
-    postNews,
+    getPopularNews,
+    getRecentNews,
+    getHotSportNews,
+    getLatestNews,
+    getTrendyNews,
+    getCurrentNews,
+    postCreateNews,
     
 }

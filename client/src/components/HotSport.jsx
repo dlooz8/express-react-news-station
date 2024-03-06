@@ -10,15 +10,15 @@ function HotSport() {
 
     const getHotSportPosts = async () => {
         try {
-          const response = await app.get('http://localhost:3033/news/hot-sport-posts');
-          setHotSportPosts(response.data);
+            const response = await app.get('/news/hot-sport-news');
+            setHotSportPosts(response.data);
         } catch (error) {
-          console.error(error);
+            console.error(error);
         }
-      };
+    };
   
     useEffect(() => {
-      getHotSportPosts();
+        getHotSportPosts();
     }, []);
 
     // Pagination

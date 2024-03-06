@@ -9,7 +9,7 @@ function NewPosts() {
 
     const getNewPosts = async() => {
         try {
-            const response = await app.get('http://localhost:3033/news/new-posts');
+            const response = await app.get('/news/latest-news');
             setNewPosts(response.data);
         } catch(error) {
             console.error(error);

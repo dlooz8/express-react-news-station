@@ -10,7 +10,7 @@ function TrendyPosts() {
 
     const getTrendyPosts = async () => {
         try {
-            const response = await app.get('http://localhost:3033/news/trendy-posts');
+            const response = await app.get('/news/trendy-news');
             setTrendyPosts(response.data);
         } catch (error) {
             console.error(error);

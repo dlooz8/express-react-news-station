@@ -1,6 +1,6 @@
 const prisma = require('../config/prisma');
 
-const getCurrentPost = async(post_id) => {
+const getCurrentNews = async(post_id) => {
     const posts = await prisma.posts.findMany({
         where: {
             post_id:  post_id
@@ -31,7 +31,7 @@ const getCurrentPost = async(post_id) => {
     return newPosts;
 }
 
-const getNewPosts = async() => {
+const getLatestNews = async() => {
     const posts = await prisma.posts.findMany({
         orderBy: {
             created_at: 'desc'
@@ -63,7 +63,7 @@ const getNewPosts = async() => {
     return newPosts;
 }
 
-const getRecentPosts = async() => {
+const getRecentNews = async() => {
     const recentPosts = await prisma.posts.findMany({
         orderBy: {
             created_at: 'desc'
@@ -73,7 +73,7 @@ const getRecentPosts = async() => {
     return recentPosts;
 }
 
-const getHotSportPosts = async() => {
+const getHotSportNews = async() => {
     const hotSportPosts = await prisma.posts.findMany({
         orderBy: {
             created_at: 'desc',
@@ -86,7 +86,7 @@ const getHotSportPosts = async() => {
     return hotSportPosts;
 }
 
-const getPopularPosts = async () => {
+const getPopularNews = async () => {
     const posts = await prisma.posts.findMany({
         orderBy: {
             count_likes: 'desc'
@@ -117,7 +117,7 @@ const getPopularPosts = async () => {
     return popularPosts;
 }
 
-const getTrendyPosts = async () => {
+const getTrendyNews = async () => {
     const posts = await prisma.posts.findMany({
         orderBy: {
             count_bookmarks: 'desc'
@@ -149,11 +149,11 @@ const getTrendyPosts = async () => {
 }
 
 module.exports = {
-    getPopularPosts,
-    getRecentPosts,
-    getHotSportPosts,
-    getNewPosts,
-    getTrendyPosts,
-    getCurrentPost,
+    getPopularNews,
+    getRecentNews,
+    getHotSportNews,
+    getLatestNews,
+    getTrendyNews,
+    getCurrentNews,
     
 }

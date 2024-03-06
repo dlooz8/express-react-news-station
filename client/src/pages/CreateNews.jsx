@@ -21,7 +21,7 @@ function CreateNews() {
         const imgData = new FormData();
         imgData.append('image', image);
         try {
-            await app.post('/news/postnews', {
+            await app.post('/news/create-news', {
                 theme,
                 text,
                 category,

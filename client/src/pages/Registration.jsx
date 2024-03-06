@@ -14,7 +14,7 @@ const Registration = () => {
 
   const handleRegistration = async (e) => {
     e.preventDefault();
-    await app.post('http://localhost:3033/auth/register', {
+    await app.post('/auth/register', {
         name: name,
         email: email,
         password: password,

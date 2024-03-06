@@ -1,13 +1,12 @@
-const newsRouter = require('express').Router();
+const router = require('express').Router();
 const newsController = require('../controllers/news.controller')
 
-newsRouter.post('/postnews', newsController.postNews);
-newsRouter.get('/popular-posts', newsController.getPopularPosts);
-newsRouter.get('/trendy-posts', newsController.getTrendyPosts);
-newsRouter.get('/recent-posts', newsController.getRecentPosts);
-newsRouter.get('/hot-sport-posts', newsController.getHotSportPosts);
-newsRouter.get('/new-posts', newsController.getNewPosts);
-newsRouter.get('/:post_id', newsController.getCurrentPost);
-newsRouter.get('/user-bookmarks/', newsController.getUserBookmarks);
+router.post('/create-news', newsController.postCreateNews);
+router.get('/popular-news', newsController.getPopularNews);
+router.get('/trendy-news', newsController.getTrendyNews);
+router.get('/recent-news', newsController.getRecentNews);
+router.get('/hot-sport-news', newsController.getHotSportNews);
+router.get('/latest-news', newsController.getLatestNews);
+router.get('/:news_id', newsController.getCurrentNews);
 
-module.exports = newsRouter;
+module.exports = router;
