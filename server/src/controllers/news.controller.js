@@ -1,26 +1,17 @@
 const newsService = require('../services/news.service')
 const prisma = require('../config/prisma');
-const axios = require('axios');
-const cloudinary = require('../config/cloudinary');
-const multer = require('multer');
-
 
 const postCreateNews = async (req, res) => {
     const { theme, text, category, title_img, user_id} = req.body;
-
-    
-
-
-
+    console.log("DATAAAAA", req.body)
     try {
         const news = await prisma.posts.create({
             data: {
                 theme,
                 text,
                 category,
-                title_url,
-                user_id
-            }
+                title_img,
+                user_id}
         });
         res.status(200).json("DONE");
     } catch (error) {

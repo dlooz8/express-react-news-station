@@ -29,14 +29,17 @@ function UserBookmarks() {
 
     const handleDelete = async (bookmarkId) => {
     toast((t) => (
-        <span>
-        Удалить эту новость из закладок?
-        <button onClick={() => {
-            toast.dismiss(t.id);
-            confirmDelete(bookmarkId);
-        }}>
-            Удалить
-        </button>
+        <span className="flex flex-col items-center p-3 gap-4">
+            <h5>Удалить эту новость из закладок?</h5>
+            <button className='flex justify-center items-center py-2 px-4 border-2 rounded-xl border-primary75'
+                onClick={() => {
+                toast.dismiss(t.id);
+                confirmDelete(bookmarkId);
+            }}>
+                <h5>
+                    Удалить
+                </h5>
+            </button>
         </span>
     ));
     }

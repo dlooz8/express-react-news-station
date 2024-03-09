@@ -11,6 +11,7 @@ function Banner() {
         try {
           const response = await app.get('/news/recent-news');
           setRecentNews(response.data);
+          console.log(response.data);
         } catch (error) {
           console.error(error);
         }
