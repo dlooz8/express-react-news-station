@@ -1,10 +1,12 @@
 import app from "../utils/axiosConfig";
 import { useEffect, useState } from "react";
 import Markdown from "react-markdown";
+import { useNavigate } from "react-router-dom";
 
-function Post() {
+function News() {
   const [post, setPost] = useState({});
   const [topPosts, setNewPosts] = useState([]);
+  const navigate = useNavigate();
 
   const getPost = async () => {
     try {
@@ -12,7 +14,8 @@ function Post() {
       const response = await app.get(`/news/${postId}`);
       setPost(response.data[0]);
     } catch (error) {
-      console.error(error);
+      console.error(error.response.data);
+      navigate("/feed");
     }
   };
 
@@ -304,4 +307,4 @@ function Post() {
   );
 }
 
-export default Post;
+export default News;

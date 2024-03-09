@@ -10,7 +10,7 @@ import { useOutletContext } from "react-router-dom";
 import Footer from "./components/Footer";
 import CreateNews from "./pages/CreateNews";
 import UserBookmarks from "./pages/UserBookmarks";
-import Post from "./pages/Post";
+import News from "./pages/News";
 import { useState } from "react";
 
 const UserContext = () => {
@@ -57,7 +57,7 @@ function App() {
             },
             {
               path: "/news/:id",
-              element: <Post />,
+              element: <News />,
             },
             {
               path: "/signin",

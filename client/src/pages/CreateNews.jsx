@@ -11,13 +11,12 @@ function CreateNews() {
     const [text, setText] = useState('');
     const [theme, setName] = useState('');
     const [file, setFile] = useState(null);
-    const [category, setCategory] = useState('');
+    const [category, setCategory] = useState('Политика');
 
     const navigate = useNavigate();
 
     const handleUpload = (e) => {
         e.preventDefault();
-        setCategory(e.target.category.value);
       
         toast.promise(
             new Promise((resolve, reject) => {
@@ -25,10 +24,8 @@ function CreateNews() {
                 try {
                     const data = new FormData();
                     data.append("my_file", file);
-                    const res = await app.post("/upload", data);
-                    console.log(res.data);
+                    const res = await app.post("/news/upload", data);
                     setTimeout(() => {
-                    console.log(res.data.secure_url);
                     handleAddPost(res.data.secure_url);
                     resolve('Новость успешно опубликована!');
                     }, 500);
@@ -46,7 +43,6 @@ function CreateNews() {
             }
         );
     };
-        
 
     const handleAddPost = async (secure_url) => {
         try {
@@ -63,7 +59,6 @@ function CreateNews() {
           toast.error(error.response.data);
         }
     };
-  
 
     return (
         <>
