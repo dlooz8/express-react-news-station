@@ -1,13 +1,13 @@
-const router = require('express').Router();
 const newsController = require('../controllers/news.controller')
-
+const router = require('express').Router();
 const Multer = require('multer');
+
 const storage = new Multer.memoryStorage();
 const upload = Multer({
   storage,
 });
 
-router.post('/upload', upload.single('my_file'), newsController.postImageNews);
+router.post('/upload', upload.single('image'), newsController.postImageNews);
 router.post('/create-news', newsController.postCreateNews);
 router.get('/popular-news', newsController.getPopularNews);
 router.get('/trendy-news', newsController.getTrendyNews);

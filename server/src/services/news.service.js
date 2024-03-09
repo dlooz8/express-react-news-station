@@ -1,39 +1,37 @@
 const prisma = require('../config/prisma');
 
+const postCreateNews = async (req, res) => {
+    const { theme, text, category, title_img, user_id} = req.body;
+    const news = await prisma.posts.create({
+        data: {
+            theme,
+            text,
+            category,
+            title_img,
+            user_id
+        }
+    });
+    res.json(news);
+}
+
 const getCurrentNews = async(news_id) => {
     const posts = await prisma.posts.findMany({
         where: {
             post_id:  news_id
         }
     })
-
+    
     if (posts.length === 0) {
         throw new Error('Новость не найдена');
     } else {
-        const newPosts = await Promise.all(posts.map(async (post) => {
-            const author = await prisma.users.findUnique({
-                where: {
-                    id: post.user_id
-                }
-            });
-            const options = {
-                timeZone: 'Europe/Moscow',
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
-            };
-            const createdDate = new Date(post.created_at).toLocaleDateString('ru-RU', options).replace(' г.', '');
-    
-            const dateArray = createdDate.split(' ');
-            const formattedDate = `${dateArray[1].charAt(0).toUpperCase() + dateArray[1].slice(1)} ${dateArray[0]}, ${dateArray[2]}`;
-          
-            const createdTime = new Date(post.created_at).toLocaleTimeString('ru-RU', { timeZone: 'Europe/Moscow' });
-            return { ...post, author: author.name, avatar_url: author.avatar_url, created_at_date: formattedDate, created_at_time: createdTime };
-        }));
-    
+        const newPosts = await Promise.all(posts.map(formatPost));
         return newPosts;
     }
 }
+
+const getNewsWithAuthor = async (posts) => {
+    return await Promise.all(posts.map(formatPost));
+};
 
 const getLatestNews = async() => {
     const posts = await prisma.posts.findMany({
@@ -43,28 +41,7 @@ const getLatestNews = async() => {
         take: 6
     })
 
-    const newPosts = await Promise.all(posts.map(async (post) => {
-        const author = await prisma.users.findUnique({
-            where: {
-                id: post.user_id
-            }
-        });
-        const options = {
-            timeZone: 'Europe/Moscow',
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'
-        };
-        const createdDate = new Date(post.created_at).toLocaleDateString('ru-RU', options).replace(' г.', '');
-
-        const dateArray = createdDate.split(' ');
-        const formattedDate = `${dateArray[1].charAt(0).toUpperCase() + dateArray[1].slice(1)} ${dateArray[0]}, ${dateArray[2]}`;
-      
-        const createdTime = new Date(post.created_at).toLocaleTimeString('ru-RU', { timeZone: 'Europe/Moscow' });
-        return { ...post, author: author.name, avatar_url: author.avatar_url, created_at_date: formattedDate, created_at_time: createdTime };
-    }));
-
-    return newPosts;
+    return await getNewsWithAuthor(posts);
 }
 
 const getRecentNews = async() => {
@@ -97,28 +74,7 @@ const getPopularNews = async () => {
         },
         take: 12
     });
-    const popularPosts = await Promise.all(posts.map(async (post) => {
-        const author = await prisma.users.findUnique({
-            where: {
-                id: post.user_id
-
-            }
-        });
-        const options = {
-            timeZone: 'Europe/Moscow',
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'
-        };
-        const createdDate = new Date(post.created_at).toLocaleDateString('ru-RU', options).replace(' г.', '');
-
-        const dateArray = createdDate.split(' ');
-        const formattedDate = `${dateArray[1].charAt(0).toUpperCase() + dateArray[1].slice(1)} ${dateArray[0]}, ${dateArray[2]}`;
-      
-        const createdTime = new Date(post.created_at).toLocaleTimeString('ru-RU', { timeZone: 'Europe/Moscow' });
-        return { ...post, author: author.name, avatar_url: author.avatar_url, created_at_date: formattedDate, created_at_time: createdTime };
-    }));
-    return popularPosts;
+    return await getNewsWithAuthor(posts);
 }
 
 const getTrendyNews = async () => {
@@ -128,31 +84,33 @@ const getTrendyNews = async () => {
         },
         take: 12
     });
-    const trendyPosts = await Promise.all(posts.map(async (post) => {
-        const author = await prisma.users.findUnique({
-            where: {
-                id: post.user_id
-
-            }
-        });
-        const options = {
-            timeZone: 'Europe/Moscow',
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'
-        };
-        const createdDate = new Date(post.created_at).toLocaleDateString('ru-RU', options).replace(' г.', '');
-
-        const dateArray = createdDate.split(' ');
-        const formattedDate = `${dateArray[1].charAt(0).toUpperCase() + dateArray[1].slice(1)} ${dateArray[0]}, ${dateArray[2]}`;
-      
-        const createdTime = new Date(post.created_at).toLocaleTimeString('ru-RU', { timeZone: 'Europe/Moscow' });
-        return { ...post, author: author.name, avatar_url: author.avatar_url, created_at_date: formattedDate, created_at_time: createdTime };
-    }));
-    return trendyPosts;
+    return await getNewsWithAuthor(posts);
 }
 
+const formatPost = async (post) => {
+    const author = await prisma.users.findUnique({
+        where: {
+            id: post.user_id
+        }
+    });
+    const options = {
+        timeZone: 'Europe/Moscow',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    };
+    const createdDate = new Date(post.created_at).toLocaleDateString('ru-RU', options).replace(' г.', '');
+ 
+    const dateArray = createdDate.split(' ');
+    const formattedDate = `${dateArray[1].charAt(0).toUpperCase() + dateArray[1].slice(1)} ${dateArray[0]}, ${dateArray[2]}`;
+   
+    const createdTime = new Date(post.created_at).toLocaleTimeString('ru-RU', { timeZone: 'Europe/Moscow' });
+    return { ...post, author: author.name, avatar_url: author.avatar_url, created_at_date: formattedDate, created_at_time: createdTime };
+};
+
 module.exports = {
+    // postImageNews,
+    postCreateNews,
     getPopularNews,
     getRecentNews,
     getHotSportNews,

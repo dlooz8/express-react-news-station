@@ -1,5 +1,4 @@
 const newsService = require('../services/news.service')
-const prisma = require('../config/prisma');
 const cloudinary = require("cloudinary").v2;
 
 cloudinary.config({
@@ -34,20 +33,12 @@ const postImageNews = async (req, res) => {
 }
 
 const postCreateNews = async (req, res) => {
-    const { theme, text, category, title_img, user_id} = req.body;
-    try {
-        const news = await prisma.posts.create({
-            data: {
-                theme,
-                text,
-                category,
-                title_img,
-                user_id}
-        });
-        res.status(200).json(news);
+    try { 
+        const news = await newsService.postCreateNews(req, res);
+        return res.status(200).json(news);
     } catch (error) {
         console.error("Error:", error);
-        res.status(500).json("Ошибка при создании нового поста");
+        res.status(500).json("Ошибка при создании новости");
     }
 }
 

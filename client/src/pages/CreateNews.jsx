@@ -23,7 +23,11 @@ function CreateNews() {
                 const uploadData = async () => {
                 try {
                     const data = new FormData();
-                    data.append("my_file", file);
+                    data.append("image", file, {
+                        headers: {
+                            "Content-Type": "multipart/form-data",
+                        }
+                    });
                     const res = await app.post("/news/upload", data);
                     setTimeout(() => {
                     handleAddPost(res.data.secure_url);
@@ -64,7 +68,7 @@ function CreateNews() {
         <>
             <ProfileBar />
             <div className='2xl:mx-48 mx-32'>
-                <form onSubmit={handleUpload} className='flex flex-col my-8 gap-12'>
+                <form onSubmit={handleUpload} className='flex flex-col my-8 gap-12' encType="multipart/form-data">
                     <div className='grid grid-cols-2 gap-12'>
                         <div className="input col-start-1">
                             <h5>Заголовок новости</h5>
