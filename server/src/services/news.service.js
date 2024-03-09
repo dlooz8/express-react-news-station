@@ -20,7 +20,6 @@ const getCurrentNews = async(news_id) => {
             post_id:  news_id
         }
     })
-    
     if (posts.length === 0) {
         throw new Error('Новость не найдена');
     } else {
@@ -93,23 +92,23 @@ const formatPost = async (post) => {
             id: post.user_id
         }
     });
+
     const options = {
         timeZone: 'Europe/Moscow',
         year: 'numeric',
         month: 'long',
         day: 'numeric'
     };
+
     const createdDate = new Date(post.created_at).toLocaleDateString('ru-RU', options).replace(' г.', '');
- 
     const dateArray = createdDate.split(' ');
     const formattedDate = `${dateArray[1].charAt(0).toUpperCase() + dateArray[1].slice(1)} ${dateArray[0]}, ${dateArray[2]}`;
-   
     const createdTime = new Date(post.created_at).toLocaleTimeString('ru-RU', { timeZone: 'Europe/Moscow' });
+    
     return { ...post, author: author.name, avatar_url: author.avatar_url, created_at_date: formattedDate, created_at_time: createdTime };
 };
 
 module.exports = {
-    // postImageNews,
     postCreateNews,
     getPopularNews,
     getRecentNews,
@@ -117,5 +116,4 @@ module.exports = {
     getLatestNews,
     getTrendyNews,
     getCurrentNews,
-    
 }

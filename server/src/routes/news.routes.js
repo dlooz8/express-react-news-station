@@ -7,7 +7,7 @@ const upload = Multer({
   storage,
 });
 
-router.post('/upload', upload.single('image'), newsController.postImageNews);
+router.post('/upload-image', upload.single('image'), newsController.postImageNews);
 router.post('/create-news', newsController.postCreateNews);
 router.get('/popular-news', newsController.getPopularNews);
 router.get('/trendy-news', newsController.getTrendyNews);

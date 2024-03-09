@@ -28,7 +28,7 @@ function CreateNews() {
                             "Content-Type": "multipart/form-data",
                         }
                     });
-                    const res = await app.post("/news/upload", data);
+                    const res = await app.post("/news/upload-image", data);
                     setTimeout(() => {
                     handleAddPost(res.data.secure_url);
                     resolve('Новость успешно опубликована!');
