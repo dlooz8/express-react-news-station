@@ -1,34 +1,15 @@
 const newsService = require('../services/news.service')
-const cloudinary = require("cloudinary").v2;
-
-cloudinary.config({
-cloud_name: 'dqzgyyab3',
-api_key: '726769892967862',
-api_secret: 'gAf-CP7RAz9O-SPTJ3QDja99StM',
-});
-
-async function handleUpload(file) {
-    const res = await cloudinary.uploader.upload(file, {
-    resource_type: "image",
-    transformation: [
-        { width: 1600, height: 900, crop: 'fill' },
-        { format: 'webp' }
-    ]
-    });
-    return res;
-}
+const { handleUpload } = require('../config/cloudinary');
 
 const postImageNews = async (req, res) => {
     try {
         const b64 = Buffer.from(req.file.buffer).toString("base64");
         let dataURI = "data:" + req.file.mimetype + ";base64," + b64;
         const cldRes = await handleUpload(dataURI);
-        res.json(cldRes);
+        res.status(200).json(cldRes);
     } catch (error) {
         console.log(error);
-        res.send({
-        message: error.message,
-        });
+        res.status(500).json("Не удалось загрузить изображение");
     }
 }
 
@@ -43,28 +24,53 @@ const postCreateNews = async (req, res) => {
 }
 
 const getPopularNews = async (req, res) => {
-    const news = await newsService.getPopularNews();
-    return res.status(200).json(news);
+    try {
+        const news = await newsService.getPopularNews();
+        return res.status(200).json(news);
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json("Новости не найдены");
+    }
 }
 
 const getTrendyNews = async (req, res) => {
-    const news = await newsService.getTrendyNews();
-    return res.status(200).json(news);
+    try { 
+        const news = await newsService.getTrendyNews();
+        return res.status(200).json(news);
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json("Новости не найдены");
+    }
 }
 
 const getRecentNews = async (req, res) => {
-    const news = await newsService.getRecentNews();
-    return res.status(200).json(news);
+    try {
+        const news = await newsService.getRecentNews();
+        return res.status(200).json(news);
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json("Новости не найдены");
+    }
 }
 
 const getHotSportNews = async (req, res) => {
-    const news = await newsService.getHotSportNews();
-    return res.status(200).json(news);
+    try {
+        const news = await newsService.getHotSportNews();
+        return res.status(200).json(news);
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json("Новости не найдены");
+    }
 }
 
 const getLatestNews = async (req, res) => {
-    const news = await newsService.getLatestNews();
-    return res.status(200).json(news);
+    try {
+        const news = await newsService.getLatestNews();
+        return res.status(200).json(news);
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json("Новости не найдены");
+    }
 }
 
 const getCurrentNews = async (req, res) => {
