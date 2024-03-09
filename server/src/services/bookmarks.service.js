@@ -6,6 +6,7 @@ const deleteBookmark = async (id) => {
             id: id
         }
     });
+    return bookmark;
 }
 
 const getUserBookmarks = async (req) => {

@@ -7,7 +7,6 @@ const cloudinaryConfig = () => {
         api_secret: 'gAf-CP7RAz9O-SPTJ3QDja99StM',
     })
 }
-    
 
 async function handleUpload(file) {
     cloudinaryConfig();
