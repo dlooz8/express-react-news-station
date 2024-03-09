@@ -1,66 +1,43 @@
-const prisma = require('../config/prisma');
-const bcrypt = require('bcrypt');
+const authService = require('../services/auth.service');
 
-const authController = {
-  register: async (req, res) => {
-    const { name, email, password, avatar_url } = req.body;
+const postRegister = async (req, res) => {
     try {
-      const hashedPassword = await bcrypt.hash(password, 10);
-      try {
-        const newUser = await prisma.users.create({
-          data: {
-            name: name,
-            email: email,
-            password: hashedPassword,
-            avatar_url: avatar_url,
-          },
-        });
-        req.session.userId = newUser.id;
-        const { password: excludedPassword, ...userWithoutPassword } = newUser;
-        res.status(200).json(userWithoutPassword);
-      } catch (error) {
-        res.status(422).json({ toast: 'Ошибка при создании пользователя' });
-      }
+        const auth = await authService.postRegister(req, res);
+        return res.status(200).json(auth);
     } catch (error) {
-      res.status(500).json({ message: 'Ошибка при хешировании пароля' });
+        return res.status(422).json('Этот email уже занят');
     }
-  },
-  login: async (req, res) => {
-    const { email, password } = req.body;
-    const existingUser = await prisma.users.findUnique({ where: { email } });
-    if (!existingUser) {
-      res.status(422).json({ message: 'Неверное имя пользователя или пароль' });
-    } else {
-      try {
-        const passwordValid = await bcrypt.compare(password, existingUser.password);
-        if (passwordValid) {
-          req.session.userId = existingUser.id;
-          const { password: excludedPassword, ...userWithoutPassword } = existingUser;
-          res.status(200).json(userWithoutPassword);
-        } else {
-          res.status(401).json({ message: 'Неверное имя пользователя или пароль' });
-        }
-      } catch (error) {
-        res.status(500).json({ message: 'Ошибка хеширования пароля' });
-      }
-    }
-  },
-  checkAuth: (req, res) => {
-    if (req.session.userId) {
-      res.status(200).json({ id: req.session.userId });
-    } else {
-      res.status(401).json({ message: 'Пользователь не авторизован' });
-    }
-  },
-  logout: (req, res) => {
+};
+  
+const postLogin = async (req, res) => {
     try {
-        req.session.destroy();
-        console.log('Пользователь вышел из аккаунта');
-        res.status(200).json({ message: 'Вы вышли из аккаунта' });
+        const auth = await authService.postLogin(req, res);
+        return res.status(200).json(auth);
     } catch (error) {
-        res.status(401).json({ message: 'Не удалось выйти из аккаунта' });
+        return res.status(422).json('Неверное имя пользователя или пароль');
     }
-  }
 };
 
-module.exports = authController;
+const checkAuth = (req, res) => {
+    if (req.session.userId) {
+        return res.status(200).json({ id: req.session.userId });
+    } else {
+        return res.status(401).json('Пользователь не авторизован');
+    }
+};
+
+const logout = (req, res) => {
+    try {
+        req.session.destroy();
+        return res.status(200).json('Вы вышли из аккаунта' );
+    } catch (error) {
+        return res.status(401).json('Не удалось выйти из аккаунта');
+    }
+};
+
+module.exports = {
+    postRegister,
+    postLogin,
+    checkAuth,
+    logout
+}

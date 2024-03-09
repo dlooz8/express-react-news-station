@@ -1,37 +1,38 @@
 const prisma = require('../config/prisma');
+const bcrypt = require('bcrypt');
 
-// const getCurrentPost = async(post_id) => {
-//     const posts = await prisma.posts.findMany({
-//         where: {
-//             post_id:  post_id
-//         }
-//     })
+const postRegister = async (req, res) => {
+    const { name, email, password, avatar_url } = req.body;
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const newUser = await prisma.users.create({
+        data: {
+        name: name,
+        email: email,
+        password: hashedPassword,
+        avatar_url: avatar_url,
+        },
+    });
+    req.session.userId = newUser.id;
+    const { password: excludedPassword, ...userWithoutPassword } = newUser;
+    return userWithoutPassword;
+}
 
-//     const newPosts = await Promise.all(posts.map(async (post) => {
-//         const author = await prisma.users.findUnique({
-//             where: {
-//                 id: post.user_id
-//             }
-//         });
-//         const options = {
-//             timeZone: 'Europe/Moscow',
-//             year: 'numeric',
-//             month: 'long',
-//             day: 'numeric'
-//         };
-//         const createdDate = new Date(post.created_at).toLocaleDateString('ru-RU', options).replace(' г.', '');
+const postLogin = async (req, res) => {
+    const { email, password } = req.body;
+    const existingUser = await prisma.users.findUnique({ where: { email } });
+    if (existingUser) {
+        const passwordValid = await bcrypt.compare(password, existingUser.password);
+        if (passwordValid) {
+            req.session.userId = existingUser.id;
+            const { password: excludedPassword, ...userWithoutPassword } = existingUser;
+            return userWithoutPassword;
+        }
+    throw new Error('Неверное имя пользователя или пароль');
+    }
+}
 
-//         const dateArray = createdDate.split(' ');
-//         const formattedDate = `${dateArray[1].charAt(0).toUpperCase() + dateArray[1].slice(1)} ${dateArray[0]}, ${dateArray[2]}`;
-      
-//         const createdTime = new Date(post.created_at).toLocaleTimeString('ru-RU', { timeZone: 'Europe/Moscow' });
-//         return { ...post, author: author.name, avatar_url: author.avatar_url, created_at_date: formattedDate, created_at_time: createdTime }; // Добавляем имя автора к данным поста
-//     }));
+module.exports = {
+    postRegister,
+    postLogin
+}
 
-//     return newPosts;
-// }
-
-// module.exports = {
-//     getUserBookmarks,
-    
-// }

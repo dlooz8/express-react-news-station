@@ -19,11 +19,11 @@ function SignIn() {
       .then((res) => {
         setIsUser(res.data);
         localStorage.setItem("user", JSON.stringify(res.data));
-        toast.success('Вы успешно вошли в аккаунт!');
+        toast.success('Вы вошли в аккаунт');
         navigate('/feed');
       })
       .catch(function (error) {
-        console.log(error, isUser);
+        toast.error(error.response.data);
       });
   };
 

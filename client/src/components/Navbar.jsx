@@ -12,15 +12,15 @@ const Navbar = () => {
     const handleLogOut = async (event) => {
         event.preventDefault();
         await app.get('/auth/logout')
-        .then(() => {
+        .then((res) => {
             localStorage.removeItem("user");
             setIsAuth(false);
             setIsUser('');
-            toast.success('Вы вышли из аккаунта!');
+            toast.success(res.data);
             navigate('/feed');
         })
-        .catch((error) => {
-            toast.error(error, isUser);
+        .catch(() => {
+            toast.error("Ошибка сервера. Попробуйте обновить страницу.");
         })
     };
 

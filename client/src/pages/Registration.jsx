@@ -26,8 +26,8 @@ const Registration = () => {
         toast.success('Вы успешно зарегистрировались!');
         setTimeout(() => navigate('/feed'), 1000);
       })
-      .catch(() => {
-        toast.error("Этот email уже зарегистрирован!");
+      .catch((error) => {
+        toast.error(error.response.data);
         setEmail('');
         setPassword('');
       });

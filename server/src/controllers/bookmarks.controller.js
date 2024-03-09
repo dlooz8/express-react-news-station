@@ -1,5 +1,4 @@
 const bookmarksService = require('../services/bookmarks.service')
-const prisma = require('../config/prisma');
 
 const getUserBookmarks = async (req, res) => {
     try {
