@@ -1,17 +1,18 @@
-const express = require('express');
 const session = require('express-session');
-const cors = require('cors');
+const express = require('express');
 const morgan = require('morgan');
+const cors = require('cors');
+const bookmarksRouter = require('./routes/bookmarks.routes');
 const authRouter = require('./routes/auth.routes');
 const newsRouter = require('./routes/news.routes');
-const bookmarksRouter = require('./routes/bookmarks.routes');
+const dotenv = require('dotenv').config();
 
 const app = express();
 app.use(express.json());
 app.use(morgan('tiny'))
 app.set('trust proxy', 1)
 app.use(session({
-  secret: 'keyboard cat', //env
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: true,
   cookie: { 
