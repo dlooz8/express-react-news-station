@@ -9,10 +9,10 @@ const deleteBookmark = async (id) => {
     return bookmark;
 }
 
-const getUserBookmarks = async (req) => {
+const getUserBookmarks = async (user_id) => {
     const bookmarks = await prisma.bookmarks.findMany({
       where: {
-        user_id: req.query.user_id
+        user_id
       }
     });
   

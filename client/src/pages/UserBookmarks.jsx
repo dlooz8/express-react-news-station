@@ -12,11 +12,7 @@ function UserBookmarks() {
 
     const getUserBookmarks = async () => {
         try {
-            const response = await app.get('/bookmarks/user-bookmarks', {
-                params: {
-                    user_id: isUser.id
-                }
-            });
+            const response = await app.get(`/bookmarks/user-bookmarks/${isUser.id}`);
             setUserBookmarks(response.data);
         } catch (error) {
             console.error(error);
@@ -24,8 +20,10 @@ function UserBookmarks() {
     };
 
     useEffect(() => {
-        getUserBookmarks();
-    }, []);
+        if (isUser.id !== undefined) {
+            getUserBookmarks();
+        }
+    }, [isUser]);
 
     const handleDelete = async (bookmarkId) => {
         toast((t) => (

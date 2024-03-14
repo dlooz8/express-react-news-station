@@ -1,8 +1,9 @@
 const bookmarksService = require('../services/bookmarks.service')
 
 const getUserBookmarks = async (req, res) => {
+    const { user_id } = req.params;
     try {
-        const bookmarks = await bookmarksService.getUserBookmarks(req);
+        const bookmarks = await bookmarksService.getUserBookmarks(user_id);
         return res.status(200).json(bookmarks);
     } catch (error) {
         console.log(error);

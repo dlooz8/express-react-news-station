@@ -28,10 +28,10 @@ const getCurrentNews = async(news_id) => {
     }
 }
 
-const getUserNews = async (req) => {
+const getUserNews = async (user_id) => {
     const posts = await prisma.posts.findMany({
         where: {
-            user_id: req.query.user_id
+            user_id
         }
     });
     return posts;
@@ -117,13 +117,13 @@ const formatPost = async (post) => {
     return { ...post, author: author.name, avatar_url: author.avatar_url, created_at_date: formattedDate, created_at_time: createdTime };
 };
 
-const deleteNews = async (post_id) => {
+const deleteNews = async (news_id) => {
     const news = await prisma.posts.delete({
         where: {
-            post_id: post_id
+            post_id: news_id
         }
     })
-    return news
+    return news;
 }
 
 module.exports = {
