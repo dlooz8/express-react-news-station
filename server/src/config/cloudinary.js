@@ -11,14 +11,25 @@ const cloudinaryConfig = () => {
 
 async function handleUpload(file) {
     cloudinaryConfig();
-    const res = await cloudinary.uploader.upload(file, {
+    const response = await cloudinary.uploader.upload(file, {
     resource_type: "image",
     transformation: [
         { width: 1600, height: 900, crop: 'fill' },
         { format: 'webp' }
     ]
     });
-    return res;
+    return response;
 }
 
-module.exports = { handleUpload };
+async function handleDelete(url) {
+    cloudinaryConfig();
+    const imageName = url.substring(url.lastIndexOf('/') + 1, url.lastIndexOf('.'));
+    const imageId = imageName.split('_').pop();
+    const response = await cloudinary.uploader.destroy(imageId);
+    return response;
+}
+
+module.exports = { 
+    handleUpload, 
+    handleDelete 
+};

@@ -97,7 +97,6 @@ const getUserNews = async (req, res) => {
 
 const deleteNews = async (req, res) => {
     const {news_id} = req.params;
-    console.log(news_id);
     try {
         const news = await newsService.deleteNews(news_id);
         return res.status(200).json(news);

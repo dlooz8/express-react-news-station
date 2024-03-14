@@ -1,4 +1,5 @@
 const prisma = require('../config/prisma');
+const { handleDelete } = require('../config/cloudinary');
 
 const postCreateNews = async (req, res) => {
     const { theme, text, category, title_img, user_id} = req.body;
@@ -118,12 +119,23 @@ const formatPost = async (post) => {
 };
 
 const deleteNews = async (news_id) => {
-    const news = await prisma.posts.delete({
+    const post = await prisma.posts.findUnique({
         where: {
             post_id: news_id
         }
     })
-    return news;
+
+    if (!post) {
+        throw new Error('Новость не найдена');
+    } else {
+        await handleDelete(post.title_img);
+        const news = await prisma.posts.delete({
+            where: {
+                post_id: news_id
+            }
+        })
+        return news;
+    }
 }
 
 module.exports = {
