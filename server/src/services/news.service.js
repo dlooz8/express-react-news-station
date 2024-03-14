@@ -19,7 +19,7 @@ const getCurrentNews = async(news_id) => {
         where: {
             post_id:  news_id
         }
-    })
+    });
     if (posts.length === 0) {
         throw new Error('Новость не найдена');
     } else {
@@ -28,18 +28,13 @@ const getCurrentNews = async(news_id) => {
     }
 }
 
-const getUserNews = async (user_id) => {
+const getUserNews = async (req) => {
     const posts = await prisma.posts.findMany({
         where: {
-            user_id
+            user_id: req.query.user_id
         }
-    })
-    if (posts.length === 0) {
-        throw new Error('Новость не найдена');
-    } else {
-        const newPosts = await Promise.all(posts.map(formatPost));
-        return newPosts;
-    }
+    });
+    return posts;
 }
 
 const getNewsWithAuthor = async (posts) => {
@@ -122,8 +117,18 @@ const formatPost = async (post) => {
     return { ...post, author: author.name, avatar_url: author.avatar_url, created_at_date: formattedDate, created_at_time: createdTime };
 };
 
+const deleteNews = async (post_id) => {
+    const news = await prisma.posts.delete({
+        where: {
+            post_id: post_id
+        }
+    })
+    return news
+}
+
 module.exports = {
     postCreateNews,
+    deleteNews,
     getPopularNews,
     getRecentNews,
     getHotSportNews,

@@ -85,12 +85,21 @@ const getCurrentNews = async (req, res) => {
 }
 
 const getUserNews = async (req, res) => {
-    const {user_id} = req.params;
     try {
-        const news = await newsService.getUserNews(user_id);
+        const news = await newsService.getUserNews(req);
         return res.status(200).json(news);
     } catch (error) {
-        return res.status(500).json("Новости не найдены");
+        return res.status(500).json("Новости не найдены" + error);
+    }
+}
+
+const deleteNews = async (req, res) => {
+    const {news_id} = req.params;
+    try {
+        const news = await newsService.deleteNews(news_id);
+        return res.status(200).json(news);
+    } catch (error) {
+        return res.status(500).json("Удаление новости не выполнено!");
     }
 }
 
@@ -102,6 +111,7 @@ module.exports = {
     getTrendyNews,
     getCurrentNews,
     getUserNews,
+    deleteNews,
     postCreateNews,
     postImageNews,    
 }

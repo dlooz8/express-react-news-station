@@ -8,7 +8,7 @@ import toast from 'react-hot-toast';
 function UserNews() {
     
     const { isUser } = useOutletContext();
-    const [userNews, setUserNews] = useState([]);
+    const [ userNews, setUserNews ] = useState([]);
 
     const getUserNews = async () => {
         try {
@@ -24,24 +24,24 @@ function UserNews() {
     };
 
     useEffect(() => {
-    getUserNews();
+        getUserNews();
     }, []);
 
     const handleDelete = async (newsId) => {
-    toast((t) => (
-        <span className="flex flex-col items-center p-3 gap-4">
-            <h5>Удалить эту новость?</h5>
-            <button className='flex justify-center items-center py-2 px-4 border-2 rounded-xl border-primary75'
-                onClick={() => {
-                toast.dismiss(t.id);
-                confirmDelete(newsId);
-            }}>
-                <h5>
-                    Удалить
-                </h5>
-            </button>
-        </span>
-    ));
+        toast((t) => (
+            <span className="flex flex-col items-center p-3 gap-4">
+                <h5>Удалить эту новость?</h5>
+                <button className='flex justify-center items-center py-2 px-4 border-2 rounded-xl border-primary75'
+                    onClick={() => {
+                    toast.dismiss(t.id);
+                    confirmDelete(newsId);
+                }}>
+                    <h5>
+                        Удалить
+                    </h5>
+                </button>
+            </span>
+        ));
     }
 
     const confirmDelete = async (newsId) => {
@@ -54,7 +54,7 @@ function UserNews() {
         }
     }
 
-    const [currentPage, setCurrentPage] = useState(0);
+    const [ currentPage, setCurrentPage ] = useState(0);
     const postsPerPage = 12;
     const indexOfLastPost = (currentPage + 1) * postsPerPage;
     const indexOfFirstPost = indexOfLastPost - postsPerPage;
