@@ -14,6 +14,7 @@ router.get('/trendy-news', newsController.getTrendyNews);
 router.get('/recent-news', newsController.getRecentNews);
 router.get('/hot-sport-news', newsController.getHotSportNews);
 router.get('/latest-news', newsController.getLatestNews);
+router.get('/user-news/:user_id', newsController.getUserNews);
 router.get('/:news_id', newsController.getCurrentNews);
 
 module.exports = router;

@@ -10,6 +10,7 @@ import { useOutletContext } from "react-router-dom";
 import Footer from "./components/Footer";
 import CreateNews from "./pages/CreateNews";
 import UserBookmarks from "./pages/UserBookmarks";
+import UserNews from "./pages/UserNews";
 import News from "./pages/News";
 import { useState } from "react";
 
@@ -78,6 +79,10 @@ function App() {
             {
               path: "/userbookmarks",
               element: <UserBookmarks />,
+            },
+            {
+              path: "/usernews",
+              element: <UserNews />,
             },
             {
               path: "/registration",

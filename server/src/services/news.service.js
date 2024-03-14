@@ -28,6 +28,20 @@ const getCurrentNews = async(news_id) => {
     }
 }
 
+const getUserNews = async (user_id) => {
+    const posts = await prisma.posts.findMany({
+        where: {
+            user_id
+        }
+    })
+    if (posts.length === 0) {
+        throw new Error('Новость не найдена');
+    } else {
+        const newPosts = await Promise.all(posts.map(formatPost));
+        return newPosts;
+    }
+}
+
 const getNewsWithAuthor = async (posts) => {
     return await Promise.all(posts.map(formatPost));
 };
@@ -116,4 +130,5 @@ module.exports = {
     getLatestNews,
     getTrendyNews,
     getCurrentNews,
+    getUserNews,
 }

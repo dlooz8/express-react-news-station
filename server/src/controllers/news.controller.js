@@ -84,6 +84,16 @@ const getCurrentNews = async (req, res) => {
     }
 }
 
+const getUserNews = async (req, res) => {
+    const {user_id} = req.params;
+    try {
+        const news = await newsService.getUserNews(user_id);
+        return res.status(200).json(news);
+    } catch (error) {
+        return res.status(500).json("Новости не найдены");
+    }
+}
+
 module.exports = {
     getPopularNews,
     getRecentNews,
@@ -91,6 +101,7 @@ module.exports = {
     getLatestNews,
     getTrendyNews,
     getCurrentNews,
+    getUserNews,
     postCreateNews,
     postImageNews,    
 }
