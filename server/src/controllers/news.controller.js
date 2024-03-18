@@ -1,7 +1,12 @@
 const newsService = require('../services/news.service')
 const { handleUpload } = require('../config/cloudinary');
+const { validationResult } = require('express-validator');
 
 const postImageNews = async (req, res) => {
+    const result = validationResult(req);
+    if (!result.isEmpty()) {
+        return res.status(400).json(result);
+    }
     try {
         const b64 = Buffer.from(req.file.buffer).toString("base64");
         let dataURI = "data:" + req.file.mimetype + ";base64," + b64;
@@ -14,6 +19,10 @@ const postImageNews = async (req, res) => {
 }
 
 const postCreateNews = async (req, res) => {
+    const result = validationResult(req);
+    if (!result.isEmpty()) {
+        return res.status(400).json(result);
+    }
     try { 
         const news = await newsService.postCreateNews(req, res);
         return res.status(200).json(news);
@@ -74,6 +83,10 @@ const getLatestNews = async (req, res) => {
 }
 
 const getCurrentNews = async (req, res) => {
+    const result = validationResult(req);
+    if (!result.isEmpty()) {
+        return res.status(400).json(result);
+    }
     try {
         const news = await newsService.getCurrentNews(req.query.news_id);
         return res.status(200).json(news);
@@ -84,6 +97,10 @@ const getCurrentNews = async (req, res) => {
 }
 
 const getUserNews = async (req, res) => {
+    const result = validationResult(req);
+    if (!result.isEmpty()) {
+        return res.status(400).json(result);
+    }
     try {
         const news = await newsService.getUserNews(req.query.user_id);
         return res.status(200).json(news);
@@ -94,6 +111,10 @@ const getUserNews = async (req, res) => {
 }
 
 const deleteNews = async (req, res) => {
+    const result = validationResult(req);
+    if (!result.isEmpty()) {
+        return res.status(400).json(result);
+    }
     try {
         const news = await newsService.deleteNews(req.query.news_id);
         return res.status(200).json(news);
