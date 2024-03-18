@@ -1,7 +1,11 @@
 const prisma = require('../config/prisma');
 const bcrypt = require('bcrypt');
+const { body } = require('express-validator');
+const createEmailChain = () => body('email').isEmail();
+
 
 const postRegister = async (req, res) => {
+
     const { name, email, password, avatar_url } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = await prisma.users.create({

@@ -12,7 +12,11 @@ function UserNews() {
 
     const getUserNews = async () => {
         try {
-            const response = await app.get(`/news/user-news/${isUser.id}`);
+            const response = await app.get('/news/user-news/', {
+                params: {
+                    user_id: isUser.id
+                }
+            });
             setUserNews(response.data);
         } catch (error) {
             console.error(error);
@@ -44,7 +48,11 @@ function UserNews() {
 
     const confirmDelete = async (newsId) => {
         try {
-            await app.delete(`/news/delete/${newsId}`);
+            await app.delete('/news/delete/', {
+                params: {
+                    news_id: newsId
+                }
+            });
             toast.success('Ваша новость успешно удалена!');
             getUserNews();
         } catch (error) {
@@ -73,7 +81,8 @@ function UserNews() {
     return (
         <>
             <ProfileBar />
-            <div className="2xl:mx-48 mx-32">
+            { userNews.length > 0 ?
+            <div className="container mx-auto">
                 <div className="grid grid-cols-4 grid-rows-3 gap-8 py-10">
                 {currentPosts.map((news, index) => (
                 <div key={index}>
@@ -102,6 +111,11 @@ function UserNews() {
                 <button onClick={prevPage}>Показать prev</button>
                 <button onClick={nextPage}>Показать next</button>
             </div>
+            :
+            <div className="container mx-auto text-center">
+                <h1 className="text-3xl text-primary75 font-bold p-10">Создайте новость для отображения публикации!</h1>
+            </div>
+            }
         </>
 
     );

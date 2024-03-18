@@ -11,7 +11,11 @@ function News() {
   const getPost = async () => {
     try {
       const postId = window.location.pathname.split("/").pop();
-      const response = await app.get(`/news/${postId}`);
+      const response = await app.get('/news/', {
+        params: {
+          news_id: postId
+        }
+      });
       setPost(response.data[0]);
     } catch (error) {
       console.error(error.response.data);

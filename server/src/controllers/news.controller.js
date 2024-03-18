@@ -74,9 +74,8 @@ const getLatestNews = async (req, res) => {
 }
 
 const getCurrentNews = async (req, res) => {
-    const {news_id} = req.params;
     try {
-        const news = await newsService.getCurrentNews(news_id);
+        const news = await newsService.getCurrentNews(req.query.news_id);
         return res.status(200).json(news);
     } catch (error) {
         console.error(error);
@@ -85,9 +84,8 @@ const getCurrentNews = async (req, res) => {
 }
 
 const getUserNews = async (req, res) => {
-    const {user_id} = req.params;
     try {
-        const news = await newsService.getUserNews(user_id);
+        const news = await newsService.getUserNews(req.query.user_id);
         return res.status(200).json(news);
     } catch (error) {
         console.error(error);
@@ -96,9 +94,8 @@ const getUserNews = async (req, res) => {
 }
 
 const deleteNews = async (req, res) => {
-    const {news_id} = req.params;
     try {
-        const news = await newsService.deleteNews(news_id);
+        const news = await newsService.deleteNews(req.query.news_id);
         return res.status(200).json(news);
     } catch (error) {
         console.error(error);

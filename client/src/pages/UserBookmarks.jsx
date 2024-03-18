@@ -12,7 +12,11 @@ function UserBookmarks() {
 
     const getUserBookmarks = async () => {
         try {
-            const response = await app.get(`/bookmarks/user-bookmarks/${isUser.id}`);
+            const response = await app.get(`/bookmarks/user-bookmarks/`, {
+                params: {
+                    user_id: isUser.id
+                }
+            });
             setUserBookmarks(response.data);
         } catch (error) {
             console.error(error);
@@ -44,7 +48,11 @@ function UserBookmarks() {
 
     const confirmDelete = async (bookmarkId) => {
         try {
-            await app.delete(`/bookmarks/delete/${bookmarkId}`);
+            await app.delete('/bookmarks/delete/', {
+                params: {
+                    id: bookmarkId
+                }
+            });
             toast.success('Закладка удалена');
             getUserBookmarks();
         } catch (error) {
@@ -73,7 +81,8 @@ function UserBookmarks() {
     return (
         <>
             <ProfileBar />
-            <div className="2xl:mx-48 mx-32">
+            { userBookmarks.length > 0 ?
+            <div className="container mx-auto">
                 <div className="grid grid-cols-4 grid-rows-3 gap-8 py-10">
                 {currentPosts.map((news, index) => (
                 <div key={index}>
@@ -102,6 +111,11 @@ function UserBookmarks() {
                 <button onClick={prevPage}>Показать prev</button>
                 <button onClick={nextPage}>Показать next</button>
             </div>
+            :
+            <div className="container mx-auto text-center">
+                <h1 className="text-3xl font-bold text-primary75 p-10">Вы еще не добавили закладки!</h1>
+            </div>
+            }
         </>
 
     );
