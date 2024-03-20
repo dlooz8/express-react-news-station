@@ -26,8 +26,10 @@ function PopularPosts() {
 
     const handleBookmark = async (id) => {
 
-
-        
+        // if (!isUser) {
+        //     toast.error("Для добавления новостей в закладки необходимо зарегистрироваться!");
+        //     return;
+        // }
         if (isUser) {
             const response = await AddBookmark( id, isUser.id );
             if (response.name === "AxiosError") {
