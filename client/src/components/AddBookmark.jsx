@@ -1,21 +1,33 @@
-import app from '../utils/axiosConfig';
-import { useOutletContext } from 'react-router-dom';
+import app from "../utils/axiosConfig";
 
-function AddBookmark(post_id) {
-    
-    const { isUser } = useOutletContext();
+const AddBookmark = async (post_id, user_id) => {
+    try {
+        const response = await app.post("/bookmarks/create", {
+            user_id,
+            post_id,
+        });
 
-
-
-    async function AddBook(post_id) {
-
-        const responce = app.get(`bookmark/add-bookmark/${post_id}${isUser.id}`);
-        return responce;
+        return response;
+    } catch (error) {
+        console.error("Ошибка добавления новой закладки:", error);
+        return error;
     }
+};
 
-    AddBook(post_id);
+// const DeleteBookmark = async (post_id, user_id) => {
+//     try {
+//         const response = await app.delete("/bookmarks/delete", {
+//             params: {
+//                 user_id,
+//                 post_id,
+//             },
+//         });
 
-    return AddBook;
-}
+//         return response;
+//     } catch (error) {
+//         console.error("Ошибка удаления закладки:", error);
+//         return error;
+//     }
+// };
 
-export default AddBookmark
+export default AddBookmark;
