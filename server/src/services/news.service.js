@@ -30,6 +30,7 @@ const getCurrentNews = async(news_id) => {
 }
 
 const getUserNews = async (user_id) => {
+    console.log("LOOOGL",user_id);
     const posts = await prisma.posts.findMany({
         where: {
             user_id

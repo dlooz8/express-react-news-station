@@ -1,6 +1,11 @@
 const authService = require('../services/auth.service');
+const { validationResult } = require('express-validator');
 
 const postRegister = async (req, res) => {
+    const result = validationResult(req);
+    if (!result.isEmpty()) {
+        return res.status(400).json(result);
+    }
     try {
         const auth = await authService.postRegister(req, res);
         return res.status(200).json(auth);
@@ -10,6 +15,10 @@ const postRegister = async (req, res) => {
 };
   
 const postLogin = async (req, res) => {
+    const result = validationResult(req);
+    if (!result.isEmpty()) {
+        return res.status(400).json(result);
+    }
     try {
         const auth = await authService.postLogin(req, res);
         return res.status(200).json(auth);

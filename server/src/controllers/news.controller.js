@@ -3,10 +3,6 @@ const { handleUpload } = require('../config/cloudinary');
 const { validationResult } = require('express-validator');
 
 const postImageNews = async (req, res) => {
-    const result = validationResult(req);
-    if (!result.isEmpty()) {
-        return res.status(400).json(result);
-    }
     try {
         const b64 = Buffer.from(req.file.buffer).toString("base64");
         let dataURI = "data:" + req.file.mimetype + ";base64," + b64;
@@ -102,6 +98,7 @@ const getUserNews = async (req, res) => {
         return res.status(400).json(result);
     }
     try {
+        console.log("LOOOOOGL");
         const news = await newsService.getUserNews(req.query.user_id);
         return res.status(200).json(news);
     } catch (error) {
