@@ -20,7 +20,7 @@ function Banner() {
     }, []);
 
     return (
-        <section className="container flex gap-6 justify-between mx-auto my-12 banner">
+        <section className="container flex gap-6 justify-between mx-auto mt-12 mb-8 banner">
             <Link
                 to={`/news/${recentNews[0]?.post_id}`}
                 className="banner-1 relative"

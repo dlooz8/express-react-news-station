@@ -81,7 +81,7 @@ function HotSport() {
                     className="sport-tri gap-6">
 
                     <Link to={`/news/${currentPosts[0]?.post_id}`} className="sport-tri1 relative shadow rounded-xl">
-                        <img className="w-full h-[468px] m-auto object-cover rounded-xl aspect-video" src={ currentPosts[0]?.title_img } alt="img" />
+                        <img className="object-cover rounded-xl h-full aspect-video" src={ currentPosts[0]?.title_img } alt="img" />
                         <div className="absolute top-[70%] m-3 glass rounded-xl">
                             <h4 className="line-clamp-1 mx-3 my-4">{ currentPosts[0]?.theme }</h4>
                             <Markdown className="markdown line-clamp-2 mx-3 my-4">{ currentPosts[0]?.text }</Markdown>
@@ -89,7 +89,7 @@ function HotSport() {
                     </Link>
 
                     <Link to={`/news/${currentPosts[1]?.post_id}`} className="flex justify-between sport-tri2 shadow rounded-xl">
-                        <img className="m-4 object-cover rounded-2xl h-[190px] aspect-video" src={ currentPosts[1]?.title_img } alt="img" />
+                        <img className="m-3 object-cover rounded-xl max-h-[200px] aspect-video" src={ currentPosts[1]?.title_img } alt="img" />
                         <div>
                             <h5 className="line-clamp-1 self-start mx-3 my-5">{ currentPosts[1]?.theme }</h5>
                             <Markdown className="markdown xl:line-clamp-6 mx-3">{ currentPosts[1]?.text }</Markdown>
@@ -97,7 +97,7 @@ function HotSport() {
                     </Link>
                     
                     <Link to={`/news/${currentPosts[2]?.post_id}`} className="flex justify-between sport-tri3 shadow rounded-xl">
-                        <img className="m-4 object-cover rounded-2xl h-[190px] aspect-video" src={ currentPosts[2]?.title_img } alt="img" />
+                        <img className="m-3 object-cover rounded-xl max-h-[200px] aspect-video" src={ currentPosts[2]?.title_img } alt="img" />
                         <div>
                             <h5 className="line-clamp-1 self-start mx-3 my-5">{ currentPosts[2]?.theme }</h5>
                             <Markdown className="markdown xl:line-clamp-6 mx-3">{ currentPosts[2]?.text }</Markdown>
