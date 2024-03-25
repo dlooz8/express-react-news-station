@@ -3,9 +3,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Link, useOutletContext } from "react-router-dom";
 import Markdown from "react-markdown";
-import AddBookmark from "./AddBookmark";
-import DeleteBookmark from "./DeleteBookmark";
-import { toast } from "react-hot-toast";
+import AddBookmark from "../utils/AddBookmark";
 
 function PopularPosts() {
     const [popularPosts, setPopularPosts] = useState([]);
@@ -23,29 +21,6 @@ function PopularPosts() {
     useEffect(() => {
         getPopularPosts();
     }, []);
-
-    const handleBookmark = async (id) => {
-
-        // if (!isUser) {
-        //     toast.error("Для добавления новостей в закладки необходимо зарегистрироваться!");
-        //     return;
-        // }
-        if (isUser) {
-            const response = await AddBookmark( id, isUser.id );
-            if (response.name === "AxiosError") {
-                toast.error(response.response.data.message);
-            } else {
-                toast.success('Новость добавлена в закладки!');
-            }
-        } else {
-            const response = await DeleteBookmark( id, isUser.id );
-            if (response.name === "AxiosError") {
-                toast.error(response.response.data.message);
-            } else {
-                toast.success('Новость удалена из закладок!');
-            }
-        }
-    };
 
     const [currentPage, setCurrentPage] = useState(0);
     const [leftAnimate, setLeftAnimate] = useState(false);
@@ -174,7 +149,7 @@ function PopularPosts() {
                             </div>
                             <div
                                 className="red-hover pr-2"
-                                onClick={() => handleBookmark(post.post_id)}
+                                onClick={() => AddBookmark(post.post_id, isUser.id)}
                             >
                                 <svg
                                     width="16"

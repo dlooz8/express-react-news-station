@@ -45,8 +45,23 @@ const deleteBookmark = async (req, res) => {
     }
 };
 
+const deleteBookmarkUserId = async (req, res) => {
+    const result = validationResult(req);
+    if (!result.isEmpty()) {
+        return res.status(400).json(result);
+    }
+    try {
+        const news = await bookmarksService.deleteBookmarkUserId(req.query.user_id, req.query.post_id);
+        return res.status(200).json(news);
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({ message: error.message });
+    }
+};
+
 module.exports = {
     getUserBookmarks,
     deleteBookmark,
+    deleteBookmarkUserId,
     postCreateBookmark,
 };

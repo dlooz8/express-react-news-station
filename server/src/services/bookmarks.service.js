@@ -10,7 +10,7 @@ const postCreateBookmark = async (req) => {
     });
 
     if (existingBookmark) {
-		throw new Error("Эта новость уже добавлена в закладки");
+        throw new Error("Эта новость уже добавлена в закладки");
     }
 
     const bookmark = await prisma.bookmarks.create({
@@ -28,6 +28,17 @@ const deleteBookmark = async (id) => {
             id: id,
         },
     });
+    return bookmark;
+};
+
+const deleteBookmarkUserId = async (user_id, post_id) => {
+    const bookmark = await prisma.bookmarks.findFirst({
+        where: {
+            user_id: user_id,
+            post_id: post_id,
+        },
+    });
+    deleteBookmark(bookmark.id);
     return bookmark;
 };
 
@@ -86,5 +97,6 @@ const getUserBookmarks = async (user_id) => {
 module.exports = {
     getUserBookmarks,
     deleteBookmark,
+    deleteBookmarkUserId,
     postCreateBookmark,
 };

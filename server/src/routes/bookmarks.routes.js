@@ -6,5 +6,6 @@ const router = express.Router();
 router.get('/user-bookmarks', query('user_id').notEmpty().escape(), bookmarksController.getUserBookmarks);
 router.post('/create', body('user_id').notEmpty(), body('post_id').notEmpty(), bookmarksController.postCreateBookmark);
 router.delete('/delete/', query('id').notEmpty(), bookmarksController.deleteBookmark);
+router.delete('/delete/userid', query('user_id').notEmpty(), query('post_id').notEmpty(), bookmarksController.deleteBookmarkUserId);
 
 module.exports = router;
