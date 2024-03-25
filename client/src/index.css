@@ -157,7 +157,6 @@ input {
   position: absolute;
   color: white;
   top: 14px;
-  padding-left: 74px;
 }
 
 .carousel-category-card img{
@@ -165,6 +164,38 @@ input {
   height: 48px;
   object-fit: cover;
   border-radius: 12px;
+}
+
+.sport-card {
+  padding-left: 70px;
+}
+
+.tech-card {
+  padding-left: 52px;
+}
+
+.food-card {
+  padding-left: 78px;
+}
+
+.music-card {
+  padding-left: 64px;
+}
+
+.abstract-card {
+  padding-left: 64px;
+}
+
+.friends-card {
+  padding-left: 56px;
+}
+
+.animal-card {
+  padding-left: 56px;
+}
+
+.car-card {
+  padding-left: 48px;
 }
 
 .banner {

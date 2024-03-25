@@ -12,6 +12,7 @@ import CreateNews from "./pages/CreateNews";
 import UserBookmarks from "./pages/UserBookmarks";
 import UserNews from "./pages/UserNews";
 import News from "./pages/News";
+import SearchNews from "./pages/SearchNews";
 import { useState } from "react";
 
 const UserContext = () => {
@@ -59,6 +60,10 @@ function App() {
             {
               path: "/news/:id",
               element: <News />,
+            },
+            {
+              path: "/searchnews/:query",
+              element: <SearchNews />,
             },
             {
               path: "/signin",
