@@ -1,42 +1,68 @@
 generator client {
-  provider = "prisma-client-js"
+    provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
 }
 
 model Users {
-  id         String @id @default(uuid())
-  name       String
-  email      String @unique
-  password   String
-  created_at DateTime @default(now()) @db.Timestamp(6)
-  avatar_url String
-  Bookmarks  Bookmarks[]
-  posts      Posts[]
+    id         String @id @default(uuid())
+    name       String
+    email      String @unique
+    password   String
+    created_at DateTime @default(now()) @db.Timestamp(6)
+    avatar_url String
+    NesterComments  NestedComments[]
+    Comments   Comments[]
+    Bookmarks  Bookmarks[]
+    posts      Posts[]
 }
 
 model Posts {
-  post_id         String @id @default(uuid())
-  theme           String
-  text            String
-  title_img       String
-  created_at      DateTime    @default(now()) @db.Timestamp(6)
-  user_id         String
-  category        String
-  count_bookmarks Int         @default(0)
-  count_likes     Int         @default(0)
-  Bookmarks       Bookmarks[]
-  users           Users       @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "UserId")
+    post_id         String @id @default(uuid())
+    theme           String
+    text            String
+    title_img       String
+    created_at      DateTime    @default(now()) @db.Timestamp(6)
+    user_id         String
+    category        String
+    count_bookmarks Int         @default(0)
+    count_likes     Int         @default(0)
+    NestedComments  NestedComments[]
+    Comments        Comments[]
+    Bookmarks       Bookmarks[]
+    users           Users       @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "UserId")
 }
 
-/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
 model Bookmarks {
-  id      String @id @default(uuid())
-  user_id String
-  post_id String
-  Posts   Posts  @relation(fields: [post_id], references: [post_id], onDelete: Cascade, onUpdate: NoAction, map: "FK__Posts")
-  Users   Users  @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "FK__Users")
+    id      String @id @default(uuid())
+    user_id String
+    post_id String
+    Posts   Posts  @relation(fields: [post_id], references: [post_id], onDelete: Cascade, onUpdate: NoAction, map: "FK__Posts")
+    Users   Users  @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "FK__Users")
+}
+
+model Comments {
+    id            String @id @default(uuid())
+    text           String
+    created_at    DateTime  @default(now()) @db.Timestamp(6)
+    user_id       String
+    post_id       String
+    Posts         Posts   @relation(fields: [post_id], references: [post_id], onDelete: Cascade, onUpdate: NoAction, map: "FK__Posts")
+    Users         Users   @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "FK__Users")
+}
+
+model NestedComments {
+    id                 String @id @default(uuid())
+    text                String
+    created_at          DateTime  @default(now()) @db.Timestamp(6)
+    user_id             String
+    post_id             String
+    parent_comment_id  String
+    Posts               Posts   @relation(fields: [post_id], references: [post_id], onDelete: Cascade, onUpdate: NoAction, map: "FK__Posts")
+    Users               Users   @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "FK__Users")
+    ParentComment       NestedComments? @relation("ParentCommentToNestedComments", fields: [parent_comment_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "ParentCommentId")
+    NestedComments     NestedComments[] @relation("ParentCommentToNestedComments")
 }

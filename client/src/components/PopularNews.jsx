@@ -71,7 +71,7 @@ function PopularNews() {
                             fill="#F81539"
                         />
                     </svg>
-                    <h4>Popular News</h4>
+                    <h4>Популярные новости</h4>
                 </div>
                 <div className="flex justify-between gap-4">
                     <button
