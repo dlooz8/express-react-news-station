@@ -3,6 +3,7 @@ const express = require("express");
 const morgan = require("morgan");
 const cors = require("cors");
 const bookmarksRouter = require("./routes/bookmarks.routes");
+const commentsRouter = require("./routes/comments.routes");
 const authRouter = require("./routes/auth.routes");
 const newsRouter = require("./routes/news.routes");
 const dotenv = require("dotenv").config();
