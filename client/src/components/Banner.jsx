@@ -2,19 +2,17 @@ import app from "../utils/axiosConfig";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Markdown from "react-markdown";
-import Loader from "./Loader";
+import { LoaderBanner } from "./Loader";
 
 function Banner() {
     const [recentNews, setRecentNews] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
-    const [isImagesLoading, setIsImagesLoading] = useState(true);
 
     useEffect(() => {
-        const fetchData = async () => {
+        const getNews = async () => {
             try {
                 const response = await app.get("/news/recent-news");
                 setRecentNews(response.data);
-                await loadImages();
             } catch (error) {
                 console.error(error);
             } finally {
@@ -22,32 +20,15 @@ function Banner() {
             }
         };
 
-        fetchData();
+        getNews();
     }, []);
-
-    const loadImages = async () => {
-        const imagePromises = recentNews.map((newsItem) => {
-            const imageUrl = newsItem.imageUrl;
-            return new Promise((resolve, reject) => {
-                const image = new Image();
-                image.onload = resolve;
-                image.onerror = reject;
-                image.src = imageUrl;
-            });
-        });
-
-        try {
-            await Promise.all(imagePromises);
-            setIsImagesLoading(false);
-        } catch (error) {
-            console.error(error);
-        }
-    };
 
     return (
         <>
         { isLoading ? 
-            <Loader />
+            <div className="container mx-auto mt-12 mb-8">
+                <LoaderBanner />
+            </div>
             :
             <section className="container flex gap-6 justify-between mx-auto mt-12 mb-8 banner">
                 <Link

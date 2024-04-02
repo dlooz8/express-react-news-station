@@ -4,34 +4,38 @@ import { motion } from "framer-motion";
 import { Link, useOutletContext } from "react-router-dom";
 import Markdown from "react-markdown";
 import AddBookmark from "../utils/AddBookmark";
+import { LoaderPopularNews } from "./Loader";
 
-function PopularPosts() {
-    const [popularPosts, setPopularPosts] = useState([]);
+function PopularNews() {
+    const [popularNews, setPopularNews] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
     const { isUser } = useOutletContext();
 
-    const getPopularPosts = async () => {
-        try {
-            const response = await app.get("/news/popular-news");
-            setPopularPosts(response.data);
-        } catch (error) {
-            console.error(error);
-        }
-    };
-
     useEffect(() => {
-        getPopularPosts();
+        const getPopularNews = async () => {
+            try {
+                const response = await app.get("/news/popular-news");
+                setPopularNews(response.data);
+            } catch (error) {
+                console.error(error);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+
+        getPopularNews();
     }, []);
 
     const [currentPage, setCurrentPage] = useState(0);
     const [leftAnimate, setLeftAnimate] = useState(false);
     const [animate, setAnimate] = useState(true);
-    const postsPerPage = 4;
-    const indexOfLastPost = (currentPage + 1) * postsPerPage;
-    const indexOfFirstPost = indexOfLastPost - postsPerPage;
-    const currentPosts = popularPosts.slice(indexOfFirstPost, indexOfLastPost);
+    const newsPerPage = 4;
+    const indexOfLastNews = (currentPage + 1) * newsPerPage;
+    const indexOfFirstNews = indexOfLastNews - newsPerPage;
+    const currentNews = popularNews.slice(indexOfFirstNews, indexOfLastNews);
 
     const nextPage = () => {
-        if (indexOfLastPost < popularPosts.length) {
+        if (indexOfLastNews < popularNews.length) {
             setLeftAnimate(false);
             setTimeout(() => setCurrentPage(currentPage + 1), 300);
             setAnimate(false);
@@ -67,7 +71,7 @@ function PopularPosts() {
                             fill="#F81539"
                         />
                     </svg>
-                    <h4>Popular Posts</h4>
+                    <h4>Popular News</h4>
                 </div>
                 <div className="flex justify-between gap-4">
                     <button
@@ -90,7 +94,7 @@ function PopularPosts() {
                     </button>
                     <button
                         onClick={nextPage}
-                        disabled={indexOfLastPost >= popularPosts.length}
+                        disabled={indexOfLastNews >= popularNews.length}
                         className="w-[40px] h-[40px] bg-gray rounded-xl flex items-center justify-center red-hover"
                     >
                         <svg
@@ -105,8 +109,11 @@ function PopularPosts() {
                     </button>
                 </div>
             </div>
+            { isLoading ? (
+                <LoaderPopularNews />
+            ) : (
             <div className="flex justify-between gap-3">
-                {currentPosts.map((post, index) => (
+                {currentNews.map((news, index) => (
                     <motion.div
                         className="flex flex-col justify-between p-3 shadow rounded-xl items-center w-[270px] 2xl:w-[360px] h-[340px] 2xl:h-[390px]"
                         key={index}
@@ -122,34 +129,36 @@ function PopularPosts() {
                         transition={{ duration: 0.3 }}
                     >
                         <Link
-                            to={`/news/${post.post_id}`}
+                            to={`/news/${news.post_id}`}
                             className="flex flex-col gap-2"
                         >
                             <img
                                 className="min-w-full max-h-[206px] object-cover rounded-xl"
-                                src={post.title_img}
+                                src={news.title_img}
                                 alt="popular"
                             />
                             <h5 className="line-clamp-1 self-start px-3">
-                                {post.theme}
+                                {news.theme}
                             </h5>
                             <Markdown className="markdown line-clamp-2 px-3">
-                                {post.text}
+                                {news.text}
                             </Markdown>
                         </Link>
                         <div className="flex justify-between items-center gap-4 bg-gray rounded-xl p-3 w-full">
                             <img
-                                src={post.avatar_url}
+                                src={news.avatar_url}
                                 alt="avatar"
                                 className="w-[44px] h-[44px] object-cover rounded-xl"
                             />
                             <div className="flex flex-col flex-1 gap-1">
-                                <h6>{post.author}</h6>
-                                <p>{post.created_at_date}</p>
+                                <h6>{news.author}</h6>
+                                <p>{news.created_at_date}</p>
                             </div>
                             <div
                                 className="red-hover pr-2"
-                                onClick={() => AddBookmark(post.post_id, isUser.id)}
+                                onClick={() =>
+                                    AddBookmark(news.post_id, isUser.id)
+                                }
                             >
                                 <svg
                                     width="16"
@@ -168,8 +177,9 @@ function PopularPosts() {
                     </motion.div>
                 ))}
             </div>
+            )}
         </section>
     );
 }
 
-export default PopularPosts;
+export default PopularNews;

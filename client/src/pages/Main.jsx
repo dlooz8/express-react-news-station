@@ -1,7 +1,7 @@
 import Carousel from '../components/Carousel.jsx';
 import Banner from '../components/Banner.jsx';
-import PopularPosts from '../components/PopularPosts.jsx';
-import NewPosts from '../components/NewPosts.jsx';
+import PopularNews from '../components/PopularNews.jsx';
+import LatestNews from '../components/LatestNews.jsx';
 import HotSport from '../components/HotSport.jsx';
 import TrendyPosts from '../components/TrendyPosts.jsx';
 import Weather from '../components/Weather.jsx';
@@ -12,9 +12,9 @@ function Main() {
     <div>
       <Carousel />
       <Banner />
-      <PopularPosts />
+      <PopularNews />
       <HotSport />
-      <NewPosts />
+      <LatestNews />
       <Weather />
       <TrendyPosts />
     </div>
