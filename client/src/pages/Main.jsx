@@ -3,7 +3,7 @@ import Banner from '../components/Banner.jsx';
 import PopularNews from '../components/PopularNews.jsx';
 import LatestNews from '../components/LatestNews.jsx';
 import HotSport from '../components/HotSport.jsx';
-import TrendyPosts from '../components/TrendyPosts.jsx';
+import TrendyNews from '../components/TrendyNews.jsx';
 import Weather from '../components/Weather.jsx';
 
 function Main() {
@@ -16,7 +16,7 @@ function Main() {
       <HotSport />
       <LatestNews />
       <Weather />
-      <TrendyPosts />
+      <TrendyNews />
     </div>
   );
 }
