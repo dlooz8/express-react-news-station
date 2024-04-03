@@ -63,11 +63,21 @@ const postCreateNestedComment = async (req) => {
 };
 
 const deleteComment = async (id) => {
-    return res;
+    const result = await prisma.Comments.delete({
+        where: {
+            id: id,
+        },
+    });
+    return result;
 };
 
 const deleteNestedComment = async (id) => {
-    return res;
+    const result = await prisma.NestedComments.delete({
+        where: {
+            id: id,
+        },
+    });
+    return result;
 };
 
 module.exports = {
