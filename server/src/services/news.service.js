@@ -7,6 +7,7 @@ const postCreateNews = async (req, res) => {
         data: {
             theme,
             text,
+            tags,
             category,
             title_img,
             user_id
@@ -29,8 +30,16 @@ const getCurrentNews = async(news_id) => {
     }
 }
 
+const getSearchNews = async(query) => {
+    const posts = await prisma.Posts.findMany({
+        where: {
+            category:  query
+        }
+    });
+    return posts;
+}
+
 const getUserNews = async (user_id) => {
-    console.log("LOOOGL",user_id);
     const posts = await prisma.posts.findMany({
         where: {
             user_id
@@ -70,7 +79,7 @@ const getHotSportNews = async() => {
             created_at: 'desc',
         },
         where: {
-            category: 'sport'
+            category: 'Спорт'
         },
         take: 12
     })
@@ -145,6 +154,7 @@ module.exports = {
     getPopularNews,
     getRecentNews,
     getHotSportNews,
+    getSearchNews,
     getLatestNews,
     getTrendyNews,
     getCurrentNews,

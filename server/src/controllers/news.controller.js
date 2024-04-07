@@ -92,6 +92,20 @@ const getCurrentNews = async (req, res) => {
     }
 }
 
+const getSearchNews = async (req, res) => {
+    const result = validationResult(req);
+    if (!result.isEmpty()) {
+        return res.status(400).json(result);
+    }
+    try {
+        const news = await newsService.getSearchNews(req.query.search);
+        return res.status(200).json(news);
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json("Новости не найдены");
+    }
+}
+
 const getUserNews = async (req, res) => {
     const result = validationResult(req);
     if (!result.isEmpty()) {
@@ -127,6 +141,7 @@ module.exports = {
     getHotSportNews,
     getLatestNews,
     getTrendyNews,
+    getSearchNews,
     getCurrentNews,
     getUserNews,
     deleteNews,

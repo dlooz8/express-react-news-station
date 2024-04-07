@@ -5,11 +5,11 @@ import toast from "react-hot-toast";
 import ProfileBar from "../components/ProfileBar";
 const MarkdownEditor = lazy(() => import("../components/MarkdownEditor"));
 
-
 function CreateNews() {
     const { isUser } = useOutletContext();
     const [errors, setErrors] = useState({});
     const [text, setText] = useState("");
+    const [tags, setTags] = useState("");
     const [theme, setName] = useState("");
     const [file, setFile] = useState(null);
     const [category, setCategory] = useState("Политика");
@@ -73,6 +73,7 @@ function CreateNews() {
                 .post("/news/create-news", {
                     theme,
                     text,
+                    tags,
                     category,
                     title_img: secure_url,
                     user_id: isUser.id,
@@ -143,6 +144,7 @@ function CreateNews() {
                     {errors.text && (
                         <h4 className="text-primary75">{errors.text}</h4>
                     )}
+                    <textarea name="tags" id="" cols="30" rows="5" placeholder="Введите тэги для оптимизации поиска" onChange={(e) => setTags(e.target.value)}></textarea>
                     <button
                         type="submit"
                         className="bg-primary75 opacity-75 hover:opacity-100 text-white py-2.5 px-4 rounded-xl"
