@@ -5,11 +5,49 @@ import { useNavigate, useOutletContext } from "react-router-dom";
 import { toast } from 'react-hot-toast';
 
 function News() {
-    const [post, setPost] = useState({});
     const [topPosts, setNewPosts] = useState([]);
     const [comments, setComments] = useState([]);
+    const [ parentId, setParentId ] = useState('');
+    const [comment, setComment] = useState('');
+    const [post, setPost] = useState({});
     const { isUser } = useOutletContext();
     const navigate = useNavigate();
+    const commentsBlock = document.getElementById('commentsBlock');
+
+    const postComment = async (e) => {
+        e.preventDefault();
+        if (!parentId) {
+            try {
+                const postId = window.location.pathname.split("/").pop();
+                await app.post('/comments/create-comment/', {
+                    user_id: isUser.id,
+                    text: comment,
+                    post_id: postId
+                });
+                toast.success("Комментарий был добавлен");
+                setComment('');
+                getComments();
+            } catch (error) {
+                console.error(error);
+            }
+        } else {
+            try {
+                const postId = window.location.pathname.split("/").pop();
+                await app.post('/comments/create-comment/', {
+                    user_id: isUser.id,
+                    text: comment,
+                    post_id: postId,
+                    parent_comment_id: parentId
+                });
+                toast.success("Комментарий был добавлен");
+                setComment('');
+                setParentId('');
+                getComments();
+            } catch (error) {
+                console.error(error);
+            }
+        }
+    };
 
     const handleDeleteComment = async (commentId) => {
         try {
@@ -46,6 +84,20 @@ function News() {
             console.error(error);
         }
     };
+
+    const getComments = async () => {
+        try {
+        const postId = window.location.pathname.split("/").pop();
+        const response = await app.get('/comments/', {
+            params: {
+            post_id: postId
+            }
+        });
+        setComments(response.data);
+        } catch (error) {
+        console.error(error.response.data);
+        }
+    };
     
     useEffect(() => {
         const getPost = async () => {
@@ -60,20 +112,6 @@ function News() {
             } catch (error) {
             console.error(error.response.data);
             navigate("/feed");
-            }
-        };
-    
-        const getComments = async () => {
-            try {
-            const postId = window.location.pathname.split("/").pop();
-            const response = await app.get('/comments/', {
-                params: {
-                post_id: postId
-                }
-            });
-            setComments(response.data);
-            } catch (error) {
-            console.error(error.response.data);
             }
         };
     
@@ -132,7 +170,7 @@ function News() {
                             fillOpacity="0.5"
                         />
                         </svg>
-                        <p>Комментариев: COUNT OF COMMENTS</p>
+                        <p>Комментариев: {comments.length}</p>
                     </div>
                     <div className="flex justify-center gap-2 items-center">
                         <svg
@@ -155,7 +193,7 @@ function News() {
                 <h5 className="p-4">
                     <Markdown>{post?.text}</Markdown>
                 </h5>
-                <div className="flex flex-col gap-4">
+                <div className="flex flex-col gap-4" id="commentsBlock">
                     <div className="flex items-center gap-2">
                     <svg
                         width="4"
@@ -202,18 +240,27 @@ function News() {
                                                 <svg width="15" height="17" viewBox="0 0 42 48" fill="#3E3232" opacity={0.6} xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M15 37.5C15 38.3438 14.25 39 13.5 39C12.6562 39 12 38.3438 12 37.5V18C12 17.25 12.6562 16.5 13.5 16.5C14.25 16.5 15 17.25 15 18V37.5ZM22.5 37.5C22.5 38.3438 21.75 39 21 39C20.1562 39 19.5 38.3438 19.5 37.5V18C19.5 17.25 20.1562 16.5 21 16.5C21.75 16.5 22.5 17.25 22.5 18V37.5ZM30 37.5C30 38.3438 29.25 39 28.5 39C27.6562 39 27 38.3438 27 37.5V18C27 17.25 27.6562 16.5 28.5 16.5C29.25 16.5 30 17.25 30 18V37.5ZM29.7188 2.34375L33.1875 7.5H39.75C40.9688 7.5 42 8.53125 42 9.75C42 11.0625 40.9688 12 39.75 12H39V40.5C39 44.7188 35.625 48 31.5 48H10.5C6.28125 48 3 44.7188 3 40.5V12H2.25C0.9375 12 0 11.0625 0 9.75C0 8.53125 0.9375 7.5 2.25 7.5H8.71875L12.1875 2.34375C13.125 0.9375 14.8125 0 16.5938 0H25.3125C27.0938 0 28.7812 0.9375 29.7188 2.34375ZM14.1562 7.5H27.75L25.9688 4.875C25.875 4.6875 25.5938 4.5 25.3125 4.5H16.5938C16.3125 4.5 16.0312 4.6875 15.9375 4.875L14.1562 7.5ZM7.5 40.5C7.5 42.1875 8.8125 43.5 10.5 43.5H31.5C33.0938 43.5 34.5 42.1875 34.5 40.5V12H7.5V40.5Z"/>
                                                 </svg>
-                                                <h5 className="opacity-80 cursor-default">Удалить</h5>
+                                                <button className="opacity-80 px-1">Удалить</button>
                                             </div>
                                         ) : (
-                                            <div className="flex justify-between items-center self-center gap-2 px-4 py-2 h-full bg-[#e4e4e4] rounded-xl red-hover">
-                                                <svg width="15" height="14" viewBox="0 0 15 14" fill="#3E3232" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M13.7539 5.95703L8.94141 10.0859C8.53125 10.4414 7.875 10.1406 7.875 9.59375V7.21484C3.60938 7.26953 1.80469 8.30859 3.03516 12.2734C3.17188 12.7109 2.625 13.0664 2.26953 12.793C1.06641 11.918 0 10.25 0 8.58203C0 4.42578 3.47266 3.52344 7.875 3.46875V1.30859C7.875 0.734375 8.53125 0.433594 8.94141 0.789062L13.7539 4.91797C14.0547 5.21875 14.0547 5.68359 13.7539 5.95703Z" fillOpacity="0.5"/>
-                                                </svg>
-                                                <h5 className="opacity-80 cursor-default">Ответить</h5>
-                                            </div>
+                                            parentId === comment.id ? (
+                                                <div onClick={() => setParentId('')} className="flex justify-between items-center self-center gap-2 px-4 py-2 h-full bg-[#e4e4e4] rounded-xl red-hover">
+                                                    <svg width="15" height="14" viewBox="0 0 15 14" fill="#3E3232" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M13.7539 5.95703L8.94141 10.0859C8.53125 10.4414 7.875 10.1406 7.875 9.59375V7.21484C3.60938 7.26953 1.80469 8.30859 3.03516 12.2734C3.17188 12.7109 2.625 13.0664 2.26953 12.793C1.06641 11.918 0 10.25 0 8.58203C0 4.42578 3.47266 3.52344 7.875 3.46875V1.30859C7.875 0.734375 8.53125 0.433594 8.94141 0.789062L13.7539 4.91797C14.0547 5.21875 14.0547 5.68359 13.7539 5.95703Z" fillOpacity="0.5"/>
+                                                    </svg>
+                                                    <button className="opacity-80">Вы отвечаете на этот комментарий</button>
+                                                </div>
+                                            ) : (
+                                                <div onClick={() => setParentId(comment.id)} className="flex justify-between items-center self-center gap-2 px-4 py-2 h-full bg-[#e4e4e4] rounded-xl red-hover">
+                                                    <svg width="15" height="14" viewBox="0 0 15 14" fill="#3E3232" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M13.7539 5.95703L8.94141 10.0859C8.53125 10.4414 7.875 10.1406 7.875 9.59375V7.21484C3.60938 7.26953 1.80469 8.30859 3.03516 12.2734C3.17188 12.7109 2.625 13.0664 2.26953 12.793C1.06641 11.918 0 10.25 0 8.58203C0 4.42578 3.47266 3.52344 7.875 3.46875V1.30859C7.875 0.734375 8.53125 0.433594 8.94141 0.789062L13.7539 4.91797C14.0547 5.21875 14.0547 5.68359 13.7539 5.95703Z" fillOpacity="0.5"/>
+                                                    </svg>
+                                                    <button className="opacity-80">Ответить</button>
+                                                </div>
+                                            )
                                         )}
                                     </div>
-                                    <p>{comment.text}</p>
+                                    <p className="overflow-auto">{comment.text}</p>
                                 </div>
                                 { comment.nestedComments.length > 0 && (
                                     comment.nestedComments.map((nestedComment) => (
@@ -252,7 +299,7 @@ function News() {
                                                 </div>
                                             )}
                                         </div>
-                                        <p>{nestedComment.text}</p>
+                                        <p className="overflow-ellipsis">{nestedComment.text}</p>
                                     </div>
                                     ))
                                 )}
@@ -261,36 +308,24 @@ function News() {
                             <p>Еще никто не оставлял комментариев</p>
                         )}
                 </div>
-                <div className="flex flex-col gap-4">
-                    <div className="flex items-center gap-2">
-                    <svg
-                        width="4"
-                        height="11"
-                        viewBox="0 0 4 11"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                    >
-                        <rect y="0.5" width="4" height="10" rx="2" fill="#F81539" />
-                    </svg>
-                    <h4>Оставьте свой комментарий</h4>
-                    </div>
-                    <textarea className="bg-gray rounded-xl p-4" rows="4"></textarea>
+                <form className="flex flex-col gap-4" onSubmit={(e) => postComment(e)}>
+                    <textarea className="bg-gray rounded-xl p-4" rows="4" placeholder="Оставьте здесь свое мнение о новости" value={comment} onChange={(e) => setComment(e.target.value)}></textarea>
                     <div className="flex items-center justify-center gap-2 bg-primary75 rounded-xl p-2 max-w-[240px]  ">
-                    <svg
-                        width="15"
-                        height="13"
-                        viewBox="0 0 15 13"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                    >
-                        <path
-                        d="M4.9375 5.4375C5.40234 5.4375 5.78516 5.84766 5.78516 6.3125C5.78516 6.80469 5.40234 7.1875 4.9375 7.1875C4.44531 7.1875 4.0625 6.80469 4.0625 6.3125C4.0625 5.84766 4.44531 5.4375 4.9375 5.4375ZM8 5.4375C8.46484 5.4375 8.84766 5.84766 8.84766 6.3125C8.84766 6.75 8.4375 7.16016 8 7.16016C7.53516 7.16016 7.125 6.77734 7.125 6.3125C7.125 5.82031 7.50781 5.4375 8 5.4375ZM11.0625 5.4375C11.5273 5.4375 11.9375 5.84766 11.9102 6.3125C11.9102 6.80469 11.5273 7.1875 11.0625 7.1875C10.5977 7.1875 10.1875 6.80469 10.1875 6.3125C10.1875 5.84766 10.5703 5.4375 11.0625 5.4375ZM8 0.625C11.8555 0.625 14.9727 3.22266 14.9727 6.33984C14.9727 9.45703 11.8555 12 8 12C7.09766 12 6.22266 11.8633 5.45703 11.6172C4.63672 12.1914 3.32422 12.875 1.65625 12.875C1.38281 12.875 1.13672 12.7383 1.05469 12.4648C0.972656 12.2188 1 11.9453 1.19141 11.7539C1.19141 11.7539 2.03906 10.8242 2.44922 9.75781C1.54688 8.80078 1 7.59766 1 6.3125C1 3.16797 4.11719 0.625 8 0.625ZM8 10.6875C11.1172 10.6875 13.6328 8.74609 13.6328 6.3125C13.6328 3.90625 11.0898 1.9375 7.97266 1.9375C4.85547 1.9375 2.3125 3.90625 2.3125 6.3125C2.3125 7.48828 2.88672 8.36328 3.37891 8.88281L3.95312 9.48438L3.65234 10.25C3.51562 10.6328 3.32422 11.0156 3.10547 11.3438C3.76172 11.125 4.30859 10.8242 4.69141 10.5508L5.21094 10.168L5.83984 10.3594C6.52344 10.5781 7.26172 10.6875 8 10.6875Z"
-                        fill="white"
-                        />
-                    </svg>
-                    <p className="text-center text-white">Отправить комментарий</p>
+                        <svg
+                            width="15"
+                            height="13"
+                            viewBox="0 0 15 13"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                            d="M4.9375 5.4375C5.40234 5.4375 5.78516 5.84766 5.78516 6.3125C5.78516 6.80469 5.40234 7.1875 4.9375 7.1875C4.44531 7.1875 4.0625 6.80469 4.0625 6.3125C4.0625 5.84766 4.44531 5.4375 4.9375 5.4375ZM8 5.4375C8.46484 5.4375 8.84766 5.84766 8.84766 6.3125C8.84766 6.75 8.4375 7.16016 8 7.16016C7.53516 7.16016 7.125 6.77734 7.125 6.3125C7.125 5.82031 7.50781 5.4375 8 5.4375ZM11.0625 5.4375C11.5273 5.4375 11.9375 5.84766 11.9102 6.3125C11.9102 6.80469 11.5273 7.1875 11.0625 7.1875C10.5977 7.1875 10.1875 6.80469 10.1875 6.3125C10.1875 5.84766 10.5703 5.4375 11.0625 5.4375ZM8 0.625C11.8555 0.625 14.9727 3.22266 14.9727 6.33984C14.9727 9.45703 11.8555 12 8 12C7.09766 12 6.22266 11.8633 5.45703 11.6172C4.63672 12.1914 3.32422 12.875 1.65625 12.875C1.38281 12.875 1.13672 12.7383 1.05469 12.4648C0.972656 12.2188 1 11.9453 1.19141 11.7539C1.19141 11.7539 2.03906 10.8242 2.44922 9.75781C1.54688 8.80078 1 7.59766 1 6.3125C1 3.16797 4.11719 0.625 8 0.625ZM8 10.6875C11.1172 10.6875 13.6328 8.74609 13.6328 6.3125C13.6328 3.90625 11.0898 1.9375 7.97266 1.9375C4.85547 1.9375 2.3125 3.90625 2.3125 6.3125C2.3125 7.48828 2.88672 8.36328 3.37891 8.88281L3.95312 9.48438L3.65234 10.25C3.51562 10.6328 3.32422 11.0156 3.10547 11.3438C3.76172 11.125 4.30859 10.8242 4.69141 10.5508L5.21094 10.168L5.83984 10.3594C6.52344 10.5781 7.26172 10.6875 8 10.6875Z"
+                            fill="white"
+                            />
+                        </svg>
+                        <button className="text-center text-white" type="submit">Отправить комментарий</button>
                     </div>
-                </div>
+                </form>
                 </div>
                 <div className="flex flex-col w-[30%] gap-6">
                 <div className="flex justify-between items-center">
@@ -340,7 +375,7 @@ function News() {
                         fillOpacity="0.5"
                         />
                     </svg>
-                    <p>Комментарии</p>
+                    <button onClick={() => commentsBlock.scrollIntoView({ behavior: 'smooth' })}>Комментарии</button>
                     </div>
                 </div>
                 <div className="flex items-center bg-gray p-4 rounded-xl gap-4">

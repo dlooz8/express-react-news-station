@@ -29,20 +29,6 @@ const postCreateComment = async (req, res) => {
     }
 };
 
-const postCreateNestedComment = async (req, res) => {
-    const result = validationResult(req);
-    if (!result.isEmpty()) {
-        return res.status(400).json({ message: "Авторизуйтесь для добавления нового комментария!" });
-    }
-    try {
-        const comment = await commentsService.postCreateNestedComment(req);
-        return res.status(200).json(comment);
-    } catch (error) {
-        console.log(error);
-        return res.status(500).json({ message: error.message });
-    }
-};
-
 const deleteComment = async (req, res) => {
     const result = validationResult(req);
     if (!result.isEmpty()) {
@@ -74,7 +60,6 @@ const deleteNestedComment = async (req, res) => {
 module.exports = {
     getComments,
     postCreateComment,
-    postCreateNestedComment,
     deleteComment,
     deleteNestedComment,
 };

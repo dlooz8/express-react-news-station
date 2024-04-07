@@ -6,7 +6,6 @@ const router = express.Router();
 
 router.get('/', query('post_id').notEmpty().escape(), commentsController.getComments);
 router.post('/create-comment', body('user_id').notEmpty(), body('text').notEmpty(), body('post_id').notEmpty(), commentsController.postCreateComment);
-router.post('/create-comment', body('user_id').notEmpty(), body('text').notEmpty(), body('post_id').notEmpty(), body('parent_comment_id').notEmpty(), commentsController.postCreateComment);
 router.delete('/delete-comment', query('id').notEmpty(), commentsController.deleteComment);
 router.delete('/delete-nestedcomment', query('id').notEmpty(), commentsController.deleteNestedComment);
 

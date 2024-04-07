@@ -55,11 +55,26 @@ const getComments = async (post_id) => {
 };
 
 const postCreateComment = async (req) => {
-    return res;
-};
-
-const postCreateNestedComment = async (req) => {
-    return res;
+    if (req.body.parent_comment_id) {
+        const result = await prisma.NestedComments.create({
+            data: {
+                post_id: req.body.post_id,
+                user_id: req.body.user_id,
+                parent_comment_id: req.body.parent_comment_id,
+                text: req.body.text,
+            },
+        });
+        return result;
+    } else {
+        const result = await prisma.Comments.create({
+            data: {
+                user_id: req.body.user_id,
+                post_id: req.body.post_id,
+                text: req.body.text,
+            },
+        });
+        return result;
+    }
 };
 
 const deleteComment = async (id) => {
@@ -83,7 +98,6 @@ const deleteNestedComment = async (id) => {
 module.exports = {
     getComments,
     postCreateComment,
-    postCreateNestedComment,
     deleteComment,
     deleteNestedComment,
 };
