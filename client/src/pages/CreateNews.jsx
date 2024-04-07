@@ -1,9 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, lazy, Suspense } from "react";
 import { useNavigate, useOutletContext } from "react-router-dom";
-import MarkdownEditor from "../components/MarkdownEditor";
 import app from "../utils/axiosConfig";
 import toast from "react-hot-toast";
 import ProfileBar from "../components/ProfileBar";
+const MarkdownEditor = lazy(() => import("../components/MarkdownEditor"));
+
 
 function CreateNews() {
     const { isUser } = useOutletContext();
@@ -132,11 +133,13 @@ function CreateNews() {
                             <h4 className="text-primary75">{errors.file}</h4>
                         )}
                     </div>
-                    <MarkdownEditor
-                        className="w-full bg-gray"
-                        editorText={text}
-                        setEditorText={setText}
-                    />
+                    <Suspense fallback={<div>Loading...</div>}>
+                        <MarkdownEditor
+                            className="w-full bg-gray"
+                            editorText={text}
+                            setEditorText={setText}
+                        />
+                    </Suspense>
                     {errors.text && (
                         <h4 className="text-primary75">{errors.text}</h4>
                     )}

@@ -64,7 +64,6 @@ function News() {
         };
     
         const getComments = async () => {
-            console.log(isUser);
             try {
             const postId = window.location.pathname.split("/").pop();
             const response = await app.get('/comments/', {
