@@ -15,6 +15,7 @@ function SearchNews() {
     const { isUser } = useOutletContext();
 
     useEffect(() => {
+        setQuery(window.location.pathname.split("/").pop());
         const getNews = async () => {
             try {
                 const response = await app.get('/news/search-news', {
@@ -27,12 +28,12 @@ function SearchNews() {
                 console.error(error.response.data);
             } finally {
                 setIsLoading(false);
-            }
-        }
-
-        getNews();
-        console.log(news);
-    }, []);
+          }
+      }
+    
+      getNews();
+      console.log(news);
+    }, [window.location.pathname]);
 
     const [currentPage, setCurrentPage] = useState(0);
     const newsPerPage = 12;
@@ -65,7 +66,7 @@ function SearchNews() {
                 >
                     <rect y="0.5" width="4" height="10" rx="2" fill="#F81539" />
                 </svg>
-                <h4>Поиск по запросу: {query}</h4>
+                <h4>Поиск по запросу: {decodeURI(window.location.pathname.split("/").pop())}</h4>
                 </div>
             </div>
             { isLoading ? (

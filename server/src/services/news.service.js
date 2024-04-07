@@ -33,7 +33,7 @@ const getCurrentNews = async(news_id) => {
 const getSearchNews = async(query) => {
     const posts = await prisma.Posts.findMany({
         where: {
-            category:  query
+            category:  decodeURIComponent(query) || query
         }
     });
     return posts;

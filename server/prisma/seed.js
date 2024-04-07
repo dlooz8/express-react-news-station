@@ -2,7 +2,7 @@ const prisma = require('../src/config/prisma');
 const bcrypt = require('bcrypt');
 const { fakerRU: faker } = require('@faker-js/faker');
 
-const categories = ["Политика", "Спорт", "Медицина", "Экономика", "Животные", "Путешествия"];
+const categories = ["Технологии", "Автомобили", "Мода", "Еда", "Политика", "Спорт", "Медицина", "Экономика", "Животные", "Музыка", "Путешествия"];
 
 const count = 100;
 
