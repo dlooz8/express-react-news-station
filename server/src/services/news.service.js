@@ -2,7 +2,7 @@ const prisma = require('../config/prisma');
 const { handleDelete } = require('../config/cloudinary');
 
 const postCreateNews = async (req, res) => {
-    const { theme, text, category, title_img, user_id} = req.body;
+    const { theme, text, tags, category, title_img, user_id} = req.body;
     const news = await prisma.posts.create({
         data: {
             theme,
@@ -31,12 +31,38 @@ const getCurrentNews = async(news_id) => {
 }
 
 const getSearchNews = async(query) => {
-    const posts = await prisma.Posts.findMany({
+    const searchWords = query.split(' ').filter(word => word.trim() !== '');
+        const posts = await prisma.posts.findMany({
         where: {
-            category:  decodeURIComponent(query) || query
+            AND: searchWords.map(word => ({
+                OR: [
+                    { category: { contains: word, mode: 'insensitive' } },
+                    { tags: { contains: word, mode: 'insensitive' } },
+                    { theme: { contains: word, mode: 'insensitive' } }  
+                ]
+            }))
+        },
+        include: {
+            users: true
         }
     });
-    return posts;
+
+    const options = {
+        timeZone: 'Europe/Moscow',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    };
+
+    const formattedPosts = posts.map(post => {
+        const createdDate = new Date(post.created_at).toLocaleDateString('ru-RU', options).replace(' г.', '');
+        const dateArray = createdDate.split(' ');
+        const formattedDate = `${dateArray[1].charAt(0).toUpperCase() + dateArray[1].slice(1)} ${dateArray[0]}, ${dateArray[2]}`;
+        
+        return { ...post, created_at_date: formattedDate };
+    });
+
+    return formattedPosts;
 }
 
 const getUserNews = async (user_id) => {

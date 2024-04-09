@@ -53,7 +53,7 @@ function PopularNews() {
     };
 
     return (
-        <section className="container mx-auto">
+        <section className="2xl:container 2xl:mx-auto xl:mx-32">
             <div className="flex justify-between py-6">
                 <div className="flex gap-2 justify-between items-center">
                     <svg
@@ -112,10 +112,10 @@ function PopularNews() {
             { isLoading ? (
                 <LoaderPopularNews />
             ) : (
-            <div className="flex justify-between gap-3">
+            <div className="flex justify-between gap-8">
                 {currentNews.map((news, index) => (
                     <motion.div
-                        className="flex flex-col justify-between p-3 shadow rounded-xl items-center w-[270px] 2xl:w-[360px] h-[340px] 2xl:h-[390px]"
+                        className="flex flex-col justify-between gap-4 p-3 shadow rounded-xl items-center w-full h-full"
                         key={index}
                         initial={{
                             opacity: animate ? 0 : 1,
@@ -133,7 +133,7 @@ function PopularNews() {
                             className="flex flex-col gap-2"
                         >
                             <img
-                                className="min-w-full max-h-[206px] object-cover rounded-xl"
+                                className="min-w-full aspect-video object-cover rounded-xl"
                                 src={news.title_img}
                                 alt="popular"
                             />
@@ -151,8 +151,8 @@ function PopularNews() {
                                 className="w-[44px] h-[44px] object-cover rounded-xl"
                             />
                             <div className="flex flex-col flex-1 gap-1">
-                                <h6>{news.author}</h6>
-                                <p>{news.created_at_date}</p>
+                                <h6 className="line-clamp-1">{news.author}</h6>
+                                <p className="text-xs">{news.created_at_date}</p>
                             </div>
                             <div
                                 className="red-hover pr-2"

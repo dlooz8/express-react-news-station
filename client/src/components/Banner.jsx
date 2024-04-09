@@ -26,21 +26,21 @@ function Banner() {
     return (
         <>
         { isLoading ? 
-            <div className="container mx-auto mt-12 mb-8">
+            <div className="2xl:mx-auto xl:mx-32 mt-12 mb-8">
                 <LoaderBanner />
             </div>
             :
-            <section className="container flex gap-6 justify-between mx-auto mt-12 mb-8 banner">
+            <section className="2xl:container grid grid-cols-4 grid-rows-1 gap-8 justify-between 2xl:mx-auto xl:mx-32 mt-12 mb-8">
                 <Link
                     to={`/news/${recentNews[0]?.post_id}`}
-                    className="banner-1 relative"
+                    className="relative"
                 >
                     <img
-                        className="w-[360px] h-[452px] object-cover rounded-xl"
+                        className="h-full w-full object-cover rounded-xl"
                         src={recentNews[0]?.title_img}
                         alt="img"
                     />
-                    <div className="glass absolute top-[320px] bg-gray m-2.5 p-2.5 rounded-xl max-w-[339px] max-h-[117px]">
+                    <div className="glass absolute xl:top-[188px] 2xl:top-[320px] bg-gray m-2.5 p-2.5 rounded-xl w-full h-full xl:max-w-[246px] xl:max-h-[110px] 2xl:max-w-[339px] 2xl:max-h-[110px]">
                         <h3 className="line-clamp-1">{recentNews[0]?.theme}</h3>
                         <Markdown className="markdown pt-3 line-clamp-2">
                             {recentNews[0]?.text}
@@ -49,14 +49,14 @@ function Banner() {
                 </Link>
                 <Link
                     to={`/news/${recentNews[1]?.post_id}`}
-                    className="banner-2 relative"
+                    className="relative"
                 >
                     <img
-                        className="w-[360px] h-[452px] object-cover rounded-xl"
+                        className="h-full w-full object-cover rounded-xl"
                         src={recentNews[1]?.title_img}
                         alt="img"
                     />
-                    <div className="glass absolute top-[320px] bg-gray m-2.5 p-2.5 rounded-xl max-w-[339px] max-h-[117px]">
+                    <div className="glass absolute xl:top-[188px] 2xl:top-[320px] bg-gray m-2.5 p-2.5 rounded-xl w-full h-full xl:max-w-[246px] xl:max-h-[110px] 2xl:max-w-[339px] 2xl:max-h-[110px]">
                         <h3 className="line-clamp-1">{recentNews[1]?.theme}</h3>
                         <Markdown className="markdown pt-3 line-clamp-2">
                             {recentNews[1]?.text}
@@ -65,14 +65,14 @@ function Banner() {
                 </Link>
                 <Link
                     to={`/news/${recentNews[2]?.post_id}`}
-                    className="banner-3 relative"
+                    className="col-span-2 relative"
                 >
                     <img
-                        className="w-full h-[452px] object-cover rounded-xl"
+                        className="2xl:h-[452px] object-cover rounded-xl"
                         src={recentNews[2]?.title_img}
                         alt="img"
                     />
-                    <div className="glass absolute top-[320px] bg-gray m-2.5 p-2.5 rounded-xl max-w-[724px] max-h-[117px]">
+                    <div className="glass absolute xl:top-[188px] 2xl:top-[320px] bg-gray m-2.5 p-2.5 rounded-xl w-full h-full xl:max-w-[546px] xl:max-h-[110px] 2xl:max-w-[730px] 2xl:max-h-[110px]">
                         <h3 className="line-clamp-1">{recentNews[2]?.theme}</h3>
                         <Markdown className="markdown pt-3 line-clamp-2">
                             {recentNews[2]?.text}

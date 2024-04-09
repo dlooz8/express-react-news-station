@@ -26,7 +26,7 @@ function LatestNews() {
     }, []);
 
     return (
-        <section className="container mx-auto my-4">
+        <section className="2xl:container 2xl:mx-auto xl:mx-32 my-4">
             <div className="flex justify-between py-8">
                 <div className="flex gap-2 justify-between items-center">
                     <svg
@@ -46,7 +46,7 @@ function LatestNews() {
                     </svg>
                     <h4>Последние новости</h4>
                 </div>
-                <div className="flex justify-between items-center px-5 py-2 bg-gray rounded-xl red-hover">
+                <Link to="/searchnews/по возрастанию" className="flex justify-between items-center px-5 py-2 bg-gray rounded-xl red-hover">
                     <p className="font-medium">Смотреть все</p>
                     <svg
                         width="24"
@@ -60,7 +60,7 @@ function LatestNews() {
                             fillOpacity={0.75}
                         />
                     </svg>
-                </div>
+                </Link>
             </div>
             {isLoading ? (
                 <LoaderLatestNews />
@@ -68,17 +68,17 @@ function LatestNews() {
                 <div className="grid grid-cols-2 justify-stretch gap-6 grid-rows-3">
                     {latestNews.map((news, index) => (
                         <div
-                            className="flex justify-between shadow rounded-xl"
+                            className="grid grid-rows-1 grid-cols-7 gap-6 justify-between shadow rounded-xl"
                             key={index}
                         >
-                            <Link to={`/news/${news.post_id}`}>
+                            <Link to={`/news/${news.post_id}`} className="col-span-3">
                                 <img
-                                    className="xl:w-[300px] 2xl:w-[340px] h-[190px] m-3 object-cover rounded-xl aspect-video"
+                                    className="m-3 object-cover rounded-xl xl:aspect-[3.9/3] 2xl:aspect-video"
                                     src={news.title_img}
                                     alt="new-post-img"
                                 />
                             </Link>
-                            <div className="flex flex-col flex-1 justify-between py-3 pr-3">
+                            <div className="col-span-4 flex flex-col flex-1 justify-between py-3 pr-3">
                                 <Link to={`/news/${news.post_id}`}>
                                     <div className="flex flex-col justify-between gap-3 p-2 xl:mr-2">
                                         <h5 className="line-clamp-1 pt-1">
@@ -96,8 +96,8 @@ function LatestNews() {
                                         className="max-w-[44px] max-h-[44px] object-cover rounded-xl aspect-square"
                                     />
                                     <div className="flex flex-1 flex-col gap-1">
-                                        <h6>{news.author}</h6>
-                                        <p>{news.created_at_date}</p>
+                                        <h6 className="line-clamp-1">{news.author}</h6>
+                                        <p className="text-xs">{news.created_at_date}</p>
                                     </div>
                                     <div
                                         className="red-hover pr-3"

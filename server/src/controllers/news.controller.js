@@ -98,7 +98,7 @@ const getSearchNews = async (req, res) => {
         return res.status(400).json(result);
     }
     try {
-        const news = await newsService.getSearchNews(req.query.search);
+        const news = await newsService.getSearchNews(decodeURIComponent(req.query.search));
         return res.status(200).json(news);
     } catch (error) {
         console.error(error);

@@ -1,7 +1,7 @@
 import app from "../utils/axiosConfig";
 import { useEffect, useState } from "react";
 import Markdown from "react-markdown";
-import { useNavigate, useOutletContext } from "react-router-dom";
+import { useNavigate, useOutletContext, useParams } from "react-router-dom";
 import { toast } from 'react-hot-toast';
 
 function News() {
@@ -13,16 +13,16 @@ function News() {
     const { isUser } = useOutletContext();
     const navigate = useNavigate();
     const commentsBlock = document.getElementById('commentsBlock');
+    const { id } = useParams();
 
     const postComment = async (e) => {
         e.preventDefault();
         if (!parentId) {
             try {
-                const postId = window.location.pathname.split("/").pop();
                 await app.post('/comments/create-comment/', {
                     user_id: isUser.id,
                     text: comment,
-                    post_id: postId
+                    post_id: id
                 });
                 toast.success("Комментарий был добавлен");
                 setComment('');
@@ -32,11 +32,10 @@ function News() {
             }
         } else {
             try {
-                const postId = window.location.pathname.split("/").pop();
                 await app.post('/comments/create-comment/', {
                     user_id: isUser.id,
                     text: comment,
-                    post_id: postId,
+                    post_id: id,
                     parent_comment_id: parentId
                 });
                 toast.success("Комментарий был добавлен");
@@ -87,10 +86,9 @@ function News() {
 
     const getComments = async () => {
         try {
-        const postId = window.location.pathname.split("/").pop();
         const response = await app.get('/comments/', {
             params: {
-            post_id: postId
+            post_id: id
             }
         });
         setComments(response.data);
@@ -102,10 +100,9 @@ function News() {
     useEffect(() => {
         const getPost = async () => {
             try {
-            const postId = window.location.pathname.split("/").pop();
             const response = await app.get('/news/', {
                 params: {
-                news_id: postId
+                news_id: id
                 }
             });
             setPost(response.data[0]);
@@ -126,7 +123,7 @@ function News() {
         getPost();
         getNewPosts();
         getComments();
-    }, []);
+    }, [id, navigate]);
 
     return (
         <div className="container mx-auto">

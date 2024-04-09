@@ -52,7 +52,7 @@ function HotSport() {
 
     return (
         <div className="bg-gray">
-            <section className="mt-16 pt-4 pb-16 container mx-auto">
+            <section className="mt-16 pt-4 pb-16 2xl:container 2xl:mx-auto xl:mx-32">
                 <div className="flex justify-between py-6">
                     <div className="flex gap-2 justify-between items-center">
                         <svg
@@ -122,18 +122,18 @@ function HotSport() {
                         }}
                         exit={{ opacity: 0, x: 30 }}
                         transition={{ duration: 0.3 }}
-                        className="sport-tri gap-6"
+                        className="grid grid-rows-2 grid-cols-2 gap-6"
                     >
                         <Link
                             to={`/news/${currentNews[0]?.post_id}`}
-                            className="sport-tri1 relative shadow rounded-xl"
+                            className="row-span-2 relative shadow rounded-xl"
                         >
                             <img
-                                className="object-cover rounded-xl h-full aspect-video"
+                                className="object-cover rounded-xl w-full h-full aspect-[16/9]"
                                 src={currentNews[0]?.title_img}
                                 alt="img"
                             />
-                            <div className="absolute top-[70%] m-3 glass rounded-xl">
+                            <div className="absolute xl:top-[63.5%] 2xl:top-[71%] m-3 glass rounded-xl">
                                 <h4 className="line-clamp-1 mx-3 my-4">
                                     {currentNews[0]?.theme}
                                 </h4>
@@ -145,10 +145,10 @@ function HotSport() {
 
                         <Link
                             to={`/news/${currentNews[1]?.post_id}`}
-                            className="flex justify-between sport-tri2 shadow rounded-xl"
+                            className="grid grid-cols-2 gap-6 justify-between shadow rounded-xl"
                         >
                             <img
-                                className="m-3 object-cover rounded-xl max-h-[200px] aspect-video"
+                                className="m-3 object-cover rounded-xl aspect-[15/8]"
                                 src={currentNews[1]?.title_img}
                                 alt="img"
                             />
@@ -156,7 +156,7 @@ function HotSport() {
                                 <h5 className="line-clamp-1 self-start mx-3 my-5">
                                     {currentNews[1]?.theme}
                                 </h5>
-                                <Markdown className="markdown xl:line-clamp-6 mx-3">
+                                <Markdown className="markdown 2xl:line-clamp-6 xl:line-clamp-4 mx-3">
                                     {currentNews[1]?.text}
                                 </Markdown>
                             </div>
@@ -164,10 +164,10 @@ function HotSport() {
 
                         <Link
                             to={`/news/${currentNews[2]?.post_id}`}
-                            className="flex justify-between sport-tri3 shadow rounded-xl"
+                            className="grid grid-cols-2 gap-6 justify-between shadow rounded-xl"
                         >
                             <img
-                                className="m-3 object-cover rounded-xl max-h-[200px] aspect-video"
+                                className="m-3 object-cover rounded-xl aspect-[15/8]"
                                 src={currentNews[2]?.title_img}
                                 alt="img"
                             />
@@ -175,7 +175,7 @@ function HotSport() {
                                 <h5 className="line-clamp-1 self-start mx-3 my-5">
                                     {currentNews[2]?.theme}
                                 </h5>
-                                <Markdown className="markdown xl:line-clamp-6 mx-3">
+                                <Markdown className="markdown 2xl:line-clamp-6 xl:line-clamp-4 mx-3">
                                     {currentNews[2]?.text}
                                 </Markdown>
                             </div>

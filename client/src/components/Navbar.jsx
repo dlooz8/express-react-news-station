@@ -53,7 +53,7 @@ const Navbar = () => {
     }, [isUser]);
 
     return (
-        <div className="flex justify-between container mx-auto my-8 gap-2 items-center align-middle font-medium">
+        <div className="flex justify-between 2xl:container 2xl:mx-auto xl:mx-36 my-8 items-center align-middle font-medium">
             <Link to="/feed">News Station!</Link>
             <div className="dropdown">
                 <button className="dropbtn flex justify-between gap-2 items-center">
@@ -99,16 +99,16 @@ const Navbar = () => {
                                     </svg>
                                     <h5>Автомобили</h5>
                                 </div>
-                                <Link to="/searchnews/Автомобили">
+                                <Link to="/searchnews/Автомобили обзор">
                                     <h6 className="red-hover">Обзоры</h6>
                                 </Link>
-                                <Link to="/searchnews/Автомобили">
+                                <Link to="/searchnews/Автомобили эксплуатация">
                                     <h6 className="red-hover">Эксплуатация</h6>
                                 </Link>
-                                <Link to="/searchnews/Автомобили">
+                                <Link to="/searchnews/Автомобили обслуживание">
                                     <h6 className="red-hover">Обслуживание</h6>
                                 </Link>
-                                <Link to="/searchnews/Автомобили">
+                                <Link to="/searchnews/Автомобили советы">
                                     <h6 className="red-hover">Советы</h6>
                                 </Link>
                             </div>
@@ -140,16 +140,16 @@ const Navbar = () => {
                                     </svg>
                                     <h5>Технологии</h5>
                                 </div>
-                                <Link to="/searchnews/Технологии">
+                                <Link to="/searchnews/Технологии обзор">
                                     <h6 className="red-hover">Обзоры</h6>
                                 </Link>
-                                <Link to="/searchnews/Технологии">
+                                <Link to="/searchnews/Технологии новинка">
                                     <h6 className="red-hover">Новинки</h6>
                                 </Link>
-                                <Link to="/searchnews/Технологии">
+                                <Link to="/searchnews/Технологии сравнение">
                                     <h6 className="red-hover">Сравнения</h6>
                                 </Link>
-                                <Link to="/searchnews/Технологии">
+                                <Link to="/searchnews/Технологии устройства">
                                     <h6 className="red-hover">Устройства</h6>
                                 </Link>
                             </div>
@@ -181,16 +181,16 @@ const Navbar = () => {
                                     </svg>
                                     <h5>Мода</h5>
                                 </div>
-                                <Link to="/searchnews/Женское">
+                                <Link to="/searchnews/Женское обзор">
                                     <h6 className="red-hover">Парфюмерия</h6>
                                 </Link>
-                                <Link to="/searchnews/Женское">
+                                <Link to="/searchnews/Женское макияж">
                                     <h6 className="red-hover">Макияж</h6>
                                 </Link>
-                                <Link to="/searchnews/Женское">
+                                <Link to="/searchnews/Женское одежда">
                                     <h6 className="red-hover">Одежда</h6>
                                 </Link>
-                                <Link to="/searchnews/Женское">
+                                <Link to="/searchnews/Женское обувь">
                                     <h6 className="red-hover">Обувь</h6>
                                 </Link>
                             </div>
@@ -222,16 +222,16 @@ const Navbar = () => {
                                     </svg>
                                     <h5>Спорт</h5>
                                 </div>
-                                <Link to="/searchnews/Спорт">
+                                <Link to="/searchnews/Спорт обзор">
                                     <h6 className="red-hover">Рекомендации</h6>
                                 </Link>
-                                <Link to="/searchnews/Спорт">
+                                <Link to="/searchnews/Спорт новое">
                                     <h6 className="red-hover">Нововведения</h6>
                                 </Link>
-                                <Link to="/searchnews/Спорт">
+                                <Link to="/searchnews/Спорт достижение">
                                     <h6 className="red-hover">Достижения</h6>
                                 </Link>
-                                <Link to="/searchnews/Спорт">
+                                <Link to="/searchnews/Спорт советы">
                                     <h6 className="red-hover">Советы</h6>
                                 </Link>
                             </div>
@@ -263,16 +263,16 @@ const Navbar = () => {
                                     </svg>
                                     <h5>Еда</h5>
                                 </div>
-                                <Link to="/searchnews/Еда">
+                                <Link to="/searchnews/Еда рецепты">
                                     <h6 className="red-hover">Рецепты</h6>
                                 </Link>
-                                <Link to="/searchnews/Еда">
+                                <Link to="/searchnews/Еда кулинария">
                                     <h6 className="red-hover">Кулинария</h6>
                                 </Link>
-                                <Link to="/searchnews/Еда">
+                                <Link to="/searchnews/Еда оборудование">
                                     <h6 className="red-hover">Оборудование</h6>
                                 </Link>
-                                <Link to="/searchnews/Еда">
+                                <Link to="/searchnews/Еда советы">
                                     <h6 className="red-hover">Советы</h6>
                                 </Link>
                             </div>
@@ -304,16 +304,16 @@ const Navbar = () => {
                                     </svg>
                                     <h5>Музыка</h5>
                                 </div>
-                                <Link to="/searchnews/Музыка">
+                                <Link to="/searchnews/Музыка новинка">
                                     <h6 className="red-hover">Новинки</h6>
                                 </Link>
-                                <Link to="/searchnews/Музыка">
+                                <Link to="/searchnews/Музыка исполнитель">
                                     <h6 className="red-hover">Исполнители</h6>
                                 </Link>
-                                <Link to="/searchnews/Музыка">
+                                <Link to="/searchnews/Музыка концерт">
                                     <h6 className="red-hover">Концерты</h6>
                                 </Link>
-                                <Link to="/searchnews/Музыка">
+                                <Link to="/searchnews/Музыка инструмент">
                                     <h6 className="red-hover">Инструменты</h6>
                                 </Link>
                             </div>
@@ -322,12 +322,12 @@ const Navbar = () => {
                 </div>
             </div>
             <Link to="/contactus" className="red-hover">
-                <h5>Наши контакты</h5>
+                <h5>Контакты</h5>
             </Link>
             <Link to="/aboutus" className="red-hover">
-                <h5>О нашей команде</h5>
+                <h5>О нас</h5>
             </Link>
-            <div className="flex justify-between items-center text-xs gap-8 bg-gray rounded-xl px-4 py-1.5">
+            <div className="flex justify-between items-center text-xs gap-4 bg-gray rounded-xl px-4 py-1.5">
                 <svg
                     width="6"
                     height="18"
@@ -341,9 +341,9 @@ const Navbar = () => {
                     />
                 </svg>
                 <input
-                    className="bg-gray 2xl:min-w-[300px] min-h-[24px] outline-none"
+                    className="bg-gray w-full h-full 2xl:w-[280px] max-h-[44px] outline-none"
                     type="text"
-                    placeholder="Search Anything"
+                    placeholder="Поиск"
                 />
                 <svg
                     width="22"

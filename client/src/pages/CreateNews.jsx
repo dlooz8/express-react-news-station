@@ -12,7 +12,7 @@ function CreateNews() {
     const [tags, setTags] = useState("");
     const [theme, setName] = useState("");
     const [file, setFile] = useState(null);
-    const [category, setCategory] = useState("Политика");
+    const [selectedCategory, setSelectedCategory] = useState("Политика");
     const navigate = useNavigate();
 
     const handleUpload = (e) => {
@@ -74,7 +74,7 @@ function CreateNews() {
                     theme,
                     text,
                     tags,
-                    category,
+                    category: selectedCategory,
                     title_img: secure_url,
                     user_id: isUser.id,
                 })
@@ -114,8 +114,8 @@ function CreateNews() {
                             <select
                                 className="bg-gray rounded-xl p-3 font-[Roboto]"
                                 name="category"
-                                value={category}
-                                onChange={(e) => setCategory(e.target.value)}
+                                value={selectedCategory}
+                                onChange={(e) => setSelectedCategory(e.target.value)}
                                 defaultValue="Политика"
                             >
                                 <option value="Политика">Политика</option>

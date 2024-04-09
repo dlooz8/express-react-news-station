@@ -22,7 +22,7 @@ router.get('/trendy-news', newsController.getTrendyNews);
 router.get('/recent-news', newsController.getRecentNews);
 router.get('/hot-sport-news', newsController.getHotSportNews);
 router.get('/latest-news', newsController.getLatestNews);
-router.get('/search-news', query('search').notEmpty().escape(), newsController.getSearchNews);
+router.get('/search-news', query('search').escape(), newsController.getSearchNews);
 router.get('/', query('news_id').notEmpty().escape(), newsController.getCurrentNews);
 router.get('/user-news/', query('user_id').notEmpty().escape(), newsController.getUserNews);
 router.delete('/delete/', query('news_id').notEmpty(), newsController.deleteNews);
