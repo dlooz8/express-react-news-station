@@ -53,7 +53,7 @@ const Navbar = () => {
     }, [isUser]);
 
     return (
-        <div className="flex justify-between 2xl:container 2xl:mx-auto xl:mx-36 my-8 items-center align-middle font-medium">
+        <div className="flex justify-between 2xl:container 2xl:mx-auto xl:mx-32 my-8 items-center align-middle font-medium">
             <Link to="/feed">News Station!</Link>
             <div className="dropdown">
                 <button className="dropbtn flex justify-between gap-2 items-center">
@@ -463,7 +463,7 @@ const Navbar = () => {
                             src="avatar_guest.png"
                             alt="avatar"
                         />
-                        <h5 className="text-xs">Hi, Guest!</h5>
+                        <h5 className="text-xs">Привет Гость!</h5>
                         <svg
                             width="12"
                             height="7"

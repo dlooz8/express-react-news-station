@@ -48,8 +48,8 @@ function SearchNews() {
     };
 
     return (
-        <div className="container mx-auto">
-            <div className="flex flex-col gap-4">
+        <div className="2xl:container 2xl:mx-auto xl:mx-32">
+            <div className="flex flex-col gap-4 my-12">
                 <div className="flex items-center gap-2">
                     <svg
                         width="4"
@@ -75,25 +75,25 @@ function SearchNews() {
             {isLoading ? (
                 <LoaderPopularNews />
             ) : (
-                <div className="grid grid-cols-4 gap-3">
+                <div className="grid grid-cols-4 xl:gap-4 2xl:gap-8">
                     {currentNews.map((news, index) => (
                         <div
-                            className="flex flex-col justify-between p-3 shadow rounded-xl items-center w-[270px] 2xl:w-[360px] h-[340px] 2xl:h-[390px]"
+                            className="flex flex-col justify-between gap-4 p-3 shadow rounded-xl items-center w-full h-full"
                             key={index}
                         >
                             <Link
                                 to={`/news/${news.post_id}`}
-                                className="flex flex-col gap-2"
+                                className="flex flex-col gap-3"
                             >
                                 <img
-                                    className="min-w-full max-h-[206px] object-cover rounded-xl"
+                                    className="min-w-full aspect-video object-cover rounded-xl"
                                     src={news.title_img}
                                     alt="popular"
                                 />
                                 <h5 className="line-clamp-1 self-start px-3">
                                     {news.theme}
                                 </h5>
-                                <Markdown className="markdown line-clamp-2 px-3">
+                                <Markdown className="markdown line-clamp-3 px-3">
                                     {news.text}
                                 </Markdown>
                             </Link>
@@ -104,8 +104,12 @@ function SearchNews() {
                                     className="w-[44px] h-[44px] object-cover rounded-xl"
                                 />
                                 <div className="flex flex-col flex-1 gap-1">
-                                    <h6>{news.users.name}</h6>
-                                    <p>{news.created_at_date}</p>
+                                    <h6 className="line-clamp-1">
+                                        {news.users.name}
+                                    </h6>
+                                    <p className="text-xs">
+                                        {news.created_at_date}
+                                    </p>
                                 </div>
                                 <div
                                     className="red-hover pr-2"
@@ -131,7 +135,7 @@ function SearchNews() {
                     ))}
                 </div>
             )}
-            <div className="flex justify-between gap-4">
+            <div className="flex justify-between gap-4 my-12">
                 <button
                     onClick={prevPage}
                     disabled={currentPage === 0}

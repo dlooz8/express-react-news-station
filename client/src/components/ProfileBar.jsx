@@ -6,7 +6,7 @@ function ProfileBar() {
   const location = useLocation();
 
   return (
-    <div className="container mx-auto">
+    <div className="2xl:container 2xl:mx-auto xl:mx-32">
       <div className='flex flex-col px-4 pt-4 bg-gray rounded-xl'>
           <img className="w-full h-full object-cover rounded-xl" src="header_user.jpg" alt="img" />
           <div className="flex items-center justify-between">
