@@ -91,48 +91,64 @@ function CreateNews() {
     return (
         <>
             <ProfileBar />
-            <div className="2xl:mx-48 mx-32">
+            <div className="2xl:mx-auto 2xl:container xl:mx-32">
                 <form
                     onSubmit={handleUpload}
-                    className="flex flex-col my-8 gap-12"
+                    className="flex flex-col mt-8 gap-4"
                     encType="multipart/form-data"
                 >
-                    <div className="grid grid-cols-2 gap-12">
-                        <div className="input col-start-1">
-                            <h5>Заголовок новости</h5>
+                    <div className="flex justify-between gap-8 my-4">
+                        <div className="basis-1/3 flex flex-col gap-4">
+                            <div className="flex flex-col row-span-1 col-span-2 col-start-1 gap-4">
+                                <h5>Заголовок новости</h5>
+                                <textarea
+                                    type="text"
+                                    value={theme}
+                                    rows={10}
+                                    className="w-full"
+                                    onChange={(e) => setName(e.target.value)}
+                                />
+                                {errors.theme && (
+                                    <h4 className="text-primary75">
+                                        {errors.theme}
+                                    </h4>
+                                )}
+                            </div>
+                            <div className="flex flex-col row-span-1 col-span-2 col-start-1 gap-4 justify-end">
+                                <h5>Категория</h5>
+                                <select
+                                    className="bg-gray rounded-xl p-3 font-[Roboto]"
+                                    name="category"
+                                    value={selectedCategory}
+                                    onChange={(e) =>
+                                        setSelectedCategory(e.target.value)
+                                    }
+                                    defaultValue="Политика"
+                                >
+                                    <option value="Политика">Политика</option>
+                                    <option value="Спорт">Спорт</option>
+                                    <option value="Медицина">Медицина</option>
+                                    <option value="Экономика">Экономика</option>
+                                    <option value="Животные">Животные</option>
+                                    <option value="Путешествия">
+                                        Путешествия
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div className="basis-2/3 flex flex-col col-start-3 row-start-1 row-span-2 col-span-3 gap-4">
+                            <h5>Титульное изображение</h5>
                             <input
-                                type="text"
-                                value={theme}
-                                onChange={(e) => setName(e.target.value)}
+                                type="file"
+                                className="w-full h-full"
+                                onChange={(e) => setFile(e.target.files[0])}
                             />
-                            {errors.theme && (
-                                <h4 className="text-primary75">{errors.theme}</h4>
+                            {errors.file && (
+                                <h4 className="text-primary75">
+                                    {errors.file}
+                                </h4>
                             )}
                         </div>
-                        <div className="input col-start-1">
-                            <h5>Категория</h5>
-                            <select
-                                className="bg-gray rounded-xl p-3 font-[Roboto]"
-                                name="category"
-                                value={selectedCategory}
-                                onChange={(e) => setSelectedCategory(e.target.value)}
-                                defaultValue="Политика"
-                            >
-                                <option value="Политика">Политика</option>
-                                <option value="Спорт">Спорт</option>
-                                <option value="Медицина">Медицина</option>
-                                <option value="Экономика">Экономика</option>
-                                <option value="Животные">Животные</option>
-                                <option value="Путешествия">Путешествия</option>
-                            </select>
-                        </div>
-                        <input
-                            type="file"
-                            onChange={(e) => setFile(e.target.files[0])}
-                        />
-                        {errors.file && (
-                            <h4 className="text-primary75">{errors.file}</h4>
-                        )}
                     </div>
                     <Suspense fallback={<div>Loading...</div>}>
                         <MarkdownEditor
@@ -144,13 +160,23 @@ function CreateNews() {
                     {errors.text && (
                         <h4 className="text-primary75">{errors.text}</h4>
                     )}
-                    <textarea name="tags" id="" cols="30" rows="5" placeholder="Введите тэги для оптимизации поиска" onChange={(e) => setTags(e.target.value)}></textarea>
-                    <button
-                        type="submit"
-                        className="bg-primary75 opacity-75 hover:opacity-100 text-white py-2.5 px-4 rounded-xl"
-                    >
-                        Опубликовать
-                    </button>
+                    <div className="flex flex-wrap justify-between gap-2">
+                        <div className="flex flex-col gap-4 w-[80%] h-full">
+                            <h5>Тэги</h5>
+                            <textarea
+                                name="tags"
+                                rows="1"
+                                placeholder="Введите тэги для оптимизации поиска"
+                                onChange={(e) => setTags(e.target.value)}
+                            ></textarea>
+                        </div>
+                        <button
+                            type="submit"
+                            className="self-end bg-primary75 opacity-75 hover:opacity-100 text-white py-3.5 px-12 rounded-xl w-[17%] h-full"
+                        >
+                            Опубликовать
+                        </button>
+                    </div>
                 </form>
             </div>
         </>

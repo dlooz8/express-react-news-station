@@ -383,7 +383,7 @@ const Navbar = () => {
                     </button>
                     <div className="dropdown-pages p-4 gap-4 left-4">
                         <Link
-                            to="/createnews"
+                            to="/usernews"
                             className="flex red-hover items-center gap-3"
                         >
                             <svg
@@ -398,7 +398,7 @@ const Navbar = () => {
                                     fillOpacity="0.75"
                                 />
                             </svg>
-                            <h6 className="red-hover">Профиль</h6>
+                            <h6 className="red-hover">Мои новости</h6>
                         </Link>
                         <Link
                             to="/createnews"

@@ -68,7 +68,7 @@ function SearchNews() {
                     </svg>
                     <h4>
                         Поиск по запросу:{" "}
-                        {decodeURI(window.location.pathname.split("/").pop())}
+                        {decodeURI(query)}
                     </h4>
                 </div>
             </div>
