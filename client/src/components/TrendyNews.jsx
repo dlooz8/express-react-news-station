@@ -112,7 +112,7 @@ function TrendyNews() {
             { isLoading ? (
                 <LoaderPopularNews />
             ) : (
-                <div className="flex justify-between gap-8">
+                <div className="flex justify-between gap-4">
                 {currentNews.map((news, index) => (
                     <motion.div
                     className="flex flex-col justify-between gap-4 p-3 shadow rounded-xl items-center w-full h-full"

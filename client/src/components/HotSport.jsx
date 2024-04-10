@@ -122,7 +122,7 @@ function HotSport() {
                         }}
                         exit={{ opacity: 0, x: 30 }}
                         transition={{ duration: 0.3 }}
-                        className="grid grid-rows-2 grid-cols-2 gap-6"
+                        className="grid grid-rows-2 grid-cols-2 gap-4"
                     >
                         <Link
                             to={`/news/${currentNews[0]?.post_id}`}

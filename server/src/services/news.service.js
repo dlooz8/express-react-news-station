@@ -71,7 +71,23 @@ const getUserNews = async (user_id) => {
             user_id
         }
     });
-    return posts;
+
+    const options = {
+        timeZone: 'Europe/Moscow',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    };
+
+    const formattedPosts = posts.map(post => {
+        const createdDate = new Date(post.created_at).toLocaleDateString('ru-RU', options).replace(' г.', '');
+        const dateArray = createdDate.split(' ');
+        const formattedDate = `${dateArray[1].charAt(0).toUpperCase() + dateArray[1].slice(1)} ${dateArray[0]}, ${dateArray[2]}`;
+        
+        return { ...post, created_at: formattedDate };
+    });
+
+    return formattedPosts;
 }
 
 const getNewsWithAuthor = async (posts) => {

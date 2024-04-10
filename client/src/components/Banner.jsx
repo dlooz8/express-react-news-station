@@ -30,7 +30,7 @@ function Banner() {
                 <LoaderBanner />
             </div>
             :
-            <section className="2xl:container grid grid-cols-4 grid-rows-1 gap-8 justify-between 2xl:mx-auto xl:mx-32 mt-12 mb-8">
+            <section className="2xl:container grid grid-cols-4 grid-rows-1 gap-4 justify-between 2xl:mx-auto xl:mx-32 mt-12 mb-8">
                 <Link
                     to={`/news/${recentNews[0]?.post_id}`}
                     className="relative"
@@ -40,7 +40,7 @@ function Banner() {
                         src={recentNews[0]?.title_img}
                         alt="img"
                     />
-                    <div className="glass absolute xl:top-[188px] 2xl:top-[320px] bg-gray m-2.5 p-2.5 rounded-xl w-full h-full xl:max-w-[246px] xl:max-h-[110px] 2xl:max-w-[339px] 2xl:max-h-[110px]">
+                    <div className="glass absolute xl:top-[192px] 2xl:top-[320px] bg-gray m-2.5 p-2.5 rounded-xl w-full h-full xl:max-w-[260px] xl:max-h-[110px] 2xl:max-w-[350px] 2xl:max-h-[110px]">
                         <h3 className="line-clamp-1">{recentNews[0]?.theme}</h3>
                         <Markdown className="markdown pt-3 line-clamp-2">
                             {recentNews[0]?.text}
@@ -56,7 +56,7 @@ function Banner() {
                         src={recentNews[1]?.title_img}
                         alt="img"
                     />
-                    <div className="glass absolute xl:top-[188px] 2xl:top-[320px] bg-gray m-2.5 p-2.5 rounded-xl w-full h-full xl:max-w-[246px] xl:max-h-[110px] 2xl:max-w-[339px] 2xl:max-h-[110px]">
+                    <div className="glass absolute xl:top-[192px] 2xl:top-[320px] bg-gray m-2.5 p-2.5 rounded-xl w-full h-full xl:max-w-[260px] xl:max-h-[110px] 2xl:max-w-[350px] 2xl:max-h-[110px]">
                         <h3 className="line-clamp-1">{recentNews[1]?.theme}</h3>
                         <Markdown className="markdown pt-3 line-clamp-2">
                             {recentNews[1]?.text}
@@ -72,7 +72,7 @@ function Banner() {
                         src={recentNews[2]?.title_img}
                         alt="img"
                     />
-                    <div className="glass absolute xl:top-[188px] 2xl:top-[320px] bg-gray m-2.5 p-2.5 rounded-xl w-full h-full xl:max-w-[546px] xl:max-h-[110px] 2xl:max-w-[730px] 2xl:max-h-[110px]">
+                    <div className="glass absolute xl:top-[192px] 2xl:top-[320px] bg-gray m-2.5 p-2.5 rounded-xl w-full h-full xl:max-w-[554px] xl:max-h-[110px] 2xl:max-w-[738px] 2xl:max-h-[110px]">
                         <h3 className="line-clamp-1">{recentNews[2]?.theme}</h3>
                         <Markdown className="markdown pt-3 line-clamp-2">
                             {recentNews[2]?.text}

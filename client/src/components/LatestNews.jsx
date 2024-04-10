@@ -65,7 +65,7 @@ function LatestNews() {
             {isLoading ? (
                 <LoaderLatestNews />
             ) : (
-                <div className="grid grid-cols-2 justify-stretch gap-6 grid-rows-3">
+                <div className="grid grid-cols-2 justify-stretch gap-4 grid-rows-3">
                     {latestNews.map((news, index) => (
                         <div
                             className="grid grid-rows-1 grid-cols-7 gap-6 justify-between shadow rounded-xl"
