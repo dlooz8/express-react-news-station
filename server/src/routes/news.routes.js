@@ -1,7 +1,7 @@
 const newsController = require('../controllers/news.controller')
 const router = require('express').Router();
 const Multer = require('multer');
-const { query, param, body } = require('express-validator');
+const { query, body } = require('express-validator');
 
 const storage = new Multer.memoryStorage();
 const upload = Multer({

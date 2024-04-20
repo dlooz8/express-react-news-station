@@ -27,7 +27,9 @@ const postLogin = async (req, res) => {
             const { password: excludedPassword, ...userWithoutPassword } = existingUser;
             return userWithoutPassword;
         }
-    throw new Error('Неверное имя пользователя или пароль');
+    throw new Error('Неверный пароль!');
+    } else { 
+        throw new Error('Неверный email!'); 
     }
 }
 

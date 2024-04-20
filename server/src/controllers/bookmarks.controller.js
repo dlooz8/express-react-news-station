@@ -10,7 +10,6 @@ const postCreateBookmark = async (req, res) => {
         const bookmark = await bookmarksService.postCreateBookmark(req);
         return res.status(200).json(bookmark);
     } catch (error) {
-        console.log(error);
         return res.status(500).json({ message: error.message });
     }
 };
@@ -26,7 +25,6 @@ const getUserBookmarks = async (req, res) => {
         );
         return res.status(200).json(bookmarks);
     } catch (error) {
-        console.log(error);
         return res.status(500).json({ message: error.message });
     }
 };
@@ -40,7 +38,6 @@ const deleteBookmark = async (req, res) => {
         const news = await bookmarksService.deleteBookmark(req.query.id);
         return res.status(200).json(news);
     } catch (error) {
-        console.log(error);
         return res.status(500).json({ message: error.message });
     }
 };
@@ -54,7 +51,6 @@ const deleteBookmarkUserId = async (req, res) => {
         const news = await bookmarksService.deleteBookmarkUserId(req.query.user_id, req.query.post_id);
         return res.status(200).json(news);
     } catch (error) {
-        console.log(error);
         return res.status(500).json({ message: error.message });
     }
 };

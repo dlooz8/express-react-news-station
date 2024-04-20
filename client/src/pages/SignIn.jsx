@@ -48,7 +48,7 @@ function SignIn() {
     useEffect(() => {}, [email, password]);
 
     return (
-        <div className="mx-[33%] xl:mt-24 pt-10 px-10 shadow rounded-xl">
+        <div className="mx-[33%] xl:my-24 pt-10 px-10 shadow rounded-xl">
             <div className="flex flex-col items-center px-4 pt-4 bg-gray rounded-xl">
                 <img
                     className="min-h-[100px] h-full object-cover rounded-xl"

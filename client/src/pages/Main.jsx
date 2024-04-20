@@ -4,7 +4,6 @@ import PopularNews from '../components/PopularNews.jsx';
 import LatestNews from '../components/LatestNews.jsx';
 import HotSport from '../components/HotSport.jsx';
 import TrendyNews from '../components/TrendyNews.jsx';
-import Weather from '../components/Weather.jsx';
 
 function Main() {
 
@@ -15,7 +14,6 @@ function Main() {
       <PopularNews />
       <HotSport />
       <LatestNews />
-      <Weather />
       <TrendyNews />
     </div>
   );

@@ -51,7 +51,11 @@ const Registration = () => {
                 setTimeout(() => navigate("/feed"), 1000);
             })
             .catch((error) => {
-                toast.error(error.response.data);
+                if(error.response.data.meta.target[0] === "email") {
+                    toast.error("Этот email уже используется!");
+                } else {
+                    toast.error("Произошла ошибка при регистрации");
+                }
                 setEmail("");
                 setPassword("");
             });
@@ -60,7 +64,7 @@ const Registration = () => {
     useEffect(() => {}, [name, email, password, avatar_url]);
 
     return (
-        <div className="mx-[33%] xl:mt-24 pt-10 px-10 shadow rounded-xl">
+        <div className="mx-[33%] xl:my-24 pt-10 px-10 shadow rounded-xl">
             <div className="flex flex-col items-center px-4 pt-4 bg-gray rounded-xl">
                 <img
                     className="min-h-[100px] h-full object-cover rounded-xl"

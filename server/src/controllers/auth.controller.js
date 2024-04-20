@@ -10,7 +10,7 @@ const postRegister = async (req, res) => {
         const auth = await authService.postRegister(req, res);
         return res.status(200).json(auth);
     } catch (error) {
-        return res.status(422).json('Этот email уже занят');
+        return res.status(422).json(error);
     }
 };
   
@@ -23,7 +23,7 @@ const postLogin = async (req, res) => {
         const auth = await authService.postLogin(req, res);
         return res.status(200).json(auth);
     } catch (error) {
-        return res.status(422).json('Неверное имя пользователя или пароль');
+        return res.status(422).json(error.message);
     }
 };
 
@@ -35,7 +35,7 @@ const checkAuth = (req, res) => {
     }
 };
 
-const logout = (req, res) => {
+const logOut = (req, res) => {
     try {
         req.session.destroy();
         return res.status(200).json('Вы вышли из аккаунта' );
@@ -48,5 +48,5 @@ module.exports = {
     postRegister,
     postLogin,
     checkAuth,
-    logout
+    logOut
 }

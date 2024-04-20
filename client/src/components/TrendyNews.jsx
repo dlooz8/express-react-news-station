@@ -53,7 +53,7 @@ function TrendyNews() {
     };
 
     return (
-        <section className="2xl:container 2xl:mx-auto xl:mx-32">
+        <section className="2xl:container 2xl:mx-auto xl:mx-32 py-8">
             <div className="flex justify-between py-6">
                 <div className="flex gap-2 justify-between items-center">
                     <svg
