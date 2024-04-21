@@ -8,32 +8,29 @@ const Registration = () => {
     const [email, setEmail] = useState("");
     const [avatar_url, setAvatarUrl] = useState("");
     const [password, setPassword] = useState("");
-    const [errors, setErrors] = useState({});
     const { setIsUser } = useOutletContext();
     const navigate = useNavigate();
 
     const handleRegistration = async (e) => {
         e.preventDefault();
 
-        const errors = {};
         if (!name) {
-            errors.name = "Пожалуйста, введите имя";
-        }
-        if (!email) {
-            errors.email = "Пожалуйста, введите email";
+            toast.error("Пожалуйста, введите имя");
+            return;
+        } else if (!email) {
+            toast.error("Пожалуйста, введите email");
+            return;
         } else if (!/\S+@\S+\.\S+/.test(email)) {
-            errors.email = "Неправильный формат email";
-        }
-        if (!password) {
-            errors.password = "Пожалуйста, введите пароль";
+            toast.error("Неправильный формат email");
+            return;
+        } else if (!password) {
+            toast.error("Пожалуйста, введите пароль");
+            return;
         } else if (password.length < 8) {
-            errors.password = "Пароль должен содержать не менее 8 символов";
-        }
-        if (!avatar_url) {
-            errors.avatar_url = "Пожалуйста, введите URL аватара";
-        }
-        if (Object.keys(errors).length > 0) {
-            setErrors(errors);
+            toast.error("Пароль должен содержать не менее 8 символов");
+            return;
+        } else if (!avatar_url) {
+            toast.error("Пожалуйста, введите URL аватара");
             return;
         }
 
@@ -48,7 +45,7 @@ const Registration = () => {
                 setIsUser(res.data);
                 localStorage.setItem("user", JSON.stringify(res.data));
                 toast.success("Вы успешно зарегистрировались!");
-                setTimeout(() => navigate("/feed"), 1000);
+                setTimeout(() => navigate("/"), 1000);
             })
             .catch((error) => {
                 if(error.response.data.meta.target[0] === "email") {
@@ -85,7 +82,6 @@ const Registration = () => {
                                 value={name}
                                 onChange={(e) => setName(e.target.value)}
                             />
-                            {errors.name && <h4>{errors.name}</h4>}
                         </div>
                         <div className="max-w-[400px] w-full flex flex-col gap-2">
                             <h5>Ваш email</h5>
@@ -94,7 +90,6 @@ const Registration = () => {
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                             />
-                            {errors.email && <h4>{errors.email}</h4>}
                         </div>
                         <div className="max-w-[400px] w-full flex flex-col gap-2">
                             <h5>Ваш пароль</h5>
@@ -103,7 +98,6 @@ const Registration = () => {
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                             />
-                            {errors.password && <h4>{errors.password}</h4>}
                         </div>
                         <div className="max-w-[400px] w-full flex flex-col gap-2">
                             <h5>Ссылка на вашу аватарку</h5>
@@ -112,7 +106,6 @@ const Registration = () => {
                                 value={avatar_url}
                                 onChange={(e) => setAvatarUrl(e.target.value)}
                             />
-                            {errors.avatar_url && <h4>{errors.avatar_url}</h4>}
                         </div>
                     </div>
                     <div className="flex flex-wrap gap-4 justify-center my-10">

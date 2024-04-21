@@ -46,7 +46,7 @@ function LatestNews() {
                     </svg>
                     <h4>Последние новости</h4>
                 </div>
-                <Link to="/searchnews/по возрастанию" className="flex justify-between items-center px-5 py-2 bg-gray rounded-xl red-hover">
+                <Link to="/searchnews/все" className="flex justify-between items-center px-5 py-2 bg-gray rounded-xl red-hover">
                     <p className="font-medium">Смотреть все</p>
                     <svg
                         width="24"

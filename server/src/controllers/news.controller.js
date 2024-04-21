@@ -90,7 +90,7 @@ const getSearchNews = async (req, res) => {
         return res.status(400).json(result);
     }
     try {
-        const news = await newsService.getSearchNews(decodeURIComponent(req.query.search));
+        const news = await newsService.getSearchNews(decodeURIComponent(req.query.search), req.query.sort);
         return res.status(200).json(news);
     } catch (error) {
         return res.status(500).json("Новости не найдены");

@@ -6,10 +6,11 @@ import app from "../utils/axiosConfig";
 const Navbar = () => {
     const { isUser, setIsUser } = useOutletContext();
     const [isAuth, setIsAuth] = useState(false);
+    const [search, setSearch] = useState("");
     const navigate = useNavigate();
 
-    const handleLogOut = async (event) => {
-        event.preventDefault();
+    const handleLogOut = async (e) => {
+        e.preventDefault();
         await app
             .get("/auth/logout")
             .then((res) => {
@@ -17,11 +18,16 @@ const Navbar = () => {
                 setIsAuth(false);
                 setIsUser("");
                 toast.success(res.data);
-                navigate("/feed");
+                navigate("/");
             })
             .catch(() => {
                 toast.error("Ошибка сервера. Попробуйте обновить страницу.");
             });
+    };
+
+    const handleSearch = (e) => {
+        e.preventDefault();
+        navigate('/searchnews/' + search);
     };
 
     const handleAuth = () => {
@@ -43,18 +49,26 @@ const Navbar = () => {
                 setIsAuth(false);
             });
     };
-
+    
+    useEffect(() => {
+        const handleScrollToTop = () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        };
+        
+        handleScrollToTop();
+        handleAuth();
+    }, [isUser]);
+    
     useEffect(() => {
         checkAuth();
     }, []);
 
-    useEffect(() => {
-        handleAuth();
-    }, [isUser]);
-
     return (
         <div className="flex justify-between 2xl:container 2xl:mx-auto xl:mx-32 my-8 items-center align-middle font-medium">
-            <Link to="/feed">News Station!</Link>
+            <Link to="/">News Station!</Link>
             <div className="dropdown">
                 <button className="dropbtn flex justify-between gap-2 items-center">
                     <h5>Категории</h5>
@@ -327,7 +341,7 @@ const Navbar = () => {
             <Link to="/aboutus" className="red-hover">
                 <h5>О нас</h5>
             </Link>
-            <div className="flex justify-between items-center text-xs gap-4 bg-gray rounded-xl px-4 py-1.5">
+            <form onSubmit={(e) => handleSearch(e)} className="flex justify-between items-center text-xs gap-4 bg-gray rounded-xl px-4 py-1.5">
                 <svg
                     width="6"
                     height="18"
@@ -341,23 +355,27 @@ const Navbar = () => {
                     />
                 </svg>
                 <input
-                    className="bg-gray w-full h-full 2xl:w-[280px] max-h-[44px] outline-none"
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                    className="bg-gray w-full h-full 2xl:w-[280px] max-h-[44px] outline-none color-black"
                     type="text"
                     placeholder="Поиск"
                 />
-                <svg
-                    width="22"
-                    height="22"
-                    viewBox="0 0 22 22"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                >
-                    <path
-                        d="M20.5312 18.3438C21.1172 18.9688 21.1172 19.9453 20.5312 20.5703C19.9062 21.1562 18.9297 21.1562 18.3047 20.5703L13.6562 15.8828C12.0547 16.9375 10.1016 17.4844 7.99219 17.2109C4.39844 16.7031 1.50781 13.7734 1.03906 10.2188C0.375 4.90625 4.86719 0.414062 10.1797 1.07812C13.7344 1.54688 16.6641 4.4375 17.1719 8.03125C17.4453 10.1406 16.8984 12.0938 15.8438 13.6562L20.5312 18.3438ZM4.08594 9.125C4.08594 11.8984 6.3125 14.125 9.08594 14.125C11.8203 14.125 14.0859 11.8984 14.0859 9.125C14.0859 6.39062 11.8203 4.125 9.08594 4.125C6.3125 4.125 4.08594 6.39062 4.08594 9.125Z"
-                        fill="#3E3232"
-                    />
-                </svg>
-            </div>
+                <button type="submit">
+                    <svg
+                        width="22"
+                        height="22"
+                        viewBox="0 0 22 22"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path
+                            d="M20.5312 18.3438C21.1172 18.9688 21.1172 19.9453 20.5312 20.5703C19.9062 21.1562 18.9297 21.1562 18.3047 20.5703L13.6562 15.8828C12.0547 16.9375 10.1016 17.4844 7.99219 17.2109C4.39844 16.7031 1.50781 13.7734 1.03906 10.2188C0.375 4.90625 4.86719 0.414062 10.1797 1.07812C13.7344 1.54688 16.6641 4.4375 17.1719 8.03125C17.4453 10.1406 16.8984 12.0938 15.8438 13.6562L20.5312 18.3438ZM4.08594 9.125C4.08594 11.8984 6.3125 14.125 9.08594 14.125C11.8203 14.125 14.0859 11.8984 14.0859 9.125C14.0859 6.39062 11.8203 4.125 9.08594 4.125C6.3125 4.125 4.08594 6.39062 4.08594 9.125Z"
+                            fill="#3E3232"
+                        />
+                    </svg>
+                </button>
+            </form>
             {isAuth ? (
                 <div className="dropdown">
                     <button className="dropbtn flex justify-between gap-4 items-center">
@@ -398,7 +416,11 @@ const Navbar = () => {
                                     fillOpacity="0.75"
                                 />
                             </svg>
-                            <h6 className="red-hover">Мои новости</h6>
+                            { isUser.id == import.meta.env.VITE_ADMIN_ID ? (
+                                <h6 className="red-hover text-nowrap">Управление новостями</h6>
+                            ) : (
+                                <h6 className="red-hover">Мои новости</h6>
+                            )}
                         </Link>
                         <Link
                             to="/createnews"
@@ -435,7 +457,7 @@ const Navbar = () => {
                             <h6 className="red-hover">Мои закладки</h6>
                         </Link>
                         <Link
-                            to="/feed"
+                            to="/"
                             onClick={handleLogOut}
                             className="flex red-hover items-center gap-3"
                         >
@@ -503,7 +525,7 @@ const Navbar = () => {
                     </div>
                 </div>
             )}
-            <div className="red-hover bg-gray w-[48px] h-[48px] rounded-xl flex justify-center items-center">
+            <div onClick={() => toast(<h5 className="text-center">Нажмите Ctrl+D для добавления сайта в закладки.</h5>)} className="red-hover bg-gray w-[48px] h-[48px] rounded-xl flex cursor-pointer justify-center items-center">
                 <svg
                     width="16"
                     height="21"

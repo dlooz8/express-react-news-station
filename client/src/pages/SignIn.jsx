@@ -6,26 +6,23 @@ import app from "../utils/axiosConfig";
 function SignIn() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [errors, setErrors] = useState({});
     const navigate = useNavigate();
     const { setIsUser } = useOutletContext();
 
     const handleAuthorization = async (e) => {
         e.preventDefault();
 
-        const errors = {};
         if (!email) {
-            errors.email = "Пожалуйста, введите email";
+            toast.error("Пожалуйста, введите email");
+            return;
         } else if (!/\S+@\S+\.\S+/.test(email)) {
-            errors.email = "Неправильный формат email";
-        }
-        if (!password) {
-            errors.password = "Пожалуйста, введите пароль";
+            toast.error("Неправильный формат email");
+            return;
+        } else if (!password) {
+            toast.error("Пожалуйста, введите пароль");
+            return;
         } else if (password.length < 8) {
-            errors.password = "Пароль должен содержать не менее 8 символов";
-        }
-        if (Object.keys(errors).length > 0) {
-            setErrors(errors);
+            toast.error("Пароль должен содержать не менее 8 символов");
             return;
         }
 
@@ -38,7 +35,7 @@ function SignIn() {
                 setIsUser(res.data);
                 localStorage.setItem("user", JSON.stringify(res.data));
                 toast.success("Вы вошли в аккаунт");
-                navigate("/feed");
+                navigate("/");
             })
             .catch(function (error) {
                 toast.error(error.response.data);
@@ -69,9 +66,6 @@ function SignIn() {
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                             />
-                            {errors.email && (
-                                <p className="text-red-500">{errors.email}</p>
-                            )}
                         </div>
                         <div className="max-w-[400px] w-full flex flex-col gap-2">
                             <h5>Ваш пароль</h5>
@@ -80,11 +74,6 @@ function SignIn() {
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                             />
-                            {errors.password && (
-                                <p className="text-red-500">
-                                    {errors.password}
-                                </p>
-                            )}
                         </div>
                     </div>
                     <div className="flex flex-wrap gap-4 justify-center my-10">

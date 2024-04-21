@@ -10,16 +10,24 @@ function Banner() {
 
     useEffect(() => {
         const getNews = async () => {
-            try {
-                const response = await app.get("/news/recent-news");
-                setRecentNews(response.data);
-            } catch (error) {
-                console.error(error);
-            } finally {
-                setIsLoading(false);
-            }
+                try {
+                    const response = await app.get("/news/recent-news");
+                    setRecentNews(response.data);
+                } catch (error) {
+                    console.error(error);
+                } finally {
+                    setIsLoading(false);
+                }
         };
 
+        const handleScrollToTop = () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        };
+        
+        handleScrollToTop();
         getNews();
     }, []);
 

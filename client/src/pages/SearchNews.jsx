@@ -2,11 +2,13 @@ import { useOutletContext, Link, useParams } from "react-router-dom";
 import { LoaderPopularNews } from "../components/Loader";
 import { useState, useEffect } from "react";
 import AddBookmark from "../utils/AddBookmark";
+import { toast } from "react-hot-toast";
 import Markdown from "react-markdown";
 import app from "../utils/axiosConfig";
 
 function SearchNews() {
     const [isLoading, setIsLoading] = useState(true);
+    const [sort, setSort] = useState('desc');
     const [news, setNews] = useState([]);
     const { isUser } = useOutletContext();
     const { query } = useParams();
@@ -17,17 +19,18 @@ function SearchNews() {
                 const response = await app.get("/news/search-news", {
                     params: {
                         search: query,
+                        sort: sort,
                     },
                 });
                 setNews(response.data);
             } catch (error) {
-                console.error(error.response.data);
+                toast.error("Произошла ошибка при получении новостей");
             } finally {
                 setIsLoading(false);
             }
         };
         getNews();
-    }, [query]);
+    }, [query, sort]);
 
     const [currentPage, setCurrentPage] = useState(0);
     const newsPerPage = 12;
@@ -49,7 +52,7 @@ function SearchNews() {
 
     return (
         <div className="2xl:container 2xl:mx-auto xl:mx-32">
-            <div className="flex flex-col gap-4 my-12">
+            <div className="flex justify-between gap-4 my-12">
                 <div className="flex items-center gap-2">
                     <svg
                         width="4"
@@ -66,10 +69,27 @@ function SearchNews() {
                             fill="#F81539"
                         />
                     </svg>
-                    <h4>
+                    <h4 className="cursor-default">
                         Поиск по запросу:{" "}
                         {decodeURI(query)}
                     </h4>
+                </div>
+                <div className="flex items-center gap-2">
+                    { sort === 'desc' ? (
+                        <svg onClick={() => setSort('asc')} className="cursor-pointer duration-200" width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4 16L13 16" stroke="#1C274C" strokeWidth="1.5" strokeLinecap="round"/>
+                            <path opacity="0.7" d="M6 11H13" stroke="#1C274C" strokeWidth="1.5" strokeLinecap="round"/>
+                            <path opacity="0.3" d="M8 6L13 6" stroke="#1C274C" strokeWidth="1.5" strokeLinecap="round"/>
+                            <path d="M17 4L17 20L20 16" stroke="#1C274C" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                    ) : (
+                        <svg onClick={() => setSort('desc')} className="cursor-pointer duration-200 rotate-180" width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4 16L13 16" stroke="#1C274C" strokeWidth="1.5" strokeLinecap="round"/>
+                            <path opacity="0.7" d="M6 11H13" stroke="#1C274C" strokeWidth="1.5" strokeLinecap="round"/>
+                            <path opacity="0.3" d="M8 6L13 6" stroke="#1C274C" strokeWidth="1.5" strokeLinecap="round"/>
+                            <path d="M17 4L17 20L20 16" stroke="#1C274C" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                    )}
                 </div>
             </div>
             {isLoading ? (

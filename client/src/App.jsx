@@ -54,7 +54,7 @@ function App() {
           element: <HeaderLayout />,
           children: [
             {
-              path: "/feed",
+              path: "/",
               element: <Main />,
             },
             {

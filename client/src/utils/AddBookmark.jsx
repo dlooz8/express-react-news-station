@@ -15,11 +15,16 @@ const AddBookmark = async (post_id, user_id) => {
             });
             toast.success("Новость добавлена в закладки!");
         } catch (error) {
-            toast(() => (
-                <span>
-                    Новость уже была добавлена в закладки! Вы хотите ее
-                    удалить?
-                    <button onClick={() => DeleteBookmark(post_id, user_id)}>
+            toast((t) => (
+                <span className="flex flex-col items-center text-center p-3 gap-4">
+                    Новость уже была добавлена в закладки! Вы хотите ее удалить?
+                    <button
+                        className="flex justify-center items-center py-2 px-4 border-2 rounded-xl border-primary75"
+                        onClick={() => {
+                            DeleteBookmark(post_id, user_id);
+                            toast.dismiss(t.id);
+                        }}
+                    >
                         Удалить
                     </button>
                 </span>
