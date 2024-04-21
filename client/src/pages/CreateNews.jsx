@@ -1,4 +1,4 @@
-import { useState, lazy, Suspense } from "react";
+import { useState, useEffect, lazy, Suspense } from "react";
 import { useNavigate, useOutletContext } from "react-router-dom";
 import app from "../utils/axiosConfig";
 import toast from "react-hot-toast";
@@ -108,6 +108,13 @@ function CreateNews() {
             toast.error(error.response.data);
         }
     };
+
+    useEffect(() => {
+        if (isUser.id === undefined) {
+            navigate("/");
+            toast.error(<h5 className="text-center">Для доступа к данной странице вам необходимо авторизоваться</h5>);
+        }
+    }, []);
 
     return (
         <>

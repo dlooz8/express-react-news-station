@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, useOutletContext } from "react-router-dom";
+import { Link, useOutletContext, useNavigate } from "react-router-dom";
 import ProfileBar from "../components/ProfileBar";
 import Markdown from "react-markdown";
 import app from "../utils/axiosConfig";
@@ -8,6 +8,7 @@ import toast from "react-hot-toast";
 function UserBookmarks() {
     const { isUser } = useOutletContext();
     const [userBookmarks, setUserBookmarks] = useState([]);
+    const navigate = useNavigate();
 
     const getUserBookmarks = async () => {
         try {
@@ -25,6 +26,9 @@ function UserBookmarks() {
     useEffect(() => {
         if (isUser.id !== undefined) {
             getUserBookmarks();
+        } else {
+            navigate("/");
+            toast.error(<h5 className="text-center">Для доступа к данной странице вам необходимо авторизоваться</h5>);
         }
     }, [isUser]);
 
