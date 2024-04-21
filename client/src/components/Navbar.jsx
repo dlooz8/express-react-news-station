@@ -91,7 +91,7 @@ const Navbar = () => {
                         <div className="flex justify-between gap-4 p-4 align-middle items-center right-8">
                             <img
                                 className="object-cover min-w-[190px] min-h-[190px] rounded-xl"
-                                src="car.jpg"
+                                src="/car.jpg"
                                 alt="car"
                             />
                             <div className="flex flex-col gap-3 max-h-[190px]">
@@ -132,7 +132,7 @@ const Navbar = () => {
                         <div className="flex justify-between gap-4 p-4 align-middle items-center">
                             <img
                                 className="object-cover min-w-[190px] min-h-[190px] rounded-xl"
-                                src="tech.jpg"
+                                src="/tech.jpg"
                                 alt="tech"
                             />
                             <div className="flex flex-col gap-3 max-h-[190px]">
@@ -173,7 +173,7 @@ const Navbar = () => {
                         <div className="flex justify-between gap-4 p-4 align-middle items-center">
                             <img
                                 className="object-cover min-w-[190px] min-h-[190px] rounded-xl"
-                                src="girl.jpg"
+                                src="/girl.jpg"
                                 alt="girl"
                             />
                             <div className="flex flex-col gap-3 max-h-[190px]">
@@ -214,7 +214,7 @@ const Navbar = () => {
                         <div className="flex justify-between gap-4 p-4 align-middle items-center">
                             <img
                                 className="object-cover min-w-[190px] min-h-[190px] rounded-xl"
-                                src="sport.png"
+                                src="/sport.png"
                                 alt="sport"
                             />
                             <div className="flex flex-col gap-3 max-h-[190px]">
@@ -255,7 +255,7 @@ const Navbar = () => {
                         <div className="flex justify-between gap-4 p-4 align-middle items-center">
                             <img
                                 className="object-cover min-w-[190px] min-h-[190px] rounded-xl"
-                                src="food.jpg"
+                                src="/food.jpg"
                                 alt="food"
                             />
                             <div className="flex flex-col gap-3 max-h-[190px]">
@@ -296,7 +296,7 @@ const Navbar = () => {
                         <div className="flex justify-between gap-4 p-4 align-middle items-center">
                             <img
                                 className="object-cover min-w-[190px] min-h-[190px] rounded-xl"
-                                src="music.jpg"
+                                src="/music.jpg"
                                 alt="music"
                             />
                             <div className="flex flex-col gap-3 max-h-[190px]">

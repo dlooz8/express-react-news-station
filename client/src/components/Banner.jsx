@@ -34,7 +34,7 @@ function Banner() {
     return (
         <>
         { isLoading ? 
-            <div className="2xl:mx-auto xl:mx-32 mt-12 mb-8">
+            <div className="2xl:container 2xl:mx-auto xl:mx-32 mt-12 mb-8">
                 <LoaderBanner />
             </div>
             :

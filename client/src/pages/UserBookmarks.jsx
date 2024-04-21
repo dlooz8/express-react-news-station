@@ -182,7 +182,7 @@ function UserBookmarks() {
                 </div>
             ) : (
                 <div className="2xl:container 2xl:mx-auto xl:mx-32 text-center">
-                    <h1 className="text-3xl font-bold text-primary75 p-10">
+                    <h1 className="text-3xl text-primary75 font-bold p-10 mt-32 mb-44">
                         Вы еще не добавили закладки!
                     </h1>
                 </div>

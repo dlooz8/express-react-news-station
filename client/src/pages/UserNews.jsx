@@ -18,6 +18,7 @@ function UserNews() {
                 },
             });
             setUserNews(response.data);
+            console.log(response.data);
         } catch (error) {
             console.error(error);
         }
@@ -108,7 +109,7 @@ function UserNews() {
                                     </Link>
                                     <div className="flex justify-between items-center gap-4 bg-gray rounded-xl px-3 py-[22px] w-full">
                                         <div className="flex flex-col flex-1 gap-1">
-                                            <p>{news.created_at}</p>
+                                            <p>{news.created_at_date}</p>
                                         </div>
                                         <div
                                             className="pr-2 red-hover cursor-pointer"
@@ -172,7 +173,7 @@ function UserNews() {
                 </div>
             ) : (
                 <div className="2xl:container 2xl:mx-auto xl:mx-32 text-center">
-                    <h1 className="text-3xl text-primary75 font-bold p-10">
+                    <h1 className="text-3xl text-primary75 font-bold p-10 mt-32 mb-44">
                         Создайте новость для отображения публикации!
                     </h1>
                 </div>
