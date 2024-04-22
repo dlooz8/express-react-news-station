@@ -30,6 +30,15 @@ function SearchNews() {
             }
         };
         getNews();
+
+        const handleScrollToTop = () => {
+            window.scrollTo({
+              top: 0,
+              behavior: 'smooth'
+            });
+        };
+
+        handleScrollToTop();
     }, [query, sort]);
 
     const [currentPage, setCurrentPage] = useState(0);

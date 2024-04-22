@@ -145,7 +145,7 @@ function News() {
               top: 0,
               behavior: 'smooth'
             });
-          };
+        };
 
         getPost();
         getNewPosts();

@@ -127,8 +127,8 @@ function Footer() {
                             <h4>Соцсети</h4>
                         </div>
                         <div className="flex justify-between gap-2">
-                            <img src="instagram.png" alt="instagram" />
-                            <img src="twitter.png" alt="twitter" />
+                            <img src="/instagram.png" alt="instagram" />
+                            <img src="/twitter.png" alt="twitter" />
                         </div>
                     </div>
                 </div>
@@ -208,47 +208,47 @@ function Footer() {
                         <div className="grid grid-cols-3 grid-rows-3 gap-3">
                             <img
                                 className="insta-img"
-                                src="inst-1.png"
+                                src="/inst-1.png"
                                 alt="img"
                             />
                             <img
                                 className="insta-img"
-                                src="inst-2.png"
+                                src="/inst-2.png"
                                 alt="img"
                             />
                             <img
                                 className="insta-img"
-                                src="inst-3.png"
+                                src="/inst-3.png"
                                 alt="img"
                             />
                             <img
                                 className="insta-img"
-                                src="inst-4.png"
+                                src="/inst-4.png"
                                 alt="img"
                             />
                             <img
                                 className="insta-img"
-                                src="inst-5.png"
+                                src="/inst-5.png"
                                 alt="img"
                             />
                             <img
                                 className="insta-img"
-                                src="inst-6.png"
+                                src="/inst-6.png"
                                 alt="img"
                             />
                             <img
                                 className="insta-img"
-                                src="inst-7.png"
+                                src="/inst-7.png"
                                 alt="img"
                             />
                             <img
                                 className="insta-img"
-                                src="inst-8.png"
+                                src="/inst-8.png"
                                 alt="img"
                             />
                             <img
                                 className="insta-img"
-                                src="inst-9.png"
+                                src="/inst-9.png"
                                 alt="img"
                             />
                         </div>

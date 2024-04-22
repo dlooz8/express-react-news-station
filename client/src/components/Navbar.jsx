@@ -482,7 +482,7 @@ const Navbar = () => {
                     <button className="dropbtn flex justify-between gap-4 items-center">
                         <img
                             className="object-cover w-[40px] h-[40px] m-[4px] rounded-xl opacity-40"
-                            src="avatar_guest.png"
+                            src="/avatar_guest.png"
                             alt="avatar"
                         />
                         <h5 className="text-xs">Привет Гость!</h5>
