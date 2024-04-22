@@ -31,13 +31,6 @@ function SearchNews() {
         };
         getNews();
 
-        const handleScrollToTop = () => {
-            window.scrollTo({
-              top: 0,
-              behavior: 'smooth'
-            });
-        };
-
         handleScrollToTop();
     }, [query, sort]);
 
@@ -47,15 +40,24 @@ function SearchNews() {
     const indexOfFirstNews = indexOfLastNews - newsPerPage;
     const currentNews = news.slice(indexOfFirstNews, indexOfLastNews);
 
+    const handleScrollToTop = () => {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+    };
+
     const nextPage = () => {
         if (indexOfLastNews < news.length) {
             setCurrentPage(currentPage + 1);
+            handleScrollToTop();
         }
     };
 
     const prevPage = () => {
         if (currentPage > 0) {
             setCurrentPage(currentPage - 1);
+            handleScrollToTop();
         }
     };
 
