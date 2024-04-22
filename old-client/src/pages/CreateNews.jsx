@@ -11,7 +11,7 @@ function CreateNews() {
     const [tags, setTags] = useState("");
     const [theme, setName] = useState("");
     const [file, setFile] = useState(null);
-    const [selectedCategory, setSelectedCategory] = useState("Технологии");
+    const [selectedCategory, setSelectedCategory] = useState("Политика");
     const navigate = useNavigate();
 
     const handleFile = (e) => {
@@ -145,18 +145,16 @@ function CreateNews() {
                                     onChange={(e) =>
                                         setSelectedCategory(e.target.value)
                                     }
-                                    defaultValue="Технологии"
+                                    defaultValue="Политика"
                                 >
-                                    <option value="Технологии">Технологии</option>
+                                    <option value="Политика">Политика</option>
                                     <option value="Спорт">Спорт</option>
-                                    <option value="Еда">Еда</option>
-                                    <option value="Музыка">Музыка</option>
+                                    <option value="Медицина">Медицина</option>
+                                    <option value="Экономика">Экономика</option>
                                     <option value="Животные">Животные</option>
-                                    <option value="Путешествия">Путешествия</option>
-                                    <option value="Автомобили">Автомобили</option>
-                                    <option value="Мода">Мода</option>
-                                    <option value="Общество">Общество</option>
-                                    <option value="Прочее">Прочее</option>
+                                    <option value="Путешествия">
+                                        Путешествия
+                                    </option>
                                 </select>
                             </div>
                         </div>

@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom";
-
 function Footer() {
     return (
         <div className="flex justify-between gap-4 mt-12">
@@ -99,12 +97,12 @@ function Footer() {
                             <h4>Категории</h4>
                         </div>
                         <div className="flex flex-col gap-2 pl-6 py-4">
-                            <Link to="/searchnews/автомобили"><p>Автомобили</p></Link>
-                            <Link to="/searchnews/спорт"><p>Спорт</p></Link>
-                            <Link to="/searchnews/музыка"><p>Музыка</p></Link>
-                            <Link to="/searchnews/технологии"><p>Технологии</p></Link>
-                            <Link to="/searchnews/еда"><p>Еда</p></Link>
-                            <Link to="/searchnews/животные"><p>Животные</p></Link>                         
+                            <p>Политика</p>
+                            <p>Технологии</p>
+                            <p>Спорт</p>
+                            <p>Экономика</p>
+                            <p>Здоровье</p>
+                            <p>Еда</p>                            
                         </div>
                     </div>
                     <div className="flex flex-col py-1 gap-5">
