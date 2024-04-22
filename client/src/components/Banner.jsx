@@ -76,11 +76,11 @@ function Banner() {
                     className="col-span-2 relative"
                 >
                     <img
-                        className="2xl:h-[452px] object-cover rounded-xl"
+                        className="w-full 2xl:h-[452px] object-cover rounded-xl"
                         src={recentNews[2]?.title_img}
                         alt="img"
                     />
-                    <div className="glass absolute xl:top-[306px] xl:left-[4px] 2xl:top-[320px] bg-gray m-2.5 p-2.5 rounded-xl w-full h-full xl:max-w-[554px] xl:max-h-[110px] 2xl:max-w-[738px] 2xl:max-h-[110px]">
+                    <div className="glass absolute xl:top-[306px] 2xl:left-0 xl:left-[4px] 2xl:top-[320px] bg-gray m-2.5 p-2.5 rounded-xl w-full h-full xl:max-w-[554px] xl:max-h-[110px] 2xl:max-w-[738px] 2xl:max-h-[110px]">
                         <h3 className="line-clamp-1">{recentNews[2]?.theme}</h3>
                         <Markdown className="markdown pt-3 line-clamp-2">
                             {recentNews[2]?.text}
