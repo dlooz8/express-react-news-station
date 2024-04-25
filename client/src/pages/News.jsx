@@ -563,7 +563,7 @@ function News() {
                                 <img
                                     src={post?.title_img}
                                     alt=""
-                                    className="w-[80px] h-[80px] rounded-xl"
+                                    className="w-[80px] h-[80px] rounded-xl object-cover"
                                 />
                                 <div className="flex flex-col items-start gap-2">
                                     <h5 className="line-clamp-2">
