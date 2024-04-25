@@ -392,7 +392,7 @@ function News() {
                                                                 </p>
                                                             </div>
                                                         </div>
-                                                        {nestedComment.user.id === isUser.id || isUser.id === import.meta.env.VITE_ADMIN_ID && (
+                                                        {nestedComment.user.id === isUser.id || isUser.id === import.meta.env.VITE_ADMIN_ID ? (
                                                             <div
                                                                 onClick={() =>
                                                                     handleDeleteNestedComment(
@@ -418,7 +418,7 @@ function News() {
                                                                     Удалить
                                                                 </button>
                                                             </div>
-                                                        )}
+                                                        ):(null)}
                                                     </div>
                                                     <p className="overflow-ellipsis">
                                                         {nestedComment.text}
