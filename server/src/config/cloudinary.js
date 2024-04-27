@@ -14,7 +14,7 @@ async function handleUpload(file) {
     const response = await cloudinary.uploader.upload(file, {
     resource_type: "image",
     transformation: [
-        { width: 1600, height: 900, crop: 'fill' },
+        { width: 854, height: 480, crop: 'fill' },
         { format: 'webp' }
     ]
     });
