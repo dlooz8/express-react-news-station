@@ -155,7 +155,7 @@ function TrendyNews() {
                             <p className="text-xs">{news.created_at_date}</p>
                         </div>
                         <div
-                            className="red-hover pr-2"
+                            className="red-hover pr-2 cursor-pointer"
                             onClick={() =>
                                 AddBookmark(news.post_id, isUser.id)
                             }

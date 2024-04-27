@@ -2,11 +2,14 @@ const bookmarksService = require("../services/bookmarks.service");
 const { validationResult } = require("express-validator");
 
 const postCreateBookmark = async (req, res) => {
-    const result = validationResult(req);
-    if (!result.isEmpty()) {
-        return res.status(400).json({ message: "Авторизуйтесь для добавления новой закладки!" });
-    }
     try {
+        const result = validationResult(req);
+        if (!result.isEmpty()) {
+            return res.status(401).json({
+                error: result.array(),
+                message: "Авторизуйтесь для добавления новой закладки!" 
+            });
+        }
         const bookmark = await bookmarksService.postCreateBookmark(req);
         return res.status(200).json(bookmark);
     } catch (error) {
@@ -15,11 +18,14 @@ const postCreateBookmark = async (req, res) => {
 };
 
 const getUserBookmarks = async (req, res) => {
-    const result = validationResult(req);
-    if (!result.isEmpty()) {
-        return res.status(400).json(result);
-    }
     try {
+        const result = validationResult(req);
+        if (!result.isEmpty()) {
+            return res.status(401).json({
+                error: result.array(),
+                message: "Авторизуйтесь для получения закладок!"
+            });
+        }
         const bookmarks = await bookmarksService.getUserBookmarks(
             req.query.user_id
         );
@@ -30,11 +36,14 @@ const getUserBookmarks = async (req, res) => {
 };
 
 const deleteBookmark = async (req, res) => {
-    const result = validationResult(req);
-    if (!result.isEmpty()) {
-        return res.status(400).json(result);
-    }
     try {
+        const result = validationResult(req);
+        if (!result.isEmpty()) {
+            return res.status(401).json({
+                error: result.array(),
+                message: "Авторизуйтесь для удаления закладок!"
+            });
+        }
         const news = await bookmarksService.deleteBookmark(req.query.id);
         return res.status(200).json(news);
     } catch (error) {
@@ -43,11 +52,14 @@ const deleteBookmark = async (req, res) => {
 };
 
 const deleteBookmarkUserId = async (req, res) => {
-    const result = validationResult(req);
-    if (!result.isEmpty()) {
-        return res.status(400).json(result);
-    }
     try {
+        const result = validationResult(req);
+        if (!result.isEmpty()) {
+            return res.status(401).json({
+                error: result.array(),
+                message: "Авторизуйтесь для удаления закладок!"
+            });
+        }
         const news = await bookmarksService.deleteBookmarkUserId(req.query.user_id, req.query.post_id);
         return res.status(200).json(news);
     } catch (error) {

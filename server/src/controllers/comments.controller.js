@@ -2,11 +2,14 @@ const commentsService = require("../services/comments.service");
 const { validationResult } = require("express-validator");
 
 const getComments = async (req, res) => {
-    const result = validationResult(req);
-    if (!result.isEmpty()) {
-        return res.status(400).json(result);
-    }
     try {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({
+                error: errors.array(),
+                message: "Некорректные данные при получении комментариев!",
+            });
+        }
         const comments = await commentsService.getComments(req.query.post_id);
         return res.status(200).json(comments);
     } catch (error) {
@@ -15,11 +18,14 @@ const getComments = async (req, res) => {
 };
 
 const postCreateComment = async (req, res) => {
-    const result = validationResult(req);
-    if (!result.isEmpty()) {
-        return res.status(400).json({ message: "Авторизуйтесь для добавления нового комментария!" });
-    }
     try {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(401).json({
+                error: errors.array(),
+                message: "Авторизуйтесь для добавления нового комментария!"
+            });
+        }
         const comment = await commentsService.postCreateComment(req);
         return res.status(200).json(comment);
     } catch (error) {
@@ -28,11 +34,14 @@ const postCreateComment = async (req, res) => {
 };
 
 const deleteComment = async (req, res) => {
-    const result = validationResult(req);
-    if (!result.isEmpty()) {
-        return res.status(400).json(result);
-    }
     try {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(401).json({
+                error: errors.array(),
+                message: "Авторизуйтесь для удаления комментария!"
+            });
+        }
         const result = await commentsService.deleteComment(req.query.id);
         return res.status(200).json(result);
     } catch (error) {
@@ -41,11 +50,14 @@ const deleteComment = async (req, res) => {
 };
 
 const deleteNestedComment = async (req, res) => {
-    const result = validationResult(req);
-    if (!result.isEmpty()) {
-        return res.status(400).json(result);
-    }
     try {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(401).json({
+                error: errors.array(),
+                message: "Авторизуйтесь для удаления комментария!"
+            });
+        }
         const result = await commentsService.deleteNestedComment(req.query.id);
         return res.status(200).json(result);
     } catch (error) {

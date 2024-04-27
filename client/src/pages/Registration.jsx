@@ -47,15 +47,11 @@ const Registration = () => {
             .then((res) => {
                 setIsUser(res.data);
                 localStorage.setItem("user", JSON.stringify(res.data));
-                toast.success("Вы успешно зарегистрировались!");
+                toast.success(res.data.message);
                 setTimeout(() => navigate("/"), 1000);
             })
             .catch((error) => {
-                if(error.response.data.meta.target[0] === "email") {
-                    toast.error("Этот email уже используется!");
-                } else {
-                    toast.error("Произошла ошибка при регистрации");
-                }
+                toast.error(error.response.data.message);
                 setEmail("");
                 setPassword("");
             });

@@ -100,7 +100,7 @@ function LatestNews() {
                                         <p className="text-xs">{news.created_at_date}</p>
                                     </div>
                                     <div
-                                        className="red-hover pr-3"
+                                        className="red-hover pr-3 cursor-pointer"
                                         onClick={() =>
                                             AddBookmark(news.post_id, isUser.id)
                                         }

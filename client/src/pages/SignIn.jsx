@@ -34,11 +34,12 @@ function SignIn() {
             .then((res) => {
                 setIsUser(res.data);
                 localStorage.setItem("user", JSON.stringify(res.data));
-                toast.success("Вы вошли в аккаунт");
+
+                toast.success(res.data.message);
                 navigate("/");
             })
             .catch(function (error) {
-                toast.error(error.response.data);
+                toast.error(error.response.data.message);
             });
     };
 
