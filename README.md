@@ -1,12 +1,12 @@
-# Client - React + Vite
- - перенести .env.local файл в корень папки client
- - npm install
+# Для запуска проекта необходимо выполнить следующие действия:
+
+# Client
+ - переименовать файл .env.example в .env в корне папки client
+ - npm ci
  - npm run build
  - npm run preview
 
-# Server - Express + Prisma
- - перенести .env файл в корень папки server
- - rm -rf node_modules
- - rm package-lock.json
- - npm install
+# Server
+ - переименовать файл .env.example в .env в корне папки server
+ - npm ci
  - npm start
