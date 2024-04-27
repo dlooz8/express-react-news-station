@@ -2,11 +2,10 @@ const session = require("express-session");
 const express = require("express");
 const morgan = require("morgan");
 const cors = require("cors");
-const bookmarksRouter = require("./routes/bookmarks.routes");
-const commentsRouter = require("./routes/comments.routes");
-const authRouter = require("./routes/auth.routes");
-const newsRouter = require("./routes/news.routes");
-const dotenv = require("dotenv").config();
+const bookmarksRouter = require("./src/routes/bookmarks.routes");
+const commentsRouter = require("./src/routes/comments.routes");
+const authRouter = require("./src/routes/auth.routes");
+const newsRouter = require("./src/routes/news.routes");
 
 const app = express();
 app.use(express.json());
@@ -34,5 +33,9 @@ app.use("/auth", authRouter);
 app.use("/news", newsRouter);
 app.use("/bookmarks", bookmarksRouter);
 app.use("/comments", commentsRouter);
+
+app.listen(process.env.SERVER_PORT, () => {
+    console.log(`🚀 Server started on port http://localhost:${process.env.SERVER_PORT} 🚀`);
+});
 
 module.exports = app;
