@@ -2,10 +2,7 @@ const session = require("express-session");
 const express = require("express");
 const morgan = require("morgan");
 const cors = require("cors");
-const bookmarksRouter = require("./src/routes/bookmarks.routes");
-const commentsRouter = require("./src/routes/comments.routes");
-const authRouter = require("./src/routes/auth.routes");
-const newsRouter = require("./src/routes/news.routes");
+require("dotenv").config();
 
 const app = express();
 app.use(express.json());
@@ -29,13 +26,15 @@ app.use(
     })
 );
 
-app.use("/auth", authRouter);
-app.use("/news", newsRouter);
-app.use("/bookmarks", bookmarksRouter);
-app.use("/comments", commentsRouter);
+app.use('/auth', require('./src/routes/auth.routes'));
+app.use('/news', require('./src/routes/news.routes'));
+app.use('/bookmarks', require('./src/routes/bookmarks.routes'));
+app.use('/comments', require('./src/routes/comments.routes'));
 
-app.listen(process.env.SERVER_PORT, () => {
-    console.log(`🚀 Server started on port http://localhost:${process.env.SERVER_PORT} 🚀`);
+const PORT = process.env.SERVER_PORT || 5000;
+
+app.listen(PORT, () => {
+    console.log(`🚀 Server started on port http://localhost:${PORT} 🚀`);
 });
 
 module.exports = app;

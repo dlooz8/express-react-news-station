@@ -32,6 +32,9 @@ const Registration = () => {
         } else if (!avatar_url) {
             toast.error("Пожалуйста, введите URL аватара");
             return;
+        } else if (!/^https:\/\/.*$/.test(avatar_url)) {
+            toast.error("Введите корректный URL аватара");
+            return;
         }
 
         await app

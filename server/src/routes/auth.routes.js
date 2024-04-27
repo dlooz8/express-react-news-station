@@ -1,15 +1,28 @@
 const authController = require('../controllers/auth.controller');
 const express = require('express');
 const router = express.Router();
-const { body } = require('express-validator');
+const { check } = require('express-validator');
 
-router.post('/register',
-    body('name').notEmpty(),
-    body('email').isEmail().notEmpty(),
-    body('password').notEmpty(),
-    body('avatar_url').notEmpty(),
-    authController.postRegister);
-router.post('/login', authController.postLogin);
+router.post(
+    '/register',
+    [
+        check('name').notEmpty().isString(),
+        check('email').notEmpty().isEmail(),
+        check('password').notEmpty().isString().isLength({ min: 8 }),
+        check('avatar_url').notEmpty().isURL()
+    ],
+    authController.postRegister
+);
+
+router.post(
+    '/login',
+    [
+        check('email').notEmpty().isEmail(),
+        check('password').notEmpty().isString().isLength({ min: 8 }),
+    ],
+    authController.postLogin
+);
+
 router.get('/check-auth', authController.checkAuth);
 router.get('/logout', authController.logOut);
 

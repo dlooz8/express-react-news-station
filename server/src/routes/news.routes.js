@@ -1,30 +1,68 @@
 const newsController = require('../controllers/news.controller')
 const router = require('express').Router();
 const Multer = require('multer');
-const { query, body } = require('express-validator');
+const { check } = require('express-validator');
 
 const storage = new Multer.memoryStorage();
 const upload = Multer({
-  storage,
+    storage,
 });
 
-router.post('/create-news',
-  body('text').notEmpty(),
-  body('theme').notEmpty(),
-  body('tags').notEmpty(),
-  body('category').notEmpty(),
-  body('title_img').notEmpty(),
-  body('user_id').notEmpty(),
-  newsController.postCreateNews);
-router.post('/upload-image', upload.single('image'), newsController.postImageNews);
+router.post(
+    '/create-news',
+    [
+        check('theme').notEmpty().isString(),
+        check('text').notEmpty().isString(),
+        check('tags').notEmpty().isString(),
+        check('category').notEmpty().isString(),
+        check('title_img').notEmpty().isURL(),
+        check('user_id').notEmpty().isUUID(),
+    ],
+    newsController.postCreateNews
+);
+
+router.post(
+    '/upload-image',
+    upload.single('image'),
+    newsController.postImageNews
+);
+
+router.get(
+    '/search-news',
+    [
+        check('search').escape(),
+        check('sort').escape().notEmpty()
+    ],
+    newsController.getSearchNews
+);
+
+router.get(
+    '/',
+    [
+        check('news_id').notEmpty().escape()
+    ],
+    newsController.getCurrentNews
+);
+
+router.get(
+    '/user-news/',
+    [
+        check('user_id').notEmpty().isUUID().escape()
+    ],
+    newsController.getUserNews
+);
+
+router.delete(
+    '/delete/',
+    [
+        check('news_id').notEmpty().isUUID()
+    ], newsController.deleteNews
+);
+
 router.get('/popular-news', newsController.getPopularNews);
 router.get('/trendy-news', newsController.getTrendyNews);
 router.get('/recent-news', newsController.getRecentNews);
 router.get('/hot-sport-news', newsController.getHotSportNews);
 router.get('/latest-news', newsController.getLatestNews);
-router.get('/search-news', query('search').escape(), query('sort').escape().notEmpty(), newsController.getSearchNews);
-router.get('/', query('news_id').notEmpty().escape(), newsController.getCurrentNews);
-router.get('/user-news/', query('user_id').notEmpty().escape(), newsController.getUserNews);
-router.delete('/delete/', query('news_id').notEmpty(), newsController.deleteNews);
 
 module.exports = router;
